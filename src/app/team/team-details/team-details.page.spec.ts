@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamDetailsPage } from './team-details.page';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TeamDetailsPage', () => {
   let component: TeamDetailsPage;
@@ -11,6 +12,7 @@ describe('TeamDetailsPage', () => {
     TestBed.configureTestingModule({
       declarations: [ TeamDetailsPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [HttpClientTestingModule],
     })
     .compileComponents();
   }));

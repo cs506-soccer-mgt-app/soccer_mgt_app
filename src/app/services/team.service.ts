@@ -19,6 +19,11 @@ export class TeamService {
     //   console.log(data);
     // });
 
+    // // Get all Games for Team
+    // this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams/2/games').subscribe((data) => {
+    //   console.log(data);
+    // });
+
     // // Post Team (also known as creating a team)
     // this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams', 
     // {"name":"Wolf",

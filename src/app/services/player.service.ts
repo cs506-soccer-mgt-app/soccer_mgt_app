@@ -19,10 +19,17 @@ export class PlayerService {
     //   console.log(data);
     // });
 
-    // // Post Player
+    // // Post Player (also known as creating a player)
     // this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/players', 
     // {"user_id":"1",
     //   "team_id":"1"}).subscribe((data) => {
+    //   console.log(data)
+    // });
+
+    // // Put Player (also known as modifying an already created player)
+    // this.http.put('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/players/1', 
+    // {"user_id":"1",
+    //   "team_id":"2"}).subscribe((data) => {
     //   console.log(data)
     // });
 

@@ -7,27 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GameService {
 
-  constructor(public http: HttpClient) { 
-
-    // // Get All Games
-    // this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/games').subscribe((data) => {
-    //   console.log(data);
-    // });
-
-    // // Get Game by Game Id
-    // this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/games/2').subscribe((data) => {
-    //   console.log(data);
-    // });
-
-    // // Post Game (also known as creating a game)
-    // this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/games', 
-    // {"date":"Wolf",
-    //   "time":"Red", 
-    //   "opponent": "4",
-    //   "score":"Purple", 
-    //   "team_id":"1"}).subscribe((data) => {
-    //   console.log(data)
-    // });
+  constructor(public http: HttpClient) {
 
     // // Put Game (also known as modifying an already craeted games attributes)
     // this.http.put('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/games/1', 
@@ -39,5 +19,29 @@ export class GameService {
     //   console.log(data)
     // });
 
+  }
+
+  getGameDetail(id: number) {
+    return this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/games/' + id);
+  }
+
+  createGame(date: string, time: string, opponent: string, score: string, team_id: number) {
+    return this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/games', {
+      date: date,
+      time: time,
+      opponent: opponent,
+      score: score,
+      team_id: team_id
+    });
+  }
+
+  updateGame(id: number, date: string, time: string, opponent: string, score: string, team_id: number) {
+    return this.http.put('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/games/' + id, {
+      date: date,
+      time: time,
+      opponent: opponent,
+      score: score,
+      team_id: team_id
+    });
   }
 }

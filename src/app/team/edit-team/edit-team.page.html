@@ -1,8 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button [routerLink]="['/semester-details', semester_id]"></ion-back-button>
-    </ion-buttons>
+    <ion-buttons slot="start"></ion-buttons>
     <ion-title>Edit Team</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -15,21 +13,21 @@
   <ion-list lines="full">
     <ion-item>
       <ion-input required type="text" placeholder="Team Name"
-                 [(ngModel)]="course.course_name">
+                 [(ngModel)]="team.name">
       </ion-input>
     </ion-item>
     <br>
     <br>
     <ion-item>
       <ion-input required type="text" placeholder="Primary Color" 
-                  [(ngModel)]="course.course_name">
+                  [(ngModel)]="team.primary_color">
       </ion-input>
     </ion-item>
     <br>
     <br>
     <ion-item>
       <ion-input required type="text" placeholder="Alternate Color" 
-                  [(ngModel)]="course.course_name">
+                  [(ngModel)]="team.alternate_color">
       </ion-input>
     </ion-item>
     <br>

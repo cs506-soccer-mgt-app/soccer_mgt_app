@@ -19,7 +19,17 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list'
-    }
+    },
+    {
+      title: 'Create Team',
+      url: '/create-team',
+      icon: 'construct'
+    },
+    {
+      title: 'Edit Team',
+      url: '/edit-team',
+      icon: 'alert'
+    },
   ];
 
   constructor(

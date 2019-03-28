@@ -20,12 +20,6 @@ export class AppComponent {
       url: '/list',
       icon: 'list'
     },
-<<<<<<< HEAD
-    { title: 'Add Game',
-      url: '/add-game',
-      icon: 'football'
-    }
-=======
     {
       title: 'Create Team',
       url: '/create-team',
@@ -36,7 +30,10 @@ export class AppComponent {
       url: '/edit-team',
       icon: 'alert'
     },
->>>>>>> dev
+    { title: 'Add Game',
+      url: '/add-game',
+      icon: 'football'
+    }
   ];
 
   constructor(

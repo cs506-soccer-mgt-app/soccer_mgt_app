@@ -49,10 +49,16 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(3);
+    expect(menuItems.length).toEqual(8);
     expect(menuItems[0].textContent).toContain('Home');
     expect(menuItems[1].textContent).toContain('List');
-    expect(menuItems[2].textContent).toContain('Add Game');
+    expect(menuItems[2].textContent).toContain('Create Team');
+    expect(menuItems[3].textContent).toContain('Team Details');
+    expect(menuItems[4].textContent).toContain('Edit Team');
+    expect(menuItems[5].textContent).toContain('Add Game');
+    expect(menuItems[6].textContent).toContain('Game Details');
+    expect(menuItems[7].textContent).toContain('Edit Game');
+
   });
 
   it('should have urls', async () => {
@@ -60,10 +66,15 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(3);
+    expect(menuItems.length).toEqual(8);
     expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/home');
     expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/list');
-    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/add-game');
+    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/create-team');
+    expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual('/team-details');
+    expect(menuItems[4].getAttribute('ng-reflect-router-link')).toEqual('/edit-team');
+    expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/add-game');
+    expect(menuItems[6].getAttribute('ng-reflect-router-link')).toEqual('/game-details/:id');
+    expect(menuItems[7].getAttribute('ng-reflect-router-link')).toEqual('/edit-game/:id');
   });
 
 });

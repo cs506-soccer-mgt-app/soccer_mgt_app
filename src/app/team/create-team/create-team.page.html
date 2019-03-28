@@ -1,0 +1,67 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Create Team
+          </ion-title>
+    </ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-grid>
+  <br>
+  <br>
+    <ion-item>
+        <ion-input required type="text" placeholder="Team Name"
+                 [(ngModel)]="team.name">
+      </ion-input>
+      </ion-item>
+
+  <br>
+  <br>
+    <ion-item>
+      <ion-label>Session Type</ion-label>
+      <ion-select placeholder="Select One" [(ngModel)]="team.session_id">
+        <ion-select-option value="1">Summer</ion-select-option>
+        <ion-select-option value="2">Fall</ion-select-option>
+        <ion-select-option value="3">Winter</ion-select-option>
+        <ion-select-option value="4">Spring</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  <br>
+  <br>
+    <ion-item>
+      <ion-input required type="text" placeholder="Primary Color" 
+      [(ngModel)]="team.primary_color"></ion-input> 
+    </ion-item>
+
+  <br>
+  <br>
+    <ion-item>
+      <ion-input required type="text" placeholder="Alternate Color" 
+        [(ngModel)]="team.alternate_color"></ion-input> 
+    </ion-item>
+  
+  <br>
+  <br>
+
+  <ion-row justify-content-center>
+    <ion-col col-md-4 col-xs-8>
+      <ion-button ion-button color="success" routerLink="/home" (click)="createTeam()">
+        Ok     </ion-button>
+    </ion-col>
+
+    <ion-col col-md-4 col-xs-8>
+      <ion-button ion-button color="danger" routerLink="/home">
+        Cancel
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

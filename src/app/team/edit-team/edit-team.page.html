@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start"></ion-buttons>
+    <ion-title>Edit Team</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list lines="full">
+    <ion-item>
+      <ion-input required type="text" placeholder="Team Name"
+                 [(ngModel)]="team.name">
+      </ion-input>
+    </ion-item>
+    <br>
+    <br>
+    <ion-item>
+      <ion-input required type="text" placeholder="Primary Color" 
+                  [(ngModel)]="team.primary_color">
+      </ion-input>
+    </ion-item>
+    <br>
+    <br>
+    <ion-item>
+      <ion-input required type="text" placeholder="Alternate Color" 
+                  [(ngModel)]="team.alternate_color">
+      </ion-input>
+    </ion-item>
+    <br>
+    <br> 
+  </ion-list>
+
+<div id=team-creation position="center">
+  <ion-button shape="round" color="success" expand="full" routerLink="/team-details" (click)="updateTeam()">Save</ion-button>
+  <ion-button shape="round" color="danger" expand="full" routerLink="/team-details">Cancel</ion-button>
+</div>
+</ion-content>

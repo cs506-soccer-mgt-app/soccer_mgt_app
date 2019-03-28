@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../../services/team.service';
 import { HttpClient } from '@angular/common/http';
+import { ResourceLoader } from '@angular/compiler';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-create-team',
@@ -8,14 +10,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./create-team.page.scss'],
 })
 export class CreateTeamPage implements OnInit {
-
-  // private team: Team = {
-  //   name: '',
-  //   primary_color: '',
-  //   alternate_color: '',
-  //   manager_id: 1,
-  //   session_id: 2
-  // };
 
     private team = {
       name: '',
@@ -32,9 +26,14 @@ export class CreateTeamPage implements OnInit {
 
   createTeam() {
     // Remember to not hardcode information in the future
-    this.teamService.createTeam(this.team.name, this.team.primary_color, 2, 
-      this.team.alternate_color, 2).subscribe(data => {
-      console.log(data);
-    });
+    // Handle missing information routing
+    if (this.team.name == "" || this.team.primary_color == "" || this.team.alternate_color == "" || this.team.session_id == null) {
+      alert("Please input infomration");   
+    } else {
+      this.teamService.createTeam(this.team.name, this.team.primary_color, this.team.session_id, 
+        this.team.alternate_color, 2).subscribe(data => {
+        console.log(data);
+      });
+    } 
   }
 }

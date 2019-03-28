@@ -33,6 +33,11 @@ export class AppComponent {
     { title: 'Add Game',
       url: '/add-game',
       icon: 'football'
+    },
+    {
+      title: 'Team Details',
+      url: '/team-details',
+      icon: 'beer'
     }
   ];
 

@@ -10,11 +10,26 @@ export class EditGamePage implements OnInit {
 
   private items: Array<{ title: string; icon: string }> = [];
   private gameID = null;
-
-  private game;
+  private gameinfo;
+  private game = {
+    date: "",
+    opponent: "",
+    score: "",
+    time: "",
+    team_id: null
+  };
   constructor(private gameService: GameService, private route: ActivatedRoute) {
 
 
+  }
+
+  handleSaveButtonClick() {
+    console.log(this.game.date, this.game.time,
+      this.game.opponent, this.game.score, this.game.team_id);
+    this.gameService.updateGame(this.gameID, this.game.date, this.game.time,
+       this.game.opponent, this.game.score, 3).subscribe(data => {
+         console.log(data);
+     });
   }
 
   ngOnInit() {
@@ -35,10 +50,10 @@ export class EditGamePage implements OnInit {
   }
   loadGame() {
 
-    this.game = this.gameService.getGameDetail(this.gameID).subscribe(data => {
+    this.gameinfo = this.gameService.getGameDetail(this.gameID).subscribe(data => {
       //console.log(data);
-      this.game = data;
-      console.log(this.game);
+      this.gameinfo = data;
+      console.log(this.gameinfo);
       //this.date = data.date;
       //this.time = data.time;
       //this.opponent = data.opponent;

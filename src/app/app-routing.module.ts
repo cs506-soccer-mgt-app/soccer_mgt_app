@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'edit-game/:id',
    loadChildren: './game/edit-game/edit-game.module#EditGamePageModule'
-  }
+ },
   { path: 'add-game', loadChildren: './game/add-game/add-game.module#AddGamePageModule' },
   { path: 'create-team', loadChildren: './team/create-team/create-team.module#CreateTeamPageModule' },
   { path: 'edit-team', loadChildren: './team/edit-team/edit-team.module#EditTeamPageModule' }

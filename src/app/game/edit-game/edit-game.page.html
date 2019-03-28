@@ -12,7 +12,7 @@
 
     <ion-item>
       <ion-label color="primary">Date</ion-label>
-      <ion-datetime placeholder = {{game.date}} displayFormat="MMM DD, YYYY" max="2030" [(ngModel)]="game.date"></ion-datetime>
+      <ion-datetime  displayFormat="MMM DD, YYYY" max="2030" [(ngModel)]="game.date"></ion-datetime>
     </ion-item>
 
     <ion-item>
@@ -22,13 +22,13 @@
 
       <ion-item>
         <ion-label position="fixed" color="primary">Opponent</ion-label>
-        <ion-input placeholder = {{game.opponent}} [(ngModel)]="game.opponent"></ion-input>
+        <ion-input placeholder = {{gameinfo.opponent}} [(ngModel)]="game.opponent"></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-label position="fixed" color="primary">Score</ion-label>
-        <ion-input placeholder = {{game.score}} [(ngModel)]="game.score"></ion-input>
+        <ion-input placeholder = {{gameinfo.score}} [(ngModel)]="game.score"></ion-input>
       </ion-item>
 
       <ion-list>
@@ -41,7 +41,7 @@
 
   <ion-row justify-content-center test-center>
     <ion-col col-md-4 col-xs-8>
-      <ion-button  color="success">Save</ion-button>
+      <ion-button  color="success" (click)="handleSaveButtonClick()">Save</ion-button>
     </ion-col>
 
     <ion-col col-md-4 col-xs-8>

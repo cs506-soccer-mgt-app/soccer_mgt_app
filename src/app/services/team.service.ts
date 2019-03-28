@@ -7,19 +7,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TeamService {
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {}
 
    getTeamDetail(id: number) {
       return this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams/' + id);
    }
 
    createTeam(name: string, primary_color: string, session_id: number, alternate_color: string, manager_id: number) {
+      console.log("test");
       return this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams', {
           name: name,
           primary_color: primary_color,
           session_id: session_id,
           alternate_color: alternate_color,
-          manager_id: manager_id
+          manager_id: manager_id,
       });
    }
 
@@ -31,5 +32,9 @@ export class TeamService {
           alternate_color: alternate_color,
           manager_id: manager_id
       });
+   }
+
+   getGamesForTeam(id: number) {
+       return this.http.get(`https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams/${id}/games`);
    }
 }

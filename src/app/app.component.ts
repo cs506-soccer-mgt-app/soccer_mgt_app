@@ -20,10 +20,23 @@ export class AppComponent {
       url: '/list',
       icon: 'list'
     },
+<<<<<<< HEAD
     { title: 'Add Game',
       url: '/add-game',
       icon: 'football'
     }
+=======
+    {
+      title: 'Create Team',
+      url: '/create-team',
+      icon: 'construct'
+    },
+    {
+      title: 'Edit Team',
+      url: '/edit-team',
+      icon: 'alert'
+    },
+>>>>>>> dev
   ];
 
   constructor(

@@ -10,11 +10,11 @@ export class GameService {
   constructor(public http: HttpClient) {
 
     // // Put Game (also known as modifying an already craeted games attributes)
-    // this.http.put('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/games/1', 
+    // this.http.put('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/games/1',
     // {"date":"Wolf2.0",
-    //   "time":"Red2.0", 
+    //   "time":"Red2.0",
     //   "opponent": "4",
-    //   "score":"Purple2.0", 
+    //   "score":"Purple2.0",
     //   "team_id":"1"}).subscribe((data) => {
     //   console.log(data)
     // });

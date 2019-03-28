@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Edit Game</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+
+    <ion-item>
+      <ion-label color="primary">Date</ion-label>
+      <ion-datetime placeholder = {{game.date}} displayFormat="MMM DD, YYYY" max="2030" [(ngModel)]="game.date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Time</ion-label>
+      <ion-datetime displayFormat="h:mm A" max="2030" [(ngModel)]="game.time"></ion-datetime>
+    </ion-item>
+
+      <ion-item>
+        <ion-label position="fixed" color="primary">Opponent</ion-label>
+        <ion-input placeholder = {{game.opponent}} [(ngModel)]="game.opponent"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="fixed" color="primary">Score</ion-label>
+        <ion-input placeholder = {{game.score}} [(ngModel)]="game.score"></ion-input>
+      </ion-item>
+
+      <ion-list>
+        <ion-item *ngFor="let item of items">
+          <ion-icon [name]="item.icon" slot="start"></ion-icon>
+          {{item.title}}
+        </ion-item>
+      </ion-list>
+
+
+  <ion-row justify-content-center test-center>
+    <ion-col col-md-4 col-xs-8>
+      <ion-button  color="success">Save</ion-button>
+    </ion-col>
+
+    <ion-col col-md-4 col-xs-8>
+      <ion-button color="danger">Cancel</ion-button>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
+</ion-content>

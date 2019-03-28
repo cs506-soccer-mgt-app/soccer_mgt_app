@@ -30,6 +30,10 @@ export class AppComponent {
       url: '/edit-team',
       icon: 'alert'
     },
+    { title: 'Add Game',
+      url: '/add-game',
+      icon: 'football'
+    }
   ];
 
   constructor(

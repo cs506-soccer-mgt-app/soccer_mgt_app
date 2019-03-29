@@ -26,16 +26,6 @@ export class AppComponent {
       icon: 'construct'
     },
     {
-      title: 'Team Details',
-      url: '/team-details',
-      icon: 'beer'
-    },
-    {
-      title: 'Edit Team',
-      url: '/edit-team',
-      icon: 'alert'
-    },
-    {
       title: 'Add Game',
       url: '/add-game',
       icon: 'football'

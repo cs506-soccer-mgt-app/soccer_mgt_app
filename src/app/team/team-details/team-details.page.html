@@ -11,14 +11,18 @@
   <ion-content padding>
 
     <!-- TODO: look into *ngFor (see home.page.html for an example) -->
-    <ion-list lines="full" *ngIf="team">
-      <ion-item>
-        <ion-list>
-          <!--<ion-item *ngIf="teamGames">{{teamGames[0].opponent}} on {{ teamGames[0].date}} at {{ teamGames[0].time}}</ion-item>-->
-        </ion-list>
+    <ion-title>Upcoming Games</ion-title>
+    <ion-list *ngFor="let team of teamGames">
+      <ion-item button [routerLink]="['/team-details', team.team_id]">
+        <ion-label>Playing against {{ team.opponent }} at {{ team.time }} on {{ team.date }}</ion-label>
       </ion-item>
-      <br>
-      <br>
+    </ion-list>
+
+    <br>
+
+    <ion-title>Team Information</ion-title>
+    <br>
+    <ion-list lines="full" *ngIf="team">
       <ion-item>
         Primary Color: {{ team.primary_color }}
       </ion-item>

@@ -30,27 +30,31 @@ export class AddGamePage implements OnInit {
     team_id: null
   }
 
+  private teamID;
+
   /**
    * Constructor for the page
    * 
-   * @param activatedRoute
+   * @param route
    * @param gameService
    * @param navCtrl
    * 
    * @return null
    */
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private gameService: GameService,
     protected navCtrl: NavController
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.teamID = this.route.snapshot.paramMap.get('id');
+  }
 
   /**
    * Handle when OK button is clicked
    * 
-   * @todo Parameter team_id is hard coded in createGame method call need to fix later.
+   * @todo Remove console.log() methods later.
    * 
    * @return null
    */
@@ -58,7 +62,7 @@ export class AddGamePage implements OnInit {
     console.log(this.game.date, this.game.time,
       this.game.opponent, this.game.score, this.game.team_id);
     this.gameService.createGame(this.game.date, this.game.time,
-      this.game.opponent, this.game.score, 3).subscribe(data => {
+      this.game.opponent, this.game.score, this.teamID).subscribe(data => {
         console.log(data);
     });
   }

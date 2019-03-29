@@ -24,31 +24,6 @@ export class AppComponent {
       title: 'Create Team',
       url: '/create-team',
       icon: 'construct'
-    },
-    {
-      title: 'Team Details',
-      url: '/team-details',
-      icon: 'beer'
-    },
-    {
-      title: 'Edit Team',
-      url: '/edit-team',
-      icon: 'alert'
-    },
-    {
-      title: 'Add Game',
-      url: '/add-game',
-      icon: 'football'
-    },
-    {
-      title: 'Game Details',
-      url: '/game-details/:id',
-      icon: 'football'
-    },
-    {
-      title: 'Edit Game',
-      url: '/edit-game/:id',
-      icon: 'football'
     }
   ];
 

@@ -33,7 +33,7 @@
   
     <div id=team-creation position="center">
       <ion-button shape="round" color="primary" expand="full">Add Player</ion-button>
-      <ion-button shape="round" color="primary" expand="full" routerLink="/add-game">Add Game</ion-button>
+      <ion-button shape="round" color="primary" expand="full" [routerLink]="'/team-details/' + teamID + '/add-game'">Add Game</ion-button>
     </div>
     <ion-grid>
     <ion-row justify-content-center>

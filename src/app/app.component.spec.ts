@@ -26,7 +26,7 @@ describe('AppComponent', () => {
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
       ],
-      imports: [ RouterTestingModule.withRoutes([])],
+      imports: [ RouterTestingModule.withRoutes([])]
     }).compileComponents();
   }));
 
@@ -49,10 +49,13 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(3);
+    expect(menuItems.length).toEqual(6);
     expect(menuItems[0].textContent).toContain('Home');
     expect(menuItems[1].textContent).toContain('List');
-    expect(menuItems[2].textContent).toContain('Add Game');
+    expect(menuItems[2].textContent).toContain('Create Team');
+    expect(menuItems[3].textContent).toContain('Edit Team');
+    expect(menuItems[4].textContent).toContain('Add Game');
+    expect(menuItems[5].textContent).toContain('Team Details');
   });
 
   it('should have urls', async () => {
@@ -60,10 +63,13 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(3);
+    expect(menuItems.length).toEqual(6);
     expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/home');
     expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/list');
-    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/add-game');
+    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/create-team');
+    expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual('/edit-team');
+    expect(menuItems[4].getAttribute('ng-reflect-router-link')).toEqual('/add-game');
+    expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/team-details');
   });
 
 });

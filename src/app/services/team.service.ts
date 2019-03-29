@@ -8,6 +8,10 @@ export class TeamService {
 
   constructor(public http: HttpClient) {}
 
+  getTeams() {
+      return this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams');
+  }
+
    getTeamDetail(id: number) {
       return this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams/' + id);
    }

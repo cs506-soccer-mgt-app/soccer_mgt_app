@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { TeamService } from 'src/app/services/team.service';
-import { HttpClient } from '@angular/common/http';
-import { toUnicode } from 'punycode';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-team-details',
@@ -10,43 +9,41 @@ import { toUnicode } from 'punycode';
 })
 export class TeamDetailsPage implements OnInit {
 
-  constructor(private teamService: TeamService, public http: HttpClient) { }
-  
-  
-  private team = {
-    alternate_color: "",
-    manager_id: null,
-    name: "",
-    primary_color: "",
-    session_id: null,
-    team_id: null
-    };
-  
-  private myTeam = null;
-  private teamGames = null;
+  constructor(private teamService: TeamService,
+              private route: ActivatedRoute) { }
+
+  private teamID;
+  private team;
+  private teamGames;
+
 
   ngOnInit() {
-    // TODO: hard coded
-    this.myTeam = 1;
-    this.teamGames = 1;
-    if (this.team) {
-      this.getTeamDetail();
-      this.getGamesForTeam();
-    }
+    this.teamID = this.route.snapshot.paramMap.get('id');
   }
 
-  getTeamDetail(){
-    this.teamService.getTeamDetail(this.myTeam).subscribe(data => {
-      this.myTeam = data;
-      console.log(this.myTeam);
-    });
+  ionViewWillEnter() {
+      if (this.teamID) {
+          this.getTeamDetail(this.teamID);
+          this.getGamesForTeam(this.teamID);
+      }
+  }
+
+  getTeamDetail(id: number) {
+    this.teamService.getTeamDetail(id)
+        .subscribe(res => {
+            this.team = res;
+        }, err => {
+            console.log(err);
+        });
   }
   
-  getGamesForTeam() {
-    this.teamService.getGamesForTeam(this.myTeam).subscribe(data => {
-      this.teamGames = data;
-      console.log(this.teamGames);
-    });
+  getGamesForTeam(id: number) {
+    this.teamService.getGamesForTeam(id)
+        .subscribe(res => {
+            this.teamGames = res;
+        }, err => {
+            console.log(err);
+        });
   }
 
 }

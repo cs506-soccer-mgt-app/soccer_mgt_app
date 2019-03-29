@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start"></ion-buttons>
-    <ion-title *ngIf="teamID">Edit {{ team.name }}</ion-title>
+    <ion-title *ngIf="team">Edit {{ team.name }}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -10,7 +10,7 @@
 
 <ion-content padding>
 
-  <ion-list lines="full" *ngIf="teamID">
+  <ion-list lines="full" *ngIf="team">
     <ion-item>
       <ion-input required type="text" placeholder="Team Name"
                  [(ngModel)]="team.name">
@@ -34,8 +34,9 @@
     <br> 
   </ion-list>
 
-<div id=team-creation position="center">
-  <ion-button shape="round" color="success" expand="full" routerLink="/team-details" (click)="updateTeam()">Save</ion-button>
-  <ion-button shape="round" color="danger" expand="full" routerLink="/team-details">Cancel</ion-button>
-</div>
+  <div id=team-creation position="center">
+    <ion-button shape="round" color="success" expand="full" (click)="updateTeam()">Save</ion-button>
+    <ion-button shape="round" color="danger" expand="full" [routerLink]="['/team-details', teamID]">Cancel</ion-button>
+  </div>
+
 </ion-content>

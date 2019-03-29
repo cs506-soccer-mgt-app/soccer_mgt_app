@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { TeamService } from '../../services/team.service';
-import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-team',
@@ -10,42 +10,41 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditTeamPage implements OnInit {
 
-  private team;
   private teamID;
+  private team;
 
-  // private team = {
-  //   team_id: null,
-  //   name: '',
-  //   primary_color:'',
-  //   session_id: null,
-  //   alternate_color:'',
-  //   manager_id: null
-  // }
 
-  constructor(private teamService: TeamService, public http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private teamService: TeamService,
+              private route: ActivatedRoute,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
-    // TODO -- Hardcoded team ID
-    // this.changeTeam = 1;
     this.teamID = this.route.snapshot.paramMap.get('id');
+  }
+
+  ionViewWillEnter() {
     if (this.teamID) {
-      this.getTeamDetail();
+      this.getTeamDetail(this.teamID);
     }
   }
 
   updateTeam() {
-    console.log(this.team);
     this.teamService.updateTeam(this.teamID, this.team.name, this.team.primary_color,
-      this.team.session_id, this.team.alternate_color, this.team.manager_id).subscribe(data => {
-        console.log(data);
-      });
+      this.team.session_id, this.team.alternate_color, this.team.manager_id)
+        .subscribe(data => {
+          this.navCtrl.navigateBack(['/team-details', this.teamID]);
+        }, err => {
+          console.log(err);
+        });
   }
 
-  getTeamDetail(){
-    this.teamService.getTeamDetail(this.teamID).subscribe(data => {
-      this.team = data;
-      console.log(this.team);
-    });
+  getTeamDetail(id: number) {
+    this.teamService.getTeamDetail(id)
+        .subscribe(res => {
+          this.team = res;
+        }, err => {
+          console.log(err);
+        });
   }
 
 }

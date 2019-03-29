@@ -41,4 +41,11 @@
         <ion-label>Theme Your App</ion-label>
       </ion-item>
     </ion-list>
+
+  <ion-list *ngFor="let team of teamList">
+    <ion-item button [routerLink]="['/team-details', team.team_id]">
+      <ion-label>{{ team.team_id }} - {{ team.name }} - {{ team.primary_color }}</ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar color="primary">
       <ion-buttons slot="start"></ion-buttons>
-      <ion-title>Team Details</ion-title>
+      <ion-title *ngIf="team">{{ team.name }}</ion-title>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
@@ -9,48 +9,44 @@
   </ion-header>
   
   <ion-content padding>
-  
-    <ion-list lines="full">
+
+    <!-- TODO: look into *ngFor (see home.page.html for an example) -->
+    <ion-list lines="full" *ngIf="team">
       <ion-item>
         <ion-list>
-          <ion-item>Game 1</ion-item>
-          <br>
-          <ion-item>Game 2</ion-item>
-          <br>
-          <ion-item>Game 3</ion-item>
-          <br>
+          <!--<ion-item *ngIf="teamGames">{{teamGames[0].opponent}} on {{ teamGames[0].date}} at {{ teamGames[0].time}}</ion-item>-->
         </ion-list>
       </ion-item>
       <br>
       <br>
       <ion-item>
-        Primary Color: Red
+        Primary Color: {{ team.primary_color }}
       </ion-item>
       <br>
       <br>
       <ion-item>
-        Alternate Color: Blue
+        Alternate Color: {{ team.alternate_color }}
       </ion-item>
       <br>
-      <br> 
+      <br>
     </ion-list>
   
-  <div id=team-creation position="center">
-    <ion-button shape="round" color="primary" expand="full" routerLink="/home">Add Player</ion-button>
-    <ion-button shape="round" color="primary" expand="full" routerLink="/add-game">Add Game</ion-button>
-  </div>
-  <ion-grid>
-  <ion-row justify-content-center>
-      <ion-col col-md-4 col-xs-8>
-        <ion-button ion-button color="success" routerLink="/edit-team">
-          Edit</ion-button>
-      </ion-col>
-  
-      <ion-col col-md-4 col-xs-8>
-        <ion-button ion-button color="danger" routerLink="/home">
-          Back
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <div id=team-creation position="center">
+      <ion-button shape="round" color="primary" expand="full">Add Player</ion-button>
+      <ion-button shape="round" color="primary" expand="full" routerLink="/add-game">Add Game</ion-button>
+    </div>
+    <ion-grid>
+    <ion-row justify-content-center>
+        <ion-col col-md-4 col-xs-8>
+          <ion-button ion-button color="success" [routerLink]="['/edit-team', teamID]">
+            Edit</ion-button>
+        </ion-col>
+
+        <ion-col col-md-4 col-xs-8>
+          <ion-button ion-button color="danger" routerLink="/home">
+            Back
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-content>

@@ -26,7 +26,7 @@ describe('AppComponent', () => {
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
       ],
-      imports: [ RouterTestingModule.withRoutes([])],
+      imports: [ RouterTestingModule.withRoutes([])]
     }).compileComponents();
   }));
 
@@ -58,7 +58,6 @@ describe('AppComponent', () => {
     expect(menuItems[5].textContent).toContain('Add Game');
     expect(menuItems[6].textContent).toContain('Game Details');
     expect(menuItems[7].textContent).toContain('Edit Game');
-
   });
 
   it('should have urls', async () => {

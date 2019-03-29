@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { TeamService } from '../../services/team.service';
-import { HttpClient } from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-team',
@@ -9,24 +10,41 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EditTeamPage implements OnInit {
 
-  private team = {
-    id: null,
-    name: '',
-    primary_color:'',
-    session_id: null,
-    alternate_color:'',
-    manager_id: null
-  }
+  private teamID;
+  private team;
 
-  constructor(private teamService: TeamService, public http: HttpClient) { }
+
+  constructor(private teamService: TeamService,
+              private route: ActivatedRoute,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
+    this.teamID = this.route.snapshot.paramMap.get('id');
   }
+
+  ionViewWillEnter() {
+    if (this.teamID) {
+      this.getTeamDetail(this.teamID);
+    }
+  }
+
   updateTeam() {
-    this.teamService.updateTeam(21, this.team.name, this.team.primary_color,
-      3, this.team.alternate_color, 2).subscribe(data => {
-        console.log(data);
-      });
+    this.teamService.updateTeam(this.teamID, this.team.name, this.team.primary_color,
+      this.team.session_id, this.team.alternate_color, this.team.manager_id)
+        .subscribe(data => {
+          this.navCtrl.navigateBack(['/team-details', this.teamID]);
+        }, err => {
+          console.log(err);
+        });
+  }
+
+  getTeamDetail(id: number) {
+    this.teamService.getTeamDetail(id)
+        .subscribe(res => {
+          this.team = res;
+        }, err => {
+          console.log(err);
+        });
   }
 
 }

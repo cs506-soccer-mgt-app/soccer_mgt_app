@@ -15,6 +15,14 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
+  {
+    path: 'game-details/:id',
+   loadChildren: './game/game-details/game-details.module#GameDetailsPageModule'
+  },
+  {
+    path: 'edit-game/:id',
+   loadChildren: './game/edit-game/edit-game.module#EditGamePageModule'
+ },
   { path: 'add-game', loadChildren: './game/add-game/add-game.module#AddGamePageModule' },
   { path: 'team-details/:id', loadChildren: './team/team-details/team-details.module#TeamDetailsPageModule' },
   { path: 'create-team', loadChildren: './team/create-team/create-team.module#CreateTeamPageModule' },

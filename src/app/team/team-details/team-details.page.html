@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar color="primary">
       <ion-buttons slot="start"></ion-buttons>
-      <ion-title>Team Details</ion-title>
+      <ion-title *ngIf="myTeam.name">{{ myTeam.name }}</ion-title>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
@@ -13,36 +13,31 @@
     <ion-list lines="full">
       <ion-item>
         <ion-list>
-          <ion-item>Game 1</ion-item>
-          <br>
-          <ion-item>Game 2</ion-item>
-          <br>
-          <ion-item>Game 3</ion-item>
-          <br>
+          <ion-item *ngIf="teamGames">{{teamGames[0].opponent}} on {{ teamGames[0].date}} at {{ teamGames[1].time}}</ion-item>
         </ion-list>
       </ion-item>
       <br>
       <br>
-      <ion-item>
-        Primary Color: Red
+      <ion-item *ngIf="myTeam.primary_color">
+        Primary Color: {{ myTeam.primary_color }}
       </ion-item>
       <br>
       <br>
-      <ion-item>
-        Alternate Color: Blue
+      <ion-item *ngIf="myTeam.alternate_color">
+        Alternate Color: {{ myTeam.alternate_color }}
       </ion-item>
       <br>
       <br> 
     </ion-list>
   
   <div id=team-creation position="center">
-    <ion-button shape="round" color="primary" expand="full" routerLink="/home">Add Player</ion-button>
+    <ion-button shape="round" color="primary" expand="full" routerLink="/team-details">Add Player</ion-button>
     <ion-button shape="round" color="primary" expand="full" routerLink="/add-game">Add Game</ion-button>
   </div>
   <ion-grid>
   <ion-row justify-content-center>
       <ion-col col-md-4 col-xs-8>
-        <ion-button ion-button color="success" routerLink="/edit-team">
+        <ion-button ion-button color="success" [routerLink]="'/edit-team/' + myTeam.team_id">
           Edit</ion-button>
       </ion-col>
   

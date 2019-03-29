@@ -12,9 +12,9 @@
 
     <!-- TODO: look into *ngFor (see home.page.html for an example) -->
     <ion-title>Upcoming Games</ion-title>
-    <ion-list *ngFor="let team of teamGames">
+    <ion-list *ngFor="let game of teamGames">
       <ion-item button [routerLink]="['/team-details', team.team_id]">
-        <ion-label>Playing against {{ team.opponent }} at {{ team.time }} on {{ team.date }}</ion-label>
+        <ion-label>Playing against {{ game.opponent }} at {{ game.time }} on {{ game.date }}</ion-label>
       </ion-item>
     </ion-list>
 

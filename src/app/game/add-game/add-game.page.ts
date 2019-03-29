@@ -66,11 +66,4 @@ export class AddGamePage implements OnInit {
         console.log(data);
     });
   }
-
-   /**
-   * Handle when Cancel button is clicked
-   * 
-   * @return null
-   */
-  handleCancelButtonClick() { }
 }

@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateTeamPage } from './create-team.page';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterModule} from '@angular/router';
+import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 describe('CreateTeamPage', () => {
   let component: CreateTeamPage;
@@ -12,7 +14,11 @@ describe('CreateTeamPage', () => {
     TestBed.configureTestingModule({
       declarations: [ CreateTeamPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [HttpClientTestingModule]
+      imports: [RouterModule.forRoot([]), HttpClientTestingModule],
+      providers: [
+        { provide: LocationStrategy, useClass: PathLocationStrategy },
+        { provide: APP_BASE_HREF, useValue: '/edit-team' }
+      ]
     })
     .compileComponents();
   }));

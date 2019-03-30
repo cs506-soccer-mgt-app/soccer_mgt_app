@@ -1,39 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { TeamService } from '../../services/team.service';
-import { HttpClient } from '@angular/common/http';
-import { ResourceLoader } from '@angular/compiler';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-create-team',
   templateUrl: './create-team.page.html',
   styleUrls: ['./create-team.page.scss'],
 })
-export class CreateTeamPage implements OnInit {
+export class CreateTeamPage implements OnInit, OnDestroy {
 
     private team = {
       name: '',
-      primary_color:'',
+      primary_color: '',
       session_id: null,
       alternate_color: '',
       manager_id: null
-    }
+    };
 
-  constructor(private teamService: TeamService, public http: HttpClient) { }
+  constructor(private teamService: TeamService,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+  }
+
+  ionViewWillEnter() {
+    this.team = {
+      name: '',
+      primary_color: '',
+      session_id: null,
+      alternate_color: '',
+      manager_id: null
+    };
+  }
+
   createTeam() {
-    // Remember to not hardcode information in the future
+    // TODO: Remember to not hardcode information in the future, see manager_id
     // Handle missing information routing
     if (this.team.name == "" || this.team.primary_color == "" || this.team.alternate_color == "" || this.team.session_id == null) {
-      alert("Please input infomration");   
+      alert("Please input information");
     } else {
-      this.teamService.createTeam(this.team.name, this.team.primary_color, this.team.session_id, 
-        this.team.alternate_color, 2).subscribe(data => {
-        console.log(data);
-      });
-    } 
+      this.teamService.createTeam(this.team.name, this.team.primary_color, this.team.session_id, this.team.alternate_color, 2)
+          .subscribe(data => {
+            this.navCtrl.navigateBack('/home');
+          }, err => {
+            console.log(err);
+          });
+    }
   }
 }

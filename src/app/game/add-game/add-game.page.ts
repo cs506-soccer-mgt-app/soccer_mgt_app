@@ -22,14 +22,7 @@ export class AddGamePage implements OnInit {
    * Gobal variables for Add Game class
    * 
    */
-  private game = {
-    date: "",
-    opponent: "",
-    score: "",
-    time: "",
-    team_id: null
-  }
-
+  private game = { };
   private teamID;
 
   /**
@@ -44,7 +37,7 @@ export class AddGamePage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService,
-    protected navCtrl: NavController
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -59,11 +52,12 @@ export class AddGamePage implements OnInit {
    * @return null
    */
   handleOkButtonClick() {
-    console.log(this.game.date, this.game.time,
-      this.game.opponent, this.game.score, this.game.team_id);
-    this.gameService.createGame(this.game.date, this.game.time,
-      this.game.opponent, this.game.score, this.teamID).subscribe(data => {
-        console.log(data);
-    });
+    console.log(this.game); // TODO : FIX DATE TIME BUG
+    this.gameService.createGame(this.game.date, this.game.time, this.game.opponent, this.game.score, this.teamID)
+        .subscribe(data => {
+          this.navCtrl.navigateBack(['/team-details', this.teamID]);
+        }, err => {
+          console.log(err);
+        });
   }
 }

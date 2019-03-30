@@ -23,8 +23,8 @@ const routes: Routes = [
     path: 'edit-game/:id',
    loadChildren: './game/edit-game/edit-game.module#EditGamePageModule'
  },
-  { path: 'add-game', loadChildren: './game/add-game/add-game.module#AddGamePageModule' },
   { path: 'team-details/:id', loadChildren: './team/team-details/team-details.module#TeamDetailsPageModule' },
+  { path: 'team-details/:id/add-game', loadChildren: './game/add-game/add-game.module#AddGamePageModule' },
   { path: 'create-team', loadChildren: './team/create-team/create-team.module#CreateTeamPageModule' },
   { path: 'edit-team/:id', loadChildren: './team/edit-team/edit-team.module#EditTeamPageModule' }
 

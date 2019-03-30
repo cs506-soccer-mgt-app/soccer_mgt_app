@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Add Game
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-item>
+      <ion-label color="primary">Date</ion-label>
+      <ion-datetime displayFormat="MMM DD, YYYY" max="2030" [(ngModel)]="game.date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Time</ion-label>
+      <ion-datetime displayFormat="h:mm A" max="2030" [(ngModel)]="game.time"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="fixed">Opponent</ion-label>
+      <ion-input placeholder="Enter Opponent" [(ngModel)]="game.opponent"></ion-input>
+    </ion-item>
+
+    <ion-row justify-content-center>
+      <ion-col col-md-4 col-xs-8>
+        <ion-button ion-button color="success" (click)="handleOkButtonClick()">
+          Ok
+        </ion-button>
+      </ion-col>
+
+      <ion-col col-md-4 col-xs-8>
+        <ion-button ion-button color="danger" [routerLink]="['/team-details', teamID]">
+          Cancel
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

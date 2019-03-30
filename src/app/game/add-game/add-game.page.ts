@@ -22,7 +22,13 @@ export class AddGamePage implements OnInit {
    * Gobal variables for Add Game class
    * 
    */
-  private game = { };
+  private game = {
+    date: '',
+    opponent: '',
+    score: '',
+    time: '',
+    team_id: null
+  };
   private teamID;
 
   /**

@@ -14,8 +14,6 @@ export class EditGamePage implements OnInit {
   private items: Array<{ title: string; icon: string }> = [];
   private gameID = null;
   private game;
-  private date;
-  private time;
 
   constructor(private gameService: GameService, private route: ActivatedRoute, private navCtrl: NavController) { }
 
@@ -46,7 +44,6 @@ export class EditGamePage implements OnInit {
   loadGame() {
     this.gameService.getGameDetail(this.gameID).subscribe(data => {
       this.game = data;
-      this.date = formatDate(this.game.date, 'YYYY-MM-DD', 'en-US');
     });
   }
 }

@@ -17,27 +17,12 @@ export class GameDetailsPage implements OnInit {
 
   ngOnInit() {
     this.gameID = this.route.snapshot.paramMap.get('id');
-
-    // if(this.gameID){
-    //   this.loadGame();
-    // }
-
-    // console.log(this.gameID);
-
-    // for (let i = 1; i < 6; i++) {
-    //   this.items.push({
-    //     title: 'Player ' + i,
-    //     icon: 'football'
-    //   });
-    // }
   }
 
   ionViewWillEnter() {
     if(this.gameID){
       this.loadGame();
     }
-
-    console.log(this.gameID);
 
     for (let i = 1; i < 6; i++) {
       this.items.push({
@@ -50,7 +35,6 @@ export class GameDetailsPage implements OnInit {
   loadGame() {
     this.gameService.getGameDetail(this.gameID).subscribe(data => {
       this.game = data;
-      console.log(this.game);
     });
   }
 }

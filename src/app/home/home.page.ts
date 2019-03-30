@@ -1,22 +1,28 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TeamService} from '../services/team.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
 
   private teamList;
+  private teamSub: Subscription;
 
   constructor(private teamService: TeamService) { }
 
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+      this.teamSub.unsubscribe();
+  }
+
   ionViewWillEnter() {
-    this.teamService.getTeams()
+    this.teamSub = this.teamService.getTeams()
         .subscribe(res => {
           this.teamList = res;
         }, err => {

@@ -17,7 +17,6 @@ export class TeamService {
    }
 
    createTeam(name: string, primary_color: string, session_id: number, alternate_color: string, manager_id: number) {
-      console.log(name);
       return this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams', {
           name: name,
           primary_color: primary_color,

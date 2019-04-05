@@ -9,12 +9,12 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class TeamDetailsPage implements OnInit {
 
-  constructor(private teamService: TeamService,
-              private route: ActivatedRoute) { }
+  constructor(public teamService: TeamService,
+              public route: ActivatedRoute) { }
 
-  private teamID;
-  private team;
-  private teamGames;
+  teamID;
+  team;
+  teamGames;
 
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class TeamDetailsPage implements OnInit {
             console.log(err);
         });
   }
-  
+
   getGamesForTeam(id: number) {
     this.teamService.getGamesForTeam(id)
         .subscribe(res => {

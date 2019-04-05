@@ -32,4 +32,19 @@ describe('TeamDetailsPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a defined teamService:TeamService variable', () => {
+    expect(component.teamService).toBeDefined();
+  });
+
+  it('should have a defined route:ActivatedRoute variable', () => {
+    expect(component.route).toBeDefined();
+  });
+
+  it('should have a null teamID variable set after initialization', () => {
+    expect(component.teamID).toEqual(null);
+    component.route.snapshot.params.id = 5;
+    component.ngOnInit();
+    expect(component.teamID).toEqual(5);
+  });
 });

@@ -9,7 +9,7 @@ import {NavController} from '@ionic/angular';
 })
 export class CreateTeamPage implements OnInit, OnDestroy {
 
-    private team = {
+    team = {
       name: '',
       primary_color: '',
       session_id: null,
@@ -17,8 +17,8 @@ export class CreateTeamPage implements OnInit, OnDestroy {
       manager_id: null
     };
 
-  constructor(private teamService: TeamService,
-              private navCtrl: NavController) { }
+  constructor(public teamService: TeamService,
+              public navCtrl: NavController) { }
 
   ngOnInit() {
   }

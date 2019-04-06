@@ -32,4 +32,22 @@ describe('CreateTeamPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a defined navCtrl:NavController variable', () => {
+    expect(component.navCtrl).toBeDefined();
+  });
+
+  it('should have a defined team variable', () => {
+    expect(component.team).toBeDefined();
+  });
+
+  it('should have empty strings for team fields: name, primary_color, alternate_color', () => {
+    expect(component.team.name).toEqual('');
+    expect(component.team.primary_color).toEqual('');
+    expect(component.team.alternate_color).toEqual('');
+  });
+
+  it('should have a teamService:TeamService variable', () => {
+    expect(component.teamService).toBeDefined();
+  });
 });

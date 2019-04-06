@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { TeamService } from '../../services/team.service';
 import {NavController} from '@ionic/angular';
+import { CognitoService } from "../../services/cognito-service.service";
 
 @Component({
   selector: 'app-create-team',
@@ -18,7 +19,8 @@ export class CreateTeamPage implements OnInit, OnDestroy {
     };
 
   constructor(private teamService: TeamService,
-              private navCtrl: NavController) { }
+              private navCtrl: NavController,
+              public cognitoService: CognitoService) { }
 
   ngOnInit() {
   }
@@ -39,10 +41,11 @@ export class CreateTeamPage implements OnInit, OnDestroy {
   createTeam() {
     // TODO: Remember to not hardcode information in the future, see manager_id
     // Handle missing information routing
+    const user = this.cognitoService.getUser();
     if (this.team.name == "" || this.team.primary_color == "" || this.team.alternate_color == "" || this.team.session_id == null) {
       alert("Please input information");
     } else {
-      this.teamService.createTeam(this.team.name, this.team.primary_color, this.team.session_id, this.team.alternate_color, 2)
+      this.teamService.createTeam(this.team.name, this.team.primary_color, this.team.session_id, this.team.alternate_color, user.idToken.payload['cognito:username'])
           .subscribe(data => {
             this.navCtrl.navigateBack('/home');
           }, err => {

@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CognitoService } from "../services/cognito-service.service";
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,15 @@ export class LoginPage implements OnInit {
   email: string;
   password: string;
 
-  constructor(public CognitoService: CognitoService) { }
+  constructor(public cognitoService: CognitoService, public navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
   login(){
-    this.CognitoService.authenticate(this.email, this.password)
+    this.cognitoService.authenticate(this.email, this.password)
     .then(res =>{
-      console.log(res);
+      this.navCtrl.navigateBack('/home');
     }, err =>{
       console.log(err);
     });

@@ -39,4 +39,8 @@ export class TeamService {
    getGamesForTeam(id: number) {
        return this.http.get(`https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams/${id}/games`);
    }
+
+   getTeamsForUser(id: number) {
+       return this.http.get(`https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/users/${id}/teams`);
+    }
 }

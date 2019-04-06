@@ -11,9 +11,11 @@ export class CognitoService {
     ClientId: "46o4uc4s3ap9294dj3ri0l3q3s"
   };
 
+  public user;
+
   constructor() { }
 
-  signUp(email, password, fristname, lastname, phonenumber, sex) {
+  signUp(email, password, firstname, lastname, phonenumber, sex) {
 
     return new Promise((resolved, reject) => {
       const userPool = new AmazonCognitoIdentity.CognitoUserPool(this._POOL_DATA);
@@ -23,7 +25,7 @@ export class CognitoService {
         new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email", Value: email })
       );
       userAttribute.push(
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:firstname", Value: fristname })
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:firstname", Value: firstname })
       );
       userAttribute.push(
         new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:lastname", Value: lastname })
@@ -83,6 +85,8 @@ export class CognitoService {
       cognitoUser.authenticateUser(authDetails, {
         onSuccess: result => {
           resolved(result);
+          this.setUser(result);
+          //console.log(result);
         },
         onFailure: err => {
           reject(err);
@@ -103,4 +107,22 @@ export class CognitoService {
     });
   }
 
+  setUser(cognitoUser) {
+    // this.user.userID = cognitoUser.idToken.payload['cognito:username'];
+    // this.user.firstname = cognitoUser.idToken.payload['cognito:firstname'];
+    // this.user.lastname = cognitoUser.idToken.payload['cognito:lastname'];
+    // this.user.phonenumber = cognitoUser.idToken.payload['cognito:phonenumber'];
+    // this.user.email = cognitoUser.idToken.payload['cognito:email'];
+    // this.user.sex = cognitoUser.idToken.payload['cognito:sex'];
+
+    this.user = cognitoUser;
+    
+    console.log(cognitoUser.idToken.payload['cognito:username']);
+
+    //console.log(this.user);
+  }
+
+  getUser() {
+    return this.user;
+  }
 }

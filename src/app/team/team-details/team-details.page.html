@@ -1,13 +1,13 @@
 <ion-header>
     <ion-toolbar color="primary">
       <ion-buttons slot="start"></ion-buttons>
-      <ion-title *ngIf="team">{{ team.name }}</ion-title>
+      <ion-title *ngIf="team" id="title">{{ team.name }}</ion-title>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content padding>
 
     <!-- TODO: look into *ngFor (see home.page.html for an example) -->
@@ -34,15 +34,15 @@
       <br>
       <br>
     </ion-list>
-  
+
     <div id=team-creation position="center">
-      <ion-button shape="round" color="primary" expand="full">Add Player</ion-button>
-      <ion-button shape="round" color="primary" expand="full" [routerLink]="'/team-details/' + teamID + '/add-game'">Add Game</ion-button>
+      <ion-button  shape="round" color="primary" expand="full">Add Player</ion-button>
+      <ion-button id = "Add-Game" shape="round" color="primary" expand="full" [routerLink]="'/team-details/' + teamID + '/add-game'">Add Game</ion-button>
     </div>
     <ion-grid>
     <ion-row justify-content-center>
         <ion-col col-md-4 col-xs-8>
-          <ion-button ion-button color="success" [routerLink]="['/edit-team', teamID]">
+          <ion-button id = "Edit-Team" ion-button color="success" [routerLink]="['/edit-team', teamID]">
             Edit</ion-button>
         </ion-col>
 

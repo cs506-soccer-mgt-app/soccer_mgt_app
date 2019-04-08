@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Edit Game</ion-title>
+    <ion-title id="edit-title">Edit Game</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,7 +26,7 @@
 
       <ion-item>
         <ion-label position="fixed" color="primary">Opponent</ion-label>
-        <ion-input placeholder = {{game.opponent}} [(ngModel)]="game.opponent"></ion-input>
+        <ion-input id="input" placeholder = {{game.opponent}} [(ngModel)]="game.opponent"></ion-input>
       </ion-item>
 
 
@@ -45,7 +45,7 @@
 
   <ion-row justify-content-center test-center>
     <ion-col col-md-4 col-xs-8>
-      <ion-button  color="success" (click)="handleSaveButtonClick()">Save</ion-button>
+      <ion-button id="save" color="success" (click)="handleSaveButtonClick()">Save</ion-button>
     </ion-col>
 
     <ion-col col-md-4 col-xs-8>

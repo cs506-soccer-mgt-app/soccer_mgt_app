@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start"></ion-buttons>
-    <ion-title *ngIf="team">Edit {{ team.name }}</ion-title>
+    <ion-title id="edit-title" *ngIf="team">Edit {{ team.name }}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -19,19 +19,19 @@
     <br>
     <br>
     <ion-item>
-      <ion-input required type="text" placeholder="Primary Color" 
+      <ion-input required type="text" placeholder="Primary Color"
                   [(ngModel)]="team.primary_color">
       </ion-input>
     </ion-item>
     <br>
     <br>
     <ion-item>
-      <ion-input required type="text" placeholder="Alternate Color" 
+      <ion-input required type="text" placeholder="Alternate Color"
                   [(ngModel)]="team.alternate_color">
       </ion-input>
     </ion-item>
     <br>
-    <br> 
+    <br>
   </ion-list>
 
   <div id=team-creation position="center">

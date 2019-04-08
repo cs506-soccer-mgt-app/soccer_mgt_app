@@ -26,6 +26,7 @@ export class AddGamePage implements OnInit {
     date: '',
     opponent: '',
     score: '',
+    location: '',
     time: '',
     team_id: null
   };
@@ -59,7 +60,7 @@ export class AddGamePage implements OnInit {
    */
   handleOkButtonClick() {
     console.log(this.game); // TODO : FIX DATE TIME BUG
-    this.gameService.createGame(this.game.date, this.game.time, this.game.opponent, this.game.score, this.teamID)
+    this.gameService.createGame(this.game.date, this.game.time, this.game.opponent, this.game.score, this.game.location, this.teamID)
         .subscribe(data => {
           this.navCtrl.navigateBack(['/team-details', this.teamID]);
         }, err => {

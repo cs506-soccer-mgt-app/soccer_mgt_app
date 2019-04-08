@@ -26,6 +26,11 @@
       <ion-input placeholder="Enter Opponent" [(ngModel)]="game.opponent"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label position="fixed">Location</ion-label>
+      <ion-input placeholder="Enter Location" [(ngModel)]="game.location"></ion-input>
+    </ion-item>
+
     <ion-row justify-content-center>
       <ion-col col-md-4 col-xs-8>
         <ion-button ion-button color="success" (click)="handleOkButtonClick()">

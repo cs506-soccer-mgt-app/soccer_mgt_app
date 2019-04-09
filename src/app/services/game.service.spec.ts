@@ -22,7 +22,7 @@ describe('GameService', () => {
 
   it('should GET specific game data when passing a game_id of 1', () => {
      const { gameService, httpTestingCtrl } = setup();
-     const mockData = { game_id: 1, date: '2019-03-20', time: '10:00:00', opponent: 'Team 9', score: '', team_id: 1 };
+     const mockData = { game_id: 1, date: '2019-03-20', time: '10:00:00', opponent: 'Team 9', score: '', location: 'Reddan', team_id: 1 };
      gameService.getGameDetail(mockData.game_id)
          .subscribe(data => {
              expect(data.data).toEqual(mockData);
@@ -37,8 +37,8 @@ describe('GameService', () => {
 
   it('should POST a new game to the game resource', () => {
       const { gameService, httpTestingCtrl } = setup();
-      const mockData = { game_id: 999, date: '2019-03-20', time: '10:00:00', opponent: 'Team 9', score: '', team_id: 1 };
-      gameService.createGame(mockData.date, mockData.time, mockData.opponent, mockData.score, mockData.team_id)
+      const mockData = { game_id: 999, date: '2019-03-20', time: '10:00:00', opponent: 'Team 9', score: '', location: 'Reddan', team_id: 1 };
+      gameService.createGame(mockData.date, mockData.time, mockData.opponent, mockData.score, mockData.location, mockData.team_id)
           .subscribe(data => {
               expect(data.data).toBe(mockData);
           });
@@ -52,8 +52,8 @@ describe('GameService', () => {
 
     it('should PUT a game to the game resource with new game data', () => {
         const { gameService, httpTestingCtrl } = setup();
-        const mockData = { game_id: 999, date: '2019-03-20', time: '10:00:00', opponent: 'Team 9', score: '', team_id: 1 };
-        gameService.updateGame(mockData.game_id, mockData.date, mockData.time, mockData.opponent, mockData.score, mockData.team_id)
+        const mockData = { game_id: 999, date: '2019-03-20', time: '10:00:00', opponent: 'Team 9', score: '', location: 'Reddan', team_id: 1 };
+        gameService.updateGame(mockData.game_id, mockData.date, mockData.time, mockData.opponent, mockData.score, mockData.location, mockData.team_id)
             .subscribe(data => {
                 expect(data.data).toBe(mockData);
             });

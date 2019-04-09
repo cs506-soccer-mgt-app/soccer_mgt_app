@@ -20,7 +20,7 @@ export class GameDetailsPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    if(this.gameID){
+    if (this.gameID) {
       this.loadGame();
     }
 

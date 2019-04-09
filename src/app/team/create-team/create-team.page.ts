@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { TeamService } from '../../services/team.service';
 import {NavController} from '@ionic/angular';
-import { CognitoService } from "../../services/cognito-service.service";
+import { CognitoService } from '../../services/cognito-service.service';
 
 @Component({
   selector: 'app-create-team',
@@ -10,7 +10,7 @@ import { CognitoService } from "../../services/cognito-service.service";
 })
 export class CreateTeamPage implements OnInit, OnDestroy {
 
-    private team = {
+    team = {
       name: '',
       primary_color: '',
       session_id: null,
@@ -18,8 +18,8 @@ export class CreateTeamPage implements OnInit, OnDestroy {
       manager_id: null
     };
 
-  constructor(private teamService: TeamService,
-              private navCtrl: NavController,
+  constructor(public teamService: TeamService,
+              public navCtrl: NavController,
               public cognitoService: CognitoService) { }
 
   ngOnInit() {

@@ -7,24 +7,26 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PlayerService {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient) { }
 
-    // // Get All Players
-    // this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/players').subscribe((data) => {
-    //   console.log(data);
-    // });
+  getPlayerDetails(id: number) {
+      return this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/players/' + id);
+  }
 
-    // // Get Player by Player Id
-    // this.http.get('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/players/2').subscribe((data) => {
-    //   console.log(data);
-    // });
+  createPlayer(user_id: string, team_id: number, payment: string) {
+      return this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/players', {
+          user_id: user_id,
+          team_id: team_id,
+          payment: payment
+      });
+  }
 
-    // // Put Player (also known as modifying an already created player)
-    // this.http.put('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/players/1', 
-    // {"user_id":"1",
-    //   "team_id":"2"}).subscribe((data) => {
-    //   console.log(data)
-    // });
+  updatePlayer(id: number, user_id: string, team_id: number, payment: string) {
+      return this.http.put('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/players/' + id, {
+          user_id: user_id,
+          team_id: team_id,
+          payment: payment
+      });
+  }
 
-   }
 }

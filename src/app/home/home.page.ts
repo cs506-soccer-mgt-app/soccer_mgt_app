@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TeamService} from '../services/team.service';
 import {Subscription} from 'rxjs';
 import { CognitoService } from "../services/cognito-service.service";
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -13,19 +13,18 @@ export class HomePage implements OnInit, OnDestroy {
   private teamList;
   private teamSub: Subscription;
 
-  constructor(private teamService: TeamService, public cognitoService: CognitoService) { }
+  constructor(public userService: UserService, public cognitoService: CognitoService) { }
 
   ngOnInit() {
   }
 
   ngOnDestroy() {
+    this.teamSub.unsubscribe;
   }
 
   ionViewWillEnter() {
     const user = this.cognitoService.getUser();
-    console.log('user', user);
-    //this.teamSub = this.teamService.getTeamsForUser(user.idToken.payload['cognito:username'])
-    this.teamSub =this.teamService.getTeams()
+    this.teamSub = this.userService.getTeamsForUser(user.idToken.payload['cognito:username'])
         .subscribe(res => {
           this.teamList = res;
         }, err => {

@@ -108,21 +108,16 @@ export class CognitoService {
   }
 
   setUser(cognitoUser) {
-    // this.user.userID = cognitoUser.idToken.payload['cognito:username'];
-    // this.user.firstname = cognitoUser.idToken.payload['cognito:firstname'];
-    // this.user.lastname = cognitoUser.idToken.payload['cognito:lastname'];
-    // this.user.phonenumber = cognitoUser.idToken.payload['cognito:phonenumber'];
-    // this.user.email = cognitoUser.idToken.payload['cognito:email'];
-    // this.user.sex = cognitoUser.idToken.payload['cognito:sex'];
-
     this.user = cognitoUser;
-    
-    console.log(cognitoUser.idToken.payload['cognito:username']);
-
-    //console.log(this.user);
   }
 
   getUser() {
     return this.user;
+  }
+
+  logout() {
+    if (this.user != null) {
+      this.setUser(null);
+    }
   }
 }

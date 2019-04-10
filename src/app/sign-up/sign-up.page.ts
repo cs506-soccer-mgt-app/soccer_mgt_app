@@ -73,6 +73,7 @@ export class SignUpPage implements OnInit {
     this.CognitoService.confirmUser(verificationCode, this.email).then(
       res => {
         console.log(res);
+        this.navCtrl.navigateBack('/login');
       },
       err => {
         alert(err.message);

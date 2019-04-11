@@ -10,13 +10,13 @@ import {NavController} from '@ionic/angular';
 })
 export class EditTeamPage implements OnInit {
 
-  private teamID;
-  private team;
+  public teamID;
+  public team;
 
 
-  constructor(private teamService: TeamService,
-              private route: ActivatedRoute,
-              private navCtrl: NavController) { }
+  constructor(public teamService: TeamService,
+              public route: ActivatedRoute,
+              public navCtrl: NavController) { }
 
   ngOnInit() {
     this.teamID = this.route.snapshot.paramMap.get('id');

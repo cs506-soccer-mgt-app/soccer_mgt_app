@@ -32,4 +32,24 @@ describe('EditTeamPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a defined teamService:TeamService variable', () => {
+    expect(component.teamService).toBeDefined();
+  });
+
+  it('should have a defined navCtrl:NavController variable', () => {
+    expect(component.navCtrl).toBeDefined();
+  });
+
+  it('should have a defined route variable', () => {
+    expect(component.route).toBeDefined();
+  });
+
+  it('should have a null teamID variable set after initialization', () => {
+    expect(component.teamID).toEqual(null);
+    component.route.snapshot.params.id = 5;
+    component.ngOnInit();
+    expect(component.teamID).toEqual(5);
+  });
+
 });

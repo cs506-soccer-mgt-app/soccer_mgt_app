@@ -3,7 +3,7 @@
  * 
  * @author Matthew Wright (matthew.wright@wisc.edu)
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { GameService } from '../../services/game.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,12 +17,12 @@ import { ActivatedRoute } from '@angular/router';
 /**
  * Add Game Class
  */
-export class AddGamePage implements OnInit {
+export class AddGamePage implements OnInit, OnDestroy {
   /**
    * Gobal variables for Add Game class
    * 
    */
-  private game = {
+  game = {
     date: '',
     opponent: '',
     score: '',
@@ -42,13 +42,16 @@ export class AddGamePage implements OnInit {
    * @return null
    */
   constructor(
-    private route: ActivatedRoute,
-    private gameService: GameService,
-    private navCtrl: NavController
+    public route: ActivatedRoute,
+    public gameService: GameService,
+    public navCtrl: NavController
   ) { }
 
   ngOnInit() {
     this.teamID = this.route.snapshot.paramMap.get('id');
+  }
+
+  ngOnDestroy() {
   }
 
   /**

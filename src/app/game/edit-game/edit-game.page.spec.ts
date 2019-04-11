@@ -32,4 +32,17 @@ describe('EditGamePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a defined gameService:gameService variable', () => {
+    expect(component.gameService).toBeDefined();
+  });
+
+  it('should have a defined navCtrl:NavController variable', () => {
+    expect(component.navCtrl).toBeDefined();
+  });
+
+  it('should have a defined route variable', () => {
+    expect(component.route).toBeDefined();
+  });
+
 });

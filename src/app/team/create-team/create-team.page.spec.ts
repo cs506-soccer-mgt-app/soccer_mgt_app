@@ -17,7 +17,7 @@ describe('CreateTeamPage', () => {
       imports: [RouterModule.forRoot([]), HttpClientTestingModule],
       providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
-        { provide: APP_BASE_HREF, useValue: '/edit-team' }
+        { provide: APP_BASE_HREF, useValue: '/create-team' }
       ]
     })
     .compileComponents();

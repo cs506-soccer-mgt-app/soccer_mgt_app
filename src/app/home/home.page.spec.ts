@@ -26,4 +26,8 @@ describe('HomePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a defined teamService:TeamService variable', () => {
+    expect(component.teamService).toBeDefined();
+  });
 });

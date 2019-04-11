@@ -10,10 +10,10 @@ import { ActivatedRoute} from '@angular/router';
 export class GameDetailsPage implements OnInit {
 
   private items: Array<{ title: string; icon: string }> = [];
-  private gameID = null;
-  private game;
+  public gameID = null;
+  public game;
 
-  constructor(private gameService: GameService, private route: ActivatedRoute) { }
+  constructor(public gameService: GameService, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.gameID = this.route.snapshot.paramMap.get('id');

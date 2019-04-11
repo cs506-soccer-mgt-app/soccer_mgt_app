@@ -34,5 +34,18 @@ describe('GameDetailsPage', () => {
 
   });
 
+  it('should have a defined gameService:gameService variable', () => {
+    expect(component.gameService).toBeDefined();
+  });
 
+  it('should have a defined route:ActivatedRoute variable', () => {
+    expect(component.route).toBeDefined();
+  });
+
+  it('should have a null gameID variable set after initialization', () => {
+    expect(component.gameID).toEqual(null);
+    component.route.snapshot.params.id = 5;
+    component.ngOnInit();
+    expect(component.gameID).toEqual(5);
+  });
 });

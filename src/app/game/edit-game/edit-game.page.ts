@@ -12,11 +12,11 @@ export class EditGamePage implements OnInit {
 
   private items: Array<{ title: string; icon: string }> = [];
   private gameID = null;
-  private game;
+  public game;
 
-  constructor(private gameService: GameService,
-              private route: ActivatedRoute,
-              private navCtrl: NavController) { }
+  constructor(public gameService: GameService,
+              public route: ActivatedRoute,
+              public navCtrl: NavController) { }
 
   ngOnInit() {
     this.gameID = this.route.snapshot.paramMap.get('id');

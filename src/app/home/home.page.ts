@@ -9,10 +9,10 @@ import {Subscription} from 'rxjs';
 })
 export class HomePage implements OnInit, OnDestroy {
 
-  private teamList;
-  private teamSub: Subscription;
+  public teamList;
+  public teamSub: Subscription;
 
-  constructor(private teamService: TeamService) { }
+  constructor(public teamService: TeamService) { }
 
   ngOnInit() {
   }

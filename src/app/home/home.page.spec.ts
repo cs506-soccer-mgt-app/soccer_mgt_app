@@ -28,6 +28,6 @@ describe('HomePage', () => {
   });
 
   it('should have a defined teamService:TeamService variable', () => {
-    expect(component.teamService).toBeDefined();
+    expect(component.userService).toBeDefined();
   });
 });

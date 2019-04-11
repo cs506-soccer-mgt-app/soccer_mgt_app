@@ -23,7 +23,7 @@ export class GameDetailsPage implements OnInit {
     if (this.gameID) {
       this.loadGame();
     }
-
+    this.items = [];
     for (let i = 1; i < 6; i++) {
       this.items.push({
         title: 'Player ' + i,

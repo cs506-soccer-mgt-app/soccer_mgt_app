@@ -8,7 +8,7 @@ describe('new App', () => {
   let route: ActivatedRoute;
   const app = new AppPage();
   const teams = new TeamDetailsPage(teamService, route);
-
+  var EC = ExpectedConditions;
   describe('E2E tests', () => {
     browser.driver.manage().window().maximize();
     beforeEach(() => {
@@ -34,7 +34,9 @@ describe('new App', () => {
     it('allows navigation to Add Game Team 2', ()=> {
       app.navigateTo('team-details/2');
       var el = element(by.id('Add-Game'));
+      var e = element(by.id('add-game-title'));
       el.click();
+      browser.wait(EC.presenceOf(e), 10000);
     });
     it('allows navigation to Create Team Page', () => {
       app.navigateTo('create-team');
@@ -49,12 +51,16 @@ describe('new App', () => {
       app.navigateTo('team-details/1');
       app.navigateTo('game-details/1');
       element(by.id('Edit-Game')).click();
-      browser.wait(expect(element(by.id('edit-title')).getText()).toEqual('Edit Game'),3000);
+      var e = element(by.id('edit-title'));
+      browser.wait(EC.presenceOf(e), 10000);
+      expect(element(by.id('edit-title')).getText()).toEqual('Edit Game');
     });
     it('allows navigation to edit-team 2', () => {
       app.navigateTo('team-details/2');
       element(by.id('Edit-Team')).click();
-      browser.wait(expect(element(by.id('edit-title')).getText()).toEqual('Edit Wolf'),3000);
+      var e = element(by.id('edit-title'));
+      browser.wait(EC.presenceOf(e), 10000);
+      expect(element(by.id('edit-title')).getText()).toEqual('Edit Wolf');
     });
     /*it('allows editing of game 1', () => {
       app.navigateTo('team-details/1');

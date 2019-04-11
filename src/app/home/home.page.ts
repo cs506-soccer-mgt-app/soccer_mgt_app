@@ -19,7 +19,9 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.teamSub.unsubscribe;
+    if (this.teamSub !== undefined) {
+      this.teamSub.unsubscribe();
+    }
   }
 
   ionViewWillEnter() {

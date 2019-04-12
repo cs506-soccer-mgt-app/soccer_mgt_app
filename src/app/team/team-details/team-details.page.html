@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar color="primary">
       <ion-buttons slot="start"></ion-buttons>
-      <ion-title *ngIf="team" id="title">{{ team.name }}</ion-title>
+      <ion-title *ngIf="team" class="team-title">{{ team.name }}</ion-title>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
@@ -13,7 +13,7 @@
     <!-- TODO: look into *ngFor (see home.page.html for an example) -->
     <ion-title>Upcoming Games</ion-title>
     <ion-list *ngFor="let game of teamGames">
-      <ion-item button [routerLink]="['/game-details', game.game_id]">
+      <ion-item class="game" button [routerLink]="['/game-details', game.game_id]">
         <ion-label>Playing against {{ game.opponent }} at {{ game.time }} on {{ game.date }}</ion-label>
       </ion-item>
     </ion-list>
@@ -37,12 +37,12 @@
 
     <div id=team-creation position="center">
       <ion-button  shape="round" color="primary" expand="full">Add Player</ion-button>
-      <ion-button id = "Add-Game" shape="round" color="primary" expand="full" [routerLink]="'/team-details/' + teamID + '/add-game'">Add Game</ion-button>
+      <ion-button class = "add-game" shape="round" color="primary" expand="full" [routerLink]="'/team-details/' + teamID + '/add-game'">Add Game</ion-button>
     </div>
     <ion-grid>
     <ion-row justify-content-center>
         <ion-col col-md-4 col-xs-8>
-          <ion-button id = "Edit-Team" ion-button color="success" [routerLink]="['/edit-team', teamID]">
+          <ion-button class="edit-team" ion-button color="success" [routerLink]="['/edit-team', teamID]">
             Edit</ion-button>
         </ion-col>
 

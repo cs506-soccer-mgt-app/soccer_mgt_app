@@ -3,21 +3,21 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
+    <ion-title class="user-title">
       Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-list *ngFor="let team of teamList">
-    <ion-item button [routerLink]="['/team-details', team.team_id]">
+    <ion-item class="team" button [routerLink]="['/team-details', team.team_id]">
       <ion-label>{{ team.team_id }} - {{ team.name }} - {{ team.primary_color }}</ion-label>
     </ion-item>
   </ion-list>
 
   <ion-row justify-content-center>
     <ion-col col-md-4 col-xs-8>
-      <ion-button ion-button color="success" routerLink="/create-team">
+      <ion-button class="create-team" ion-button color="success" routerLink="/create-team">
         Create Team
       </ion-button>
     </ion-col>

@@ -62,7 +62,8 @@ export class AddGamePage implements OnInit, OnDestroy {
    * @return null
    */
   handleOkButtonClick() {
-    console.log(this.game); // TODO : FIX DATE TIME BUG
+    this.game.date = this.game.date.split('T')[0];
+    this.game.time = this.game.time.split('T')[1];
     this.gameService.createGame(this.game.date, this.game.time, this.game.opponent, this.game.score, this.game.location, this.teamID)
         .subscribe(data => {
           this.navCtrl.navigateBack(['/team-details', this.teamID]);

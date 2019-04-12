@@ -10,8 +10,8 @@ import { NavController } from '@ionic/angular';
 })
 export class EditGamePage implements OnInit {
 
-  private items: Array<{ title: string; icon: string }> = [];
-  private gameID = null;
+  public items: Array<{ title: string; icon: string }> = [];
+  public gameID = null;
   public game;
 
   constructor(public gameService: GameService,

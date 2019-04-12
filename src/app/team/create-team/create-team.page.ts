@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { TeamService } from '../../services/team.service';
 import {NavController} from '@ionic/angular';
 import { CognitoService } from '../../services/cognito-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-team',
@@ -20,7 +21,8 @@ export class CreateTeamPage implements OnInit, OnDestroy {
 
   constructor(public teamService: TeamService,
               public navCtrl: NavController,
-              public cognitoService: CognitoService) { }
+              public cognitoService: CognitoService,
+              public route: ActivatedRoute) { }
 
   ngOnInit() {
   }

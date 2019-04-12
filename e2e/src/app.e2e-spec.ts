@@ -1,6 +1,6 @@
 import { browser, by, element, ExpectedConditions, Key } from 'protractor';
 
-describe('MSMA ', () => {
+describe('MSTMA ', () => {
   var EC = ExpectedConditions;
   browser.driver.manage().window().maximize();
 

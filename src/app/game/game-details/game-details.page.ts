@@ -9,21 +9,21 @@ import { ActivatedRoute} from '@angular/router';
 })
 export class GameDetailsPage implements OnInit {
 
-  private items: Array<{ title: string; icon: string }> = [];
-  private gameID = null;
-  private game;
+  public items: Array<{ title: string; icon: string }> = [];
+  public gameID = null;
+  public game;
 
-  constructor(private gameService: GameService, private route: ActivatedRoute) { }
+  constructor(public gameService: GameService, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.gameID = this.route.snapshot.paramMap.get('id');
   }
 
   ionViewWillEnter() {
-    if(this.gameID){
+    if (this.gameID) {
       this.loadGame();
     }
-
+    this.items = [];
     for (let i = 1; i < 6; i++) {
       this.items.push({
         title: 'Player ' + i,

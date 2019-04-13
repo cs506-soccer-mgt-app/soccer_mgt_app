@@ -3,7 +3,7 @@
  * 
  * @author Matthew Wright (matthew.wright@wisc.edu)
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { GameService } from '../../services/game.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,19 +17,21 @@ import { ActivatedRoute } from '@angular/router';
 /**
  * Add Game Class
  */
-export class AddGamePage implements OnInit {
+export class AddGamePage implements OnInit, OnDestroy {
   /**
    * Gobal variables for Add Game class
    * 
    */
-  private game = {
+  game = {
     date: '',
     opponent: '',
     score: '',
+    location: '',
     time: '',
     team_id: null
   };
-  private teamID;
+
+  public teamID;
 
   /**
    * Constructor for the page
@@ -41,13 +43,16 @@ export class AddGamePage implements OnInit {
    * @return null
    */
   constructor(
-    private route: ActivatedRoute,
-    private gameService: GameService,
-    private navCtrl: NavController
+    public route: ActivatedRoute,
+    public gameService: GameService,
+    public navCtrl: NavController
   ) { }
 
   ngOnInit() {
     this.teamID = this.route.snapshot.paramMap.get('id');
+  }
+
+  ngOnDestroy() {
   }
 
   /**
@@ -58,8 +63,9 @@ export class AddGamePage implements OnInit {
    * @return null
    */
   handleOkButtonClick() {
-    console.log(this.game); // TODO : FIX DATE TIME BUG
-    this.gameService.createGame(this.game.date, this.game.time, this.game.opponent, this.game.score, this.teamID)
+    this.game.date = this.game.date.split('T')[0];
+    this.game.time = this.game.time.split('T')[1];
+    this.gameService.createGame(this.game.date, this.game.time, this.game.opponent, this.game.score, this.game.location, this.teamID)
         .subscribe(data => {
           this.navCtrl.navigateBack(['/team-details', this.teamID]);
         }, err => {

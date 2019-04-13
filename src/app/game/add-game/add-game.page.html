@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>
+      <ion-title class="add-game-title">
         Add Game
       </ion-title>
     </ion-toolbar>
@@ -26,7 +26,13 @@
       <ion-input placeholder="Enter Opponent" [(ngModel)]="game.opponent"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label position="fixed">Location</ion-label>
+      <ion-input placeholder="Enter Location" [(ngModel)]="game.location"></ion-input>
+    </ion-item>
+
     <ion-row justify-content-center>
+
       <ion-col col-md-4 col-xs-8>
         <ion-button ion-button color="success" (click)="handleOkButtonClick()">
           Ok
@@ -38,6 +44,7 @@
           Cancel
         </ion-button>
       </ion-col>
+
     </ion-row>
   </ion-grid>
 </ion-content>

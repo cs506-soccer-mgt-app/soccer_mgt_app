@@ -42,10 +42,20 @@ describe('GameDetailsPage', () => {
     expect(component.route).toBeDefined();
   });
 
-  it('should have a null gameID variable set after initialization', () => {
+  it('should have a null gameID variable set after initialization and then value 5 assigned', () => {
     expect(component.gameID).toEqual(null);
     component.route.snapshot.params.id = 5;
     component.ngOnInit();
     expect(component.gameID).toEqual(5);
   });
+
+  it('should have a items (players) list of length 5 after initialization', () => {
+    expect(component.gameID).toEqual(null);
+    component.route.snapshot.params.id = 5;
+    component.ngOnInit();
+    expect(component.game.items.length).toEqual(5);
+  });
+
+  // loadGame() tested in E2E
+
 });

@@ -30,7 +30,8 @@ export class AddGamePage implements OnInit, OnDestroy {
     time: '',
     team_id: null
   };
-  private teamID;
+
+  public teamID;
 
   /**
    * Constructor for the page

@@ -7,7 +7,7 @@ describe('MSTMA ', () => {
   it('Login screen appears', () => {
     browser.get('/login');
     var loginTitle = element(by.id('Login-Title'));
-    expect(loginTitle.getText()).toEqual('MSMA - Sign in');
+    expect(loginTitle.getText()).toEqual('MSTMA - Sign in');
   });
 
   it('Allows user to log in', () => {

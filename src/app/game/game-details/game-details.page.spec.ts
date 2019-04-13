@@ -52,8 +52,8 @@ describe('GameDetailsPage', () => {
   it('should have a items (players) list of length 5 after initialization', () => {
     expect(component.gameID).toEqual(null);
     component.route.snapshot.params.id = 5;
-    component.ngOnInit();
-    expect(component.game.items.length).toEqual(5);
+    component.ionViewWillEnter();
+    expect(component.items.length).toEqual(5);
   });
 
   // loadGame() tested in E2E

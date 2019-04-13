@@ -9,7 +9,7 @@ import { ActivatedRoute} from '@angular/router';
 })
 export class GameDetailsPage implements OnInit {
 
-  private items: Array<{ title: string; icon: string }> = [];
+  public items: Array<{ title: string; icon: string }> = [];
   public gameID = null;
   public game;
 

@@ -1,8 +1,8 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Soccer Management Sign In 
+    <ion-title id="Login-Title">
+      MSTMA - Sign in
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,19 +14,19 @@
         <ion-row>
           <ion-col>
             <ion-list inset>
-              
+
               <ion-item>
                 <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email" required></ion-input>
               </ion-item>
-              
+
               <ion-item>
                 <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required></ion-input>
-              </ion-item>  
+              </ion-item>
 
             </ion-list>
           </ion-col>
         </ion-row>
-        
+
         <ion-row>
           <ion-col class="signup-col">
             <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">
@@ -38,7 +38,7 @@
                   Register
                 </button>
             </ion-col>
-        </ion-row>   
+        </ion-row>
 
       </form>
 

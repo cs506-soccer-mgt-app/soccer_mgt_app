@@ -47,4 +47,34 @@ describe('TeamDetailsPage', () => {
     component.ngOnInit();
     expect(component.teamID).toEqual(5);
   });
+
+  it('should contain a getGamesForTeam() method with a team ID as a parameter', () => {
+    const teamID = 1;
+    const cmpntSpy = spyOn(component, 'getGamesForTeam').and.callThrough();
+    expect(component.getGamesForTeam(teamID)).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalledWith(teamID);
+  });
+
+  it('should contain a getTeamDetail with a team ID as a parameter', () => {
+    const teamID = 1;
+    const cmpntSpy = spyOn(component, 'getTeamDetail').and.callThrough();
+    expect(component.getTeamDetail(teamID)).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalledWith(teamID);
+  });
+
+  it('should contain an ionViewWillEnter method to run GET methods for team details and games if teamID exists', () => {
+    const teamID = 1;
+    const cmpntSpy = spyOn(component, 'ionViewWillEnter').and.callThrough();
+    const tmDtlSpy = spyOn(component, 'getTeamDetail').and.callThrough();
+    const gmSpy = spyOn(component, 'getGamesForTeam').and.callThrough();
+
+    component.route.snapshot.params.id = teamID;
+    component.ngOnInit();
+    expect(component.teamID).toEqual(teamID);
+
+    expect(component.ionViewWillEnter()).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalled();
+    expect(tmDtlSpy).toHaveBeenCalledWith(teamID);
+    expect(gmSpy).toHaveBeenCalledWith(teamID);
+  });
 });

@@ -65,22 +65,4 @@ describe('AddGamePage', () => {
     component.ngOnInit();
     expect(component.teamID).toEqual(5);
   }); 
-
-  it('handleOkButtonClick() is defined and assigns values to games', () => {
-    component.route.snapshot.params.date = "10";
-    component.route.snapshot.params.time = "12";
-    component.route.snapshot.params.opponent = "Bulls";
-    component.route.snapshot.params.score = "2-3";
-    component.route.snapshot.params.location = "Madison";
-    component.route.snapshot.params.teamID = 1;
-    component.ngOnInit();
-    component.handleOkButtonClick();
-    expect(component.game.date = "10");
-    expect(component.game.time = "12");
-    expect(component.game.opponent = "Bulls");
-    expect(component.game.score = "2-3");
-    expect(component.game.team_id = 1);
-    expect(component.game.location = "Madison");
-    
-  });
 });

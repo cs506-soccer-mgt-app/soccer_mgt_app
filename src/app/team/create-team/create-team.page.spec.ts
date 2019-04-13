@@ -57,20 +57,4 @@ describe('CreateTeamPage', () => {
   it('should have a teamService:TeamService variable', () => {
     expect(component.teamService).toBeDefined();
   });
-
-  it('createTeam() is defined and assigns values to games', () => {
-    component.route.snapshot.params.name = "Bulls";
-    component.route.snapshot.params.primary_color = "Red";
-    component.route.snapshot.params.alternate_color = "Blue";
-    component.route.snapshot.params.session_id = "3";
-    component.route.snapshot.params.manager_id = "2";
-    component.ngOnInit();
-    component.createTeam();
-    expect(component.team.name = "Bulls");
-    expect(component.team.primary_color = "Red");
-    expect(component.team.alternate_color = "Blue");
-    expect(component.team.session_id = "3");
-    expect(component.team.manager_id= "2");
-  });
-
 });

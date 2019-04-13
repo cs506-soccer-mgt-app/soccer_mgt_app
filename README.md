@@ -12,4 +12,8 @@ From your command line terminal, navigate to directory where you want to clone t
 In the project directory, run "ionic serve", which will launch a browser and load the application locally.
 
 ## Running the Tests
-In the project directory, run "npm test", which will launch a browser and automatically run the tests.
+#### Unit Tests
+In the project directory, run "npm test", which will launch a browser and automatically run the unit tests.
+
+#### E2E Tests
+In the project directory, run "npm run e2e", which will launch a browser and automatically run end-to-end tests.

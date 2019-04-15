@@ -5,6 +5,7 @@ import { CreateTeamPage } from './create-team.page';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterModule} from '@angular/router';
 import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { TeamDetailsPage } from '../team-details/team-details.page';
 
 describe('CreateTeamPage', () => {
   let component: CreateTeamPage;
@@ -37,14 +38,20 @@ describe('CreateTeamPage', () => {
     expect(component.navCtrl).toBeDefined();
   });
 
+  it('should have a defined route:ActivatedRoute variable', () => {
+    expect(component.route).toBeDefined();
+  });
+
   it('should have a defined team variable', () => {
     expect(component.team).toBeDefined();
   });
 
-  it('should have empty strings for team fields: name, primary_color, alternate_color', () => {
+  it('should have empty strings for team fields: name, session_id, manager_id, primary_color, alternate_color', () => {
     expect(component.team.name).toEqual('');
     expect(component.team.primary_color).toEqual('');
     expect(component.team.alternate_color).toEqual('');
+    expect(component.team.manager_id).toEqual(null);
+    expect(component.team.session_id).toEqual(null);
   });
 
   it('should have a teamService:TeamService variable', () => {

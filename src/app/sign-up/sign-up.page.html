@@ -2,7 +2,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic cognito app - Sign up
+      Soccer Management Sign Up
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -18,7 +18,8 @@
           <ion-list inset>
 
             <ion-item [hidden]="needVerification">
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email" required></ion-input>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email" required>
+              </ion-input>
             </ion-item>
 
             <ion-item [hidden]="needVerification">
@@ -48,7 +49,8 @@
 
             <ion-item [hidden]="!needVerification">
               <ion-input type="text" placeholder="Verification code" name="verificationcode"
-                [(ngModel)]="verificationcode"></ion-input>
+                [(ngModel)]="verificationcode">
+              </ion-input>
             </ion-item>
 
           </ion-list>
@@ -59,8 +61,15 @@
         <ion-col class="signup-col">
 
           <button ion-button class="submit-btn" full type="submit"
-            [disabled]="!registerForm.form.valid">Register</button>
+            [disabled]="!registerForm.form.valid">Register
+          </button>
 
+        </ion-col>
+
+        <ion-col class="back-col">
+          <button ion-button color="danger" [routerLink]="['/login']">
+            Back
+          </button>
         </ion-col>
       </ion-row>
 

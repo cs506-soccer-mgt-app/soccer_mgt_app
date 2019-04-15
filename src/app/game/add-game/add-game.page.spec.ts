@@ -5,6 +5,7 @@ import { AddGamePage } from './add-game.page';
 import {RouterModule} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { ExpressionStatement } from '@angular/compiler';
 
 describe('AddGamePage', () => {
   let component: AddGamePage;
@@ -37,6 +38,10 @@ describe('AddGamePage', () => {
     expect(component.navCtrl).toBeDefined();
   });
 
+  it('should have a defined gameService:GameService variable', () => {
+    expect(component.gameService).toBeDefined();
+  });
+
   it('should have a defined route variable', () => {
     expect(component.route).toBeDefined();
   });
@@ -53,8 +58,11 @@ describe('AddGamePage', () => {
     expect(component.game.time).toEqual('');
   });
 
-  it('should have a gameService:GameService variable', () => {
-    expect(component.gameService).toBeDefined();
-  });
-
+  it('ngOnInit() is defined and team_id is null after initialization --> teamID is then assigned value 5', () => {
+    component.ngOnInit();
+    expect(component.teamID).toEqual(null);
+    component.route.snapshot.params.id = 5;
+    component.ngOnInit();
+    expect(component.teamID).toEqual(5);
+  }); 
 });

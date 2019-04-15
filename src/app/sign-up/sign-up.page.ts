@@ -43,7 +43,7 @@ export class SignUpPage implements OnInit {
   async promptVerificationCode() {
 
       const alert = await this.alertController.create({
-        message: "Enter Verfication Code",
+        message: "Check Email for Verfication Code",
         inputs: [
           {
             name: "VerificationCode",

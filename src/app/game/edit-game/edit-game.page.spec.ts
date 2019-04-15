@@ -45,4 +45,40 @@ describe('EditGamePage', () => {
     expect(component.route).toBeDefined();
   });
 
+  it('gameID is null prior to initialization', () => {
+    expect(component.gameID).toBeNull();
+  });
+
+  it('items list is populated upon initialization', () => {
+    const expItems = [
+      { title: 'Player 1', icon: 'football' },
+      { title: 'Player 2', icon: 'football' },
+      { title: 'Player 3', icon: 'football' },
+      { title: 'Player 4', icon: 'football' },
+      { title: 'Player 5', icon: 'football' }
+    ];
+    expect(component.items).toEqual(expItems);
+  });
+
+  it('gameID is defined after initialization', () => {
+    expect(component.gameID).toBeDefined();
+  });
+
+  it('items is defined after initialization', () => {
+    expect(component.items).toBeDefined();
+  });
+
+  it('should have a null gameID variable set after initialization and then value 1 assigned', () => {
+    expect(component.gameID).toEqual(null);
+    component.route.snapshot.params.id = 1;
+    component.ngOnInit();
+    expect(component.gameID).toEqual(1);
+  });
+
+  it('should have a list of players of length 5 after initialization', () => {
+    expect(component.items.length).toEqual(5);
+  });
+
+  // loadGame() tests in E2E
+
 });

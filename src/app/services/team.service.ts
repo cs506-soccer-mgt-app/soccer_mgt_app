@@ -44,13 +44,13 @@ export class TeamService {
        return this.http.get(`https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/users/${id}/teams`);
     }
 
-    // This works!!
-    // sendEmail() {
-    //     return this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/invite', {
-    //         sender: "rgontarek@wisc.edu",
-    //         recipient: "rgontarek@wisc.edu",
-    //         team_id: "9823roiefwjifroihewfj0foijhewfoijr3hr3oihfwiohfw0hr3",
-    //     });
-    // }
+    // The sender should always be soccermanagementteamapp@gmail.com
+    sendEmail(recipient: string, team_id: string) {
+        return this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/invite', {
+            sender: "soccermanagementteamapp@gmail.com",
+            recipient: recipient,
+            team_id: team_id,
+        });
+    }
 
 }

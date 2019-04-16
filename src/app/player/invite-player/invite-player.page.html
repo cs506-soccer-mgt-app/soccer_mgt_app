@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Invite Player</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form (ngSubmit)="sendInvitation()" #invitationForm="ngForm">
+
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input required name="email" type="email" minlength="3"
+                   pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                   [(ngModel)]="recipient">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col col-md-4 col-xs-8>
+          <ion-button class="invite-player" color="success" type="submit"
+                      [disabled]="!invitationForm.form.valid">
+            Send Invitation
+          </ion-button>
+        </ion-col>
+
+        <ion-col col-md-4 col-xs-8>
+          <ion-button color="danger"
+                      [routerLink]="'/team-details/' + teamID">
+            Back
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+
+</ion-content>

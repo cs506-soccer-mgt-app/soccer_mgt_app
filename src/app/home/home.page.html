@@ -12,6 +12,9 @@
   <ion-list *ngFor="let team of teamList">
     <ion-item class="team" button [routerLink]="['/team-details', team.team_id]">
       <ion-label>{{ team.name }} - {{ team.primary_color }}</ion-label>
+      <ion-badge *ngIf="team.manager_id == user.idToken.payload['cognito:username']">
+        <ion-icon name="star"></ion-icon>
+      </ion-badge>
     </ion-item>
   </ion-list>
 
@@ -20,7 +23,7 @@
       Create Team
     </ion-button>
 
-    <ion-button shape="round" color="primary" expand="full">
+    <ion-button shape="round" color="primary" expand="full" routerLink="/join-team">
       Join Team
     </ion-button>
 

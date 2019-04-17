@@ -117,7 +117,7 @@ describe('MSTMA ', () => {
       browser.wait(EC.visibilityOf(gameTitle), 3000);
       expect(gameTitle.getText()).toEqual('Game Details');
       editGame.click();
-      browser.wait(EC.presenceOf(editTitle), 1000);
+      browser.wait(EC.presenceOf(editTitle), 3000);
       expect(editTitle.getText()).toEqual('Edit Game');
     });
 

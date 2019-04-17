@@ -28,7 +28,9 @@ const routes: Routes = [
   { path: 'create-team', loadChildren: './team/create-team/create-team.module#CreateTeamPageModule' },
   { path: 'edit-team/:id', loadChildren: './team/edit-team/edit-team.module#EditTeamPageModule' },
   { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpPageModule' },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'team-details/:id/invite-player', loadChildren: './player/invite-player/invite-player.module#InvitePlayerPageModule' }
+
 
 ];
 

@@ -145,6 +145,26 @@ describe('TeamService', () => {
     });
   });
 
+  it('should GET an array of players for a specific team when passing a team_id of 39', () => {
+    const { teamService, httpTestingCtrl } = setup();
+    const mockTeam = { team_id: 39, name: 'GOAT', primary_color: 'Red', alternate_color: 'White', manager_id: '162d4c24-a3b9-40ef-a6eb-4683a68404bb', session_id: 3 };
+    const mockPlayers = [
+      { player_id: 40, user_id: '162d4c24-a3b9-40ef-a6eb-4683a68404bb', team_id: 39, payment: '50' },
+      { player_id: 38, user_id: '17e3ab3b-0ac4-41a5-8b4e-5092bdbb2f35', team_id: 39, payment: '50' },
+      { player_id: 37, user_id: '6ac1591d-405f-4708-b3e0-06be274e2c2c', team_id: 39, payment: '' }
+    ];
+    teamService.getPlayersForTeam(mockTeam.team_id)
+        .subscribe(data => {
+          expect(data.data).toEqual(mockPlayers);
+        });
+
+    const req = httpTestingCtrl.expectOne(`https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/teams/${mockTeam.team_id}/players`);
+    expect(req.request.method).toBe('GET');
+    req.flush({
+      data: mockPlayers
+    });
+  });
+
   afterEach(() => {
     const { httpTestingCtrl } = setup();
     httpTestingCtrl.verify();

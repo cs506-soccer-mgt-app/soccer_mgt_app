@@ -25,7 +25,6 @@ export class InvitePlayerPage implements OnInit {
   sendInvitation() {
     this.invitationService.sendEmail(this.recipient, this.teamID)
         .subscribe(async res => {
-          console.log(res);
           // on success, create toast message
           const toast = await this.toastCtrl.create({
             message: 'Successfully sent email invitation.',
@@ -37,7 +36,6 @@ export class InvitePlayerPage implements OnInit {
           // then redirect back to team details page
           this.navCtrl.navigateBack(['/team-details', this.teamID]);
         }, async err => {
-          console.log(err);
           // on failure, create toast message
           const toast = await this.toastCtrl.create({
             message: 'Error sending email invitation.',

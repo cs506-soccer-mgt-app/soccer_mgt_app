@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Join Team
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form (ngSubmit)="joinTeam()" #joinTeamForm="ngForm">
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Team Code</ion-label>
+          <ion-input type="text" name="team-code" required [(ngModel)]="teamID"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col col-md-4 col-xs-8>
+          <ion-button class="join-team-btn" color="success" type="submit"
+                      [disabled]="!joinTeamForm.form.valid">
+            Ok
+          </ion-button>
+        </ion-col>
+
+        <ion-col col-md-4 col-xs-8>
+          <ion-button color="danger" routerLink="/home">
+            Cancel
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+
+</ion-content>

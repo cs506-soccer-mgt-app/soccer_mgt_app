@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CognitoService } from './cognito-service.service';
 
-describe('CognitoService', () => {
+describe('cognitoService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [CognitoService]
   }));

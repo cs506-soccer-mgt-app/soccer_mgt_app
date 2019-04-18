@@ -5,7 +5,6 @@ import { CreateTeamPage } from './create-team.page';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterModule} from '@angular/router';
 import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { TeamDetailsPage } from '../team-details/team-details.page';
 
 describe('CreateTeamPage', () => {
   let component: CreateTeamPage;

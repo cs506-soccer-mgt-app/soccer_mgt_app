@@ -39,14 +39,6 @@
         <ion-input placeholder = {{game.location}} [(ngModel)]="game.location"></ion-input>
       </ion-item>
 
-      <ion-list>
-        <ion-item *ngFor="let item of items">
-          <ion-icon [name]="item.icon" slot="start"></ion-icon>
-          {{item.title}}
-        </ion-item>
-      </ion-list>
-
-
   <ion-row justify-content-center test-center>
     <ion-col col-md-4 col-xs-8>
       <ion-button class="save" color="success" (click)="handleSaveButtonClick()">Save</ion-button>

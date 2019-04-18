@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { TeamService } from '../../services/team.service';
 import {ActivatedRoute} from '@angular/router';
+import { CognitoService } from '../../services/cognito-service.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-team-details',
@@ -9,23 +11,26 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class TeamDetailsPage implements OnInit {
 
-  constructor(public teamService: TeamService,
-              public route: ActivatedRoute) { }
+  public teamID;
+  public team;
+  public teamGames;
+  public user;
 
-  teamID;
-  team;
-  teamGames;
-
+  constructor(public userService: UserService,
+              public teamService: TeamService,
+              public route: ActivatedRoute,
+              public cognitoService: CognitoService) { }
 
   ngOnInit() {
     this.teamID = this.route.snapshot.paramMap.get('id');
   }
 
   ionViewWillEnter() {
-      if (this.teamID) {
-          this.getTeamDetail(this.teamID);
-          this.getGamesForTeam(this.teamID);
-      }
+    this.user = this.cognitoService.getUser();
+    if (this.teamID) {
+        this.getTeamDetail(this.teamID);
+        this.getGamesForTeam(this.teamID);
+    }
   }
 
   getTeamDetail(id: number) {

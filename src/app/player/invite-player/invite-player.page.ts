@@ -26,16 +26,14 @@ export class InvitePlayerPage implements OnInit {
   }
 
   async sendInvitation() {
-    // display a loading component while making the signUp call to AWS
+    // display a loading component while making the invitation call to AWS
     this.loading = await this.loadingCtrl.create();
     await this.loading.present();
 
     this.invitationService.sendEmail(this.recipient, this.teamID)
         .subscribe(async res => {
-          // dismiss loading component when successful result comes back
+          // dismiss loading component when successful result comes back; display success message
           this.loading.dismiss();
-
-          // on success, create toast message
           const toast = await this.toastCtrl.create({
             message: 'Successfully sent email invitation.',
             duration: 3000,
@@ -46,10 +44,8 @@ export class InvitePlayerPage implements OnInit {
           // then redirect back to team details page
           this.navCtrl.navigateBack(['/team-details', this.teamID]);
         }, async err => {
-          // dismiss loading component when unsuccessful error comes back; display message
+          // dismiss loading component when unsuccessful error comes back; display error message
           this.loading.dismiss();
-
-          // on failure, create toast message
           const toast = await this.toastCtrl.create({
             message: 'Error sending email invitation.',
             duration: 3000,

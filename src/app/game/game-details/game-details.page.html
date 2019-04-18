@@ -45,11 +45,17 @@
 
   <ion-row justify-content-center test-center>
     <ion-col col-md-4 col-xs-8>
-      <ion-button class="edit-game" color="success" [routerLink]="['/edit-game', gameID]">Edit</ion-button>
+      <ion-button class="edit-game" color="success"
+                  [routerLink]="['/edit-game', gameID]"
+                  *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']">
+        Edit
+      </ion-button>
     </ion-col>
 
     <ion-col col-md-4 col-xs-8>
-      <ion-button color="danger" [routerLink]="['/team-details', game.team_id]">Back</ion-button>
+      <ion-button color="danger" [routerLink]="['/team-details', game.team_id]">
+        Back
+      </ion-button>
     </ion-col>
 
   </ion-row>

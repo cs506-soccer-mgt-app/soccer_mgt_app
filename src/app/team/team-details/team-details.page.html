@@ -37,17 +37,22 @@
 
     <div id=team-creation position="center">
       <ion-button  shape="round" color="primary" expand="full"
-                   [routerLink]="'/team-details/' + teamID + '/invite-player'">
+                   [routerLink]="'/team-details/' + teamID + '/invite-player'"
+                   *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']">
         Add Player
       </ion-button>
-      <ion-button class = "add-game" shape="round" color="primary" expand="full" [routerLink]="'/team-details/' + teamID + '/add-game'">
+      <ion-button class = "add-game" shape="round" color="primary" expand="full"
+                  [routerLink]="'/team-details/' + teamID + '/add-game'"
+                  *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']">
         Add Game
       </ion-button>
     </div>
     <ion-grid>
     <ion-row justify-content-center>
         <ion-col col-md-4 col-xs-8>
-          <ion-button ion-button color="success" class="edit-team" [routerLink]="['/edit-team', teamID]">
+          <ion-button ion-button color="success" class="edit-team"
+                      [routerLink]="['/edit-team', teamID]"
+                      *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']">
             Edit
           </ion-button>
         </ion-col>

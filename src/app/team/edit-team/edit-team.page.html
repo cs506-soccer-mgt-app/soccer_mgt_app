@@ -33,10 +33,16 @@
     <br>
     <br>
   </ion-list>
+  <ion-row justify-content-center test-center>
+    <ion-col col-md-4 col-xs-8>
+      <ion-button class="save" color="success" (click)="updateTeam()">Save</ion-button>
+    </ion-col>
 
-  <div id=team-creation position="center">
-    <ion-button shape="round" color="success" expand="full" (click)="updateTeam()">Save</ion-button>
-    <ion-button shape="round" color="danger" expand="full" [routerLink]="['/team-details', teamID]">Cancel</ion-button>
-  </div>
+    <ion-col col-md-4 col-xs-8>
+      <ion-button color="danger" [routerLink]="['/team-details', teamID]">Cancel</ion-button>
+    </ion-col>
+
+  </ion-row>
+
 
 </ion-content>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // User defined
 import { CognitoService} from '../services/cognito-service.service';
-import { LoadingController, ToastController } from '@ionic/angular'
+import { LoadingController, ToastController, NavController } from '@ionic/angular'
 
 @Component({
   selector: 'app-edit-profile',
@@ -24,7 +24,8 @@ export class EditProfilePage implements OnInit {
   constructor(
     public cognitoService: CognitoService,
     public loadingCtrl: LoadingController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -39,13 +40,15 @@ export class EditProfilePage implements OnInit {
     this.sex = this.user.idToken.payload['custom:sex']
   }
 
-  async editProfile(attributeName, attributeValue) {
+  async editProfile() {
     // display a loading component while making the signUp call to AWS
     this.loading = await this.loadingCtrl.create();
     await this.loading.present();
 
     this.cognitoService.editProfile(this.email, this.firstname, this.lastname, this.phonenumber, this.sex).then(
       res => {
+        this.cognitoService.logout();
+        this.navCtrl.navigateBack('/login');
         // dismiss loading component when successful result comes back
         this.loading.dismiss();
       },
@@ -55,6 +58,7 @@ export class EditProfilePage implements OnInit {
         this.loading.dismiss();
 
         // display error message
+        // console.log(err)
         const toast = await this.toastCtrl.create({
           message: err.message,
           duration: 6000,

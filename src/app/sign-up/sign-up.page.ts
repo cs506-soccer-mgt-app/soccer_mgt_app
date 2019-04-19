@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import {LoadingController, NavController, ToastController} from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
 import { CognitoService} from '../services/cognito-service.service';
@@ -85,6 +85,7 @@ export class SignUpPage implements OnInit {
         ]
       });
     await alert.present();
+
   }
 
   verifyUser(verificationCode) {

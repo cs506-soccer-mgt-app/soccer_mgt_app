@@ -1,0 +1,90 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Edit Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="login-content" padding>
+
+  <div class="login-box">
+
+    <form (ngSubmit)="editProfile()" #registerForm="ngForm">
+
+      <ion-row>
+        <ion-col>
+
+            <ion-item [hidden]="needVerification">
+              <ion-label position="fixed">
+                First Name
+              </ion-label>
+              <ion-input type="text" placeholder=" Enter First Name" name="firstname" [(ngModel)]="firstname" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item [hidden]="needVerification">
+              <ion-label position="fixed">
+                Last Name
+              </ion-label>
+              <ion-input type="text" placeholder="Enter Last Name" name="lastname" [(ngModel)]="lastname" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item [hidden]="needVerification">
+              <ion-label position="fixed">
+                Phone Number
+              </ion-label>
+              <ion-input type="text" placeholder="Enter Phone Number" name="phonenumber" [(ngModel)]="phonenumber" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item [hidden]="needVerification">
+              <ion-label position="fixed">
+                Sex
+              </ion-label>
+              <ion-input type="text" placeholder="Enter Sex" name="sex" [(ngModel)]="sex" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item [hidden]="needVerification">
+              <ion-label position="fixed">
+                Email
+              </ion-label>
+              <ion-input type="text" placeholder="Enter Current Email To Make Modifications" name="email" [(ngModel)]="email" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item [hidden]="needVerification">
+              <ion-label position="fixed">
+                Password
+              </ion-label>
+              <ion-input type="password" placeholder="Enter Current Password To Make Modifications" name="password" [(ngModel)]="password" required>
+              </ion-input>
+            </ion-item>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+
+          <ion-button ion-button color="success" class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">
+            Update Profile & Logout
+          </ion-button>
+
+        </ion-col>
+
+        <ion-col class="back-col">
+          <ion-button ion-button color="danger" [routerLink]="['/home']">
+            Back
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+
+  </div>
+
+</ion-content>

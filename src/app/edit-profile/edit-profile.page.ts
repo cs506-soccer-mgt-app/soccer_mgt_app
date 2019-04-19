@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // User defined
 import { CognitoService} from '../services/cognito-service.service';
-import { LoadingController, ToastController, NavController } from '@ionic/angular'
+import { LoadingController, ToastController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-profile',
@@ -34,10 +34,10 @@ export class EditProfilePage implements OnInit {
 
   ionViewWillEnter() {
     this.user = this.cognitoService.getUser();
-    this.firstname = this.user.idToken.payload['custom:firstname']
-    this.lastname = this.user.idToken.payload['custom:lastname']
-    this.phonenumber = this.user.idToken.payload['phone_number']
-    this.sex = this.user.idToken.payload['custom:sex']
+    this.firstname = this.user.idToken.payload['custom:firstname'];
+    this.lastname = this.user.idToken.payload['custom:lastname'];
+    this.phonenumber = this.user.idToken.payload['phone_number'];
+    this.sex = this.user.idToken.payload['custom:sex'];
   }
 
   async editProfile() {

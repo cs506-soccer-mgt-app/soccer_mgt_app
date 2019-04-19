@@ -120,37 +120,28 @@ export class CognitoService {
     }
   }
 
-  editProfile(email, firstname, lastname, phonenumber, sex) {
+  editProfile(firstname, lastname, phonenumber, sex, email, password) {
 
     return new Promise((resolved, reject) => {
-
-
-
 
       const userPool = new AmazonCognitoIdentity.CognitoUserPool(this._POOL_DATA);
 
       let attributeList = [];
-      // userAttribute.push(
-      //   new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email", Value: email })
-      // );
-      // userAttribute.push(
-      //   new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:firstname", Value: firstname })
-      // );
-      // userAttribute.push(
-      //   new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:lastname", Value: lastname })
-      // );
-      // userAttribute.push(
-      //   new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number", Value: phonenumber })
-      // );
+      attributeList.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email", Value: email })
+      );
+      attributeList.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:firstname", Value: firstname })
+      );
+      attributeList.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:lastname", Value: lastname })
+      );
+      attributeList.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number", Value: phonenumber })
+      );
       attributeList.push(
         new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:sex", Value: sex })
       );
-
-      const password = '1234!@#$qwerQWER'
-
-      // console.log(this.user)
-      // console.log(sex)
-      // console.log(attributeList[0])
 
       const authDetails = new AmazonCognitoIdentity.AuthenticationDetails({
         Username: email,

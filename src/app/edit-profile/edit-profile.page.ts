@@ -18,6 +18,7 @@ export class EditProfilePage implements OnInit {
   lastname: string;
   phonenumber: string;
   sex: string;
+  password: string;
 
   loading;
 
@@ -33,7 +34,6 @@ export class EditProfilePage implements OnInit {
 
   ionViewWillEnter() {
     this.user = this.cognitoService.getUser();
-    this.email = this.user.idToken.payload['email']
     this.firstname = this.user.idToken.payload['custom:firstname']
     this.lastname = this.user.idToken.payload['custom:lastname']
     this.phonenumber = this.user.idToken.payload['phone_number']
@@ -45,7 +45,7 @@ export class EditProfilePage implements OnInit {
     this.loading = await this.loadingCtrl.create();
     await this.loading.present();
 
-    this.cognitoService.editProfile(this.email, this.firstname, this.lastname, this.phonenumber, this.sex).then(
+    this.cognitoService.editProfile(this.firstname, this.lastname, this.phonenumber, this.sex, this.email, this.password).then(
       res => {
         this.cognitoService.logout();
         this.navCtrl.navigateBack('/login');

@@ -18,14 +18,6 @@
 
             <ion-item [hidden]="needVerification">
               <ion-label position="fixed">
-                Email
-              </ion-label>
-              <ion-input type="text" placeholder="Enter Email" name="email" [(ngModel)]="email" required>
-              </ion-input>
-            </ion-item>
-
-            <ion-item [hidden]="needVerification">
-              <ion-label position="fixed">
                 First Name
               </ion-label>
               <ion-input type="text" placeholder=" Enter First Name" name="firstname" [(ngModel)]="firstname" required>
@@ -56,6 +48,22 @@
               </ion-input>
             </ion-item>
 
+            <ion-item [hidden]="needVerification">
+              <ion-label position="fixed">
+                Email
+              </ion-label>
+              <ion-input type="text" placeholder="Enter Current Email To Make Modifications" name="email" [(ngModel)]="email" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item [hidden]="needVerification">
+              <ion-label position="fixed">
+                Password
+              </ion-label>
+              <ion-input type="password" placeholder="Enter Current Password To Make Modifications" name="password" [(ngModel)]="password" required>
+              </ion-input>
+            </ion-item>
+
         </ion-col>
       </ion-row>
 
@@ -63,7 +71,7 @@
         <ion-col class="signup-col">
 
           <ion-button ion-button color="success" class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">
-            Update Profile
+            Update Profile & Logout
           </ion-button>
 
         </ion-col>

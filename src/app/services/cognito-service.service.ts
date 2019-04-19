@@ -120,4 +120,47 @@ export class CognitoService {
       this.setUser(null);
     }
   }
+
+  editProfile(email, firstname, lastname, phonenumber, sex) {
+
+    return new Promise((resolved, reject) => {
+
+
+
+
+      const userPool = new AmazonCognitoIdentity.CognitoUserPool(this._POOL_DATA);
+
+      let userAttribute = [];
+      // userAttribute.push(
+      //   new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email", Value: email })
+      // );
+      // userAttribute.push(
+      //   new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:firstname", Value: firstname })
+      // );
+      // userAttribute.push(
+      //   new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:lastname", Value: lastname })
+      // );
+      // userAttribute.push(
+      //   new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number", Value: phonenumber })
+      // );
+      userAttribute.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:sex", Value: sex })
+      );
+
+      //undefined is not a function (near '..._this.user.updateAttributes...')
+      this.user.updateAttributes(userAttribute, function(err, result) {
+        if (err) {
+          reject(err);
+        } else {
+          resolved(result);
+        }
+      });
+
+
+
+
+    });
+
+  }
+
 }

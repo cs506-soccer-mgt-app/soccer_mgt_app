@@ -16,8 +16,21 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle>
-            <ion-item button (click)="logout()">
+          <ion-menu-toggle autoHide="false">
+            <ion-item button [hidden]="hideButton()"
+                      [routerLink]="['/user-game-list']"
+                      routerDirection="forward">
+              <ion-icon slot="start" name="football">
+              </ion-icon>
+              <ion-label>
+                Games
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle autoHide="false">
+            <ion-item button [hidden]="hideButton()"
+                      (click)="logout()"
+                      routerDirection="back">
               <ion-icon slot="start" name="log-out">
               </ion-icon>
               <ion-label>

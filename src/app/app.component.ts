@@ -40,6 +40,10 @@ export class AppComponent {
     });
   }
 
+  hideButton() {
+    return !this.cognitoService.isLoggedIn();
+  }
+
   logout() {
     this.cognitoService.logout();
     console.log('User is logged out.')

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Games</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list *ngIf="userGameList.length > 0">
+    <ion-card *ngFor="let game of userGameList" button
+              routerDirection="forward"
+              [routerLink]="['/game-details', game.game_id]">
+      <ion-card-title padding>{{game.date}} @ {{game.time}} : {{game.name}}</ion-card-title>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>VS: {{game.opponent}}</ion-col>
+            <ion-col>LOCATION: {{game.location}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-list *ngIf="userGameList.length <= 0">
+    <ion-title>No Games</ion-title>
+  </ion-list>
+
+</ion-content>

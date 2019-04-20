@@ -48,7 +48,6 @@ export class GameDetailsPage implements OnInit {
     this.gameService.getGameDetail(this.gameID)
         .subscribe(data => {
           this.game = data;
-          console.log(this.game)
           this.teamService.getTeamDetail(this.game.team_id)
               .subscribe(res => {
                 this.team = res;
@@ -67,9 +66,7 @@ export class GameDetailsPage implements OnInit {
     this.isenabled=false;
     this.gameService.notifyTeamOfUpcomingGame(this.game.team_id, this.game.date, this.game.time, this.game.opponent, this.game.location)
     .subscribe(data => {
-      console.log(data);
     }, err => {
-      console.log(err);
     });
   }
 

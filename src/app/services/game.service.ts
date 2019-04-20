@@ -36,4 +36,14 @@ export class GameService {
       team_id: team_id
     });
   }
+
+  notifyTeamOfUpcomingGame(team_id: number, date: string, time: string, opponent: string, location: string) {
+    return this.http.post('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/notifiyteam/' + team_id, {
+      date: date,
+      time: time,
+      opponent: opponent,
+      location: location
+    });
+  }
+
 }

@@ -44,6 +44,7 @@
 
 
   <ion-row justify-content-center test-center>
+
     <ion-col col-md-4 col-xs-8>
       <ion-button class="edit-game" color="success"
                   [routerLink]="['/edit-game', gameID]"
@@ -56,6 +57,10 @@
       <ion-button color="danger" [routerLink]="['/team-details', game.team_id]">
         Back
       </ion-button>
+    </ion-col>
+
+    <ion-col col-md-4 col-xs-8>
+        <ion-button class="save" color="success" [disabled]="!isenabled" (click)="notifyTeamOfUpcomingGame()">Send Email Game Reminder</ion-button>
     </ion-col>
 
   </ion-row>

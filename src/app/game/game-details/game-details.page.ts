@@ -17,6 +17,8 @@ export class GameDetailsPage implements OnInit {
   public game;
   public user;
   public team;
+  
+  public isenabled:boolean=true;
 
   constructor(public userService: UserService,
               public gameService: GameService,
@@ -46,10 +48,29 @@ export class GameDetailsPage implements OnInit {
     this.gameService.getGameDetail(this.gameID)
         .subscribe(data => {
           this.game = data;
+          console.log(this.game)
           this.teamService.getTeamDetail(this.game.team_id)
               .subscribe(res => {
                 this.team = res;
+                this.isManager()
               });
         });
   }
+
+  isManager() {
+    if (this.team.manager_id != this.user.idToken.payload['sub']) {
+      this.isenabled=false;
+    }
+  }
+
+  notifyTeamOfUpcomingGame() {
+    this.isenabled=false;
+    this.gameService.notifyTeamOfUpcomingGame(this.game.team_id, this.game.date, this.game.time, this.game.opponent, this.game.location)
+    .subscribe(data => {
+      console.log(data);
+    }, err => {
+      console.log(err);
+    });
+  }
+
 }

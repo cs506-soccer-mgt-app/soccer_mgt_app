@@ -4,7 +4,7 @@ import { ActivatedRoute} from '@angular/router';
 import { CognitoService } from '../../services/cognito-service.service';
 import { UserService } from '../../services/user.service';
 import {TeamService} from '../../services/team.service';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-game-details',
@@ -18,6 +18,8 @@ export class GameDetailsPage implements OnInit {
   public game;
   public user;
   public team;
+
+  loading;
   
   public isenabled:boolean=true;
 
@@ -26,7 +28,8 @@ export class GameDetailsPage implements OnInit {
               public route: ActivatedRoute,
               public cognitoService: CognitoService,
               public toastCtrl: ToastController,
-              public teamService: TeamService) { }
+              public teamService: TeamService,
+              public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.gameID = this.route.snapshot.paramMap.get('id');
@@ -65,10 +68,16 @@ export class GameDetailsPage implements OnInit {
   }
 
   async notifyTeamOfUpcomingGame() {
+
+    this.loading = await this.loadingCtrl.create();
+    await this.loading.present();
+
     this.isenabled=false;
     this.gameService.notifyTeamOfUpcomingGame(this.game.team_id, this.game.date, this.game.time, this.game.opponent, this.game.location)
     .subscribe(async data => {
+      this.loading.dismiss();
     }, async err => {
+      this.loading.dismiss();
       const toast = await this.toastCtrl.create({
         message: 'Error sending email reminder.',
         duration: 3000,

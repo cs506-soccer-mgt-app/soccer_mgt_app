@@ -4,6 +4,7 @@ import { ActivatedRoute} from '@angular/router';
 import { CognitoService } from '../../services/cognito-service.service';
 import { UserService } from '../../services/user.service';
 import {TeamService} from '../../services/team.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-game-details',
@@ -24,6 +25,7 @@ export class GameDetailsPage implements OnInit {
               public gameService: GameService,
               public route: ActivatedRoute,
               public cognitoService: CognitoService,
+              public toastCtrl: ToastController,
               public teamService: TeamService) { }
 
   ngOnInit() {
@@ -62,11 +64,18 @@ export class GameDetailsPage implements OnInit {
     }
   }
 
-  notifyTeamOfUpcomingGame() {
+  async notifyTeamOfUpcomingGame() {
     this.isenabled=false;
     this.gameService.notifyTeamOfUpcomingGame(this.game.team_id, this.game.date, this.game.time, this.game.opponent, this.game.location)
-    .subscribe(data => {
-    }, err => {
+    .subscribe(async data => {
+    }, async err => {
+      const toast = await this.toastCtrl.create({
+        message: 'Error sending email reminder.',
+        duration: 3000,
+        position: 'bottom',
+        color: 'danger'
+      });
+      toast.present();
     });
   }
 

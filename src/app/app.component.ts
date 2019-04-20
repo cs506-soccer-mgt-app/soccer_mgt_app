@@ -10,18 +10,6 @@ import { CognitoService } from './services/cognito-service.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'Create Team',
-      url: '/create-team',
-      icon: 'construct'
-    }
-  ];
 
   constructor(
     private platform: Platform,

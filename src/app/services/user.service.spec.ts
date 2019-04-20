@@ -70,6 +70,47 @@ describe('UserService', () => {
     });
   });
 
+  it('should GET an array of games data for a user with a user_id of 3b4e98ee-6c71-496d-b801-6014fdf8d698', () => {
+    const { userService, httpTestingCtrl } = setup();
+    const mockData = [
+        {
+          user_id: '3b4e98ee-6c71-496d-b801-6014fdf8d698', player_id: 9, payment: '0', team_id: 6, name: 'GOAT', primary_color: 'Gold',
+          alternate_color: 'Black', manager_id: '24666164-bfec-4dd3-8a41-3f777d3d23c4', session_id: 4, game_id: 2, date: '2019-06-18',
+          time: '19:48:16', opponent: 'WOAT', score: null, location: 'Home'
+        },
+        {
+          user_id: '3b4e98ee-6c71-496d-b801-6014fdf8d698', player_id: 9, payment: '0', team_id: 6, name: 'GOAT', primary_color: 'Gold',
+          alternate_color: 'Black', manager_id: '24666164-bfec-4dd3-8a41-3f777d3d23c4', session_id: 4, game_id: 3, date: '2019-08-19',
+          time: '21:49:04', opponent: 'Summer', score: null, location: 'Hawaii'
+        },
+        {
+          user_id: '3b4e98ee-6c71-496d-b801-6014fdf8d698', player_id: 9, payment: '0', team_id: 6, name: 'GOAT', primary_color: 'Gold',
+          alternate_color: 'Black', manager_id: '24666164-bfec-4dd3-8a41-3f777d3d23c4', session_id: 4, game_id: 4, date: '2020-12-13',
+          time: '00:40:13', opponent: 'Test', score: null, location: 'Practice Field'
+        },
+        {
+          user_id: '3b4e98ee-6c71-496d-b801-6014fdf8d698', player_id: 9, payment: '0', team_id: 6, name: 'GOAT', primary_color: 'Gold',
+          alternate_color: 'Black', manager_id: '24666164-bfec-4dd3-8a41-3f777d3d23c4', session_id: 4, game_id: 5, date: '2021-02-17',
+          time: '09:59:50', opponent: 'WOAT', score: null, location: 'Barcelona'
+        },
+        {
+          user_id: '3b4e98ee-6c71-496d-b801-6014fdf8d698', player_id: 10, payment: '0', team_id: 8, name: 'Messis', primary_color: 'Red',
+          alternate_color: 'Blue', manager_id: '3b4e98ee-6c71-496d-b801-6014fdf8d698', session_id: 3, game_id: 11, date: '2019-04-20',
+          time: '12:00:59', opponent: 'YOU', score: null, location: 'Reddan'
+        }
+    ];
+    userService.getGamesForUser('3b4e98ee-6c71-496d-b801-6014fdf8d698')
+        .subscribe(data => {
+          expect(data.data).toEqual(mockData);
+        });
+
+    const req = httpTestingCtrl.expectOne('https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/users/3b4e98ee-6c71-496d-b801-6014fdf8d698/games');
+    expect(req.request.method).toBe('GET');
+    req.flush({
+      data: mockData
+    });
+  });
+
   afterEach(() => {
     const { httpTestingCtrl } = setup();
     httpTestingCtrl.verify();

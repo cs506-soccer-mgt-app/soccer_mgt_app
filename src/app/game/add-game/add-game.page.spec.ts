@@ -5,7 +5,6 @@ import { AddGamePage } from './add-game.page';
 import {RouterModule} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { ExpressionStatement } from '@angular/compiler';
 
 describe('AddGamePage', () => {
   let component: AddGamePage;

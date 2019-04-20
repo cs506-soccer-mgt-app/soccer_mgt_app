@@ -120,6 +120,10 @@ export class CognitoService {
     }
   }
 
+  isLoggedIn() {
+    return this.user != null;
+  }
+
   editProfile(firstname, lastname, phonenumber, sex, email, password) {
 
     return new Promise((resolved, reject) => {

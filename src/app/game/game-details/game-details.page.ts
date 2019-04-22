@@ -3,11 +3,8 @@ import { GameService} from '../../services/game.service';
 import { ActivatedRoute} from '@angular/router';
 import { CognitoService } from '../../services/cognito-service.service';
 import {TeamService} from '../../services/team.service';
-<<<<<<< HEAD
 import { UserService } from '../../services/user.service';
-=======
 import { LoadingController, ToastController } from '@ionic/angular';
->>>>>>> dev
 
 @Component({
   selector: 'app-game-details',

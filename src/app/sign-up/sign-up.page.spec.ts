@@ -33,4 +33,33 @@ describe('SignUpPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a defined navCtrl: NavController varaible', () => {
+    expect(component.navCtrl).toBeDefined();
+  });
+
+  it('should have a defined alertController: AlertController varaible', () => {
+    expect(component.alertController).toBeDefined();
+  });
+
+  it('should have a defined cognitoController: CognitoController varaible', () => {
+    expect(component.cognitoService).toBeDefined();
+  });
+
+  it('should have a defined loadingCtrl: LoadingCognito varaible', () => {
+    expect(component.loadingCtrl).toBeDefined();
+  });
+
+  it('should have a defined toastCtrl: ToastController varaible', () => {
+    expect(component.toastCtrl).toBeDefined();
+  });
+
+  it('should contain a verifyUser() method with a verification code as a parameter', () => {
+    const verCode = 12345;
+    const cmpntSpy = spyOn(component, 'verifyUser').and.callThrough();
+    expect(component.verifyUser(verCode)).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalledWith(verCode);
+  });
+
+  // Add test for register();
 });

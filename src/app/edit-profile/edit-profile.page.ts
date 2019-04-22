@@ -45,6 +45,7 @@ export class EditProfilePage implements OnInit {
     this.loading = await this.loadingCtrl.create();
     await this.loading.present();
 
+    // TODO : SUPPRESS???
     this.cognitoService.editProfile(this.firstname, this.lastname, this.phonenumber, this.sex, this.email, this.password).then(
       res => {
         this.cognitoService.logout();

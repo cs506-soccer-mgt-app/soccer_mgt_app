@@ -1,7 +1,7 @@
 
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>
+    <ion-title class="personal-info-title">
       Edit Profile
     </ion-title>
   </ion-toolbar>
@@ -20,7 +20,7 @@
               <ion-label position="fixed">
                 First Name
               </ion-label>
-              <ion-input type="text" placeholder=" Enter First Name" name="firstname" [(ngModel)]="firstname" required>
+              <ion-input class="user-name" type="text" placeholder=" Enter First Name" name="firstname" [(ngModel)]="firstname" required>
               </ion-input>
             </ion-item>
 
@@ -81,6 +81,8 @@
             Back
           </ion-button>
         </ion-col>
+
+
       </ion-row>
 
     </form>

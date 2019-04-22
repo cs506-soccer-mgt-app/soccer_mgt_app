@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GameService} from '../../services/game.service';
 import { ActivatedRoute} from '@angular/router';
 import { CognitoService } from '../../services/cognito-service.service';
-import { UserService } from '../../services/user.service';
 import {TeamService} from '../../services/team.service';
+import { UserService } from '../../services/user.service';
 import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -13,11 +13,11 @@ import { LoadingController, ToastController } from '@ionic/angular';
 })
 export class GameDetailsPage implements OnInit {
 
-  public items: Array<{ title: string; icon: string }> = [];
   public gameID = null;
   public game;
   public user;
   public team;
+  public teamPlayers = [];
 
   loading;
   
@@ -40,13 +40,6 @@ export class GameDetailsPage implements OnInit {
     if (this.gameID) {
       this.loadData();
     }
-    this.items = [];
-    for (let i = 1; i < 6; i++) {
-      this.items.push({
-        title: 'Player ' + i,
-        icon: 'football'
-      });
-    }
   }
 
   loadData() {
@@ -57,6 +50,34 @@ export class GameDetailsPage implements OnInit {
               .subscribe(res => {
                 this.team = res;
                 this.isManager()
+              });
+          this.teamService.getPlayersForTeam(this.game.team_id)
+              .subscribe(res => {
+                const players = [];
+                for (const player of Object.values(res)) {
+                  players.push(player);
+                }
+                for (let i = 0; i < players.length; i++) {
+                  let firstname = '';
+                  let lastname = '';
+                  let sex = '';
+                  for (let j = 0; j < res[i].length; j++) {
+                    if (res[i][j].Name == 'custom:firstname') {
+                      firstname = res[i][j].Value;
+                    }
+                    if (res[i][j].Name == 'custom:lastname') {
+                      lastname = res[i][j].Value;
+                    }
+                    if (res[i][j].Name == 'custom:sex') {
+                      sex = res[i][j].Value;
+                    }
+                  }
+                  this.teamPlayers.push({
+                    firstname: firstname,
+                    lastname: lastname,
+                    sex: sex
+                  });
+                }
               });
         });
   }

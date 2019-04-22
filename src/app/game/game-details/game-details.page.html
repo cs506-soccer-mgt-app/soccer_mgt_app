@@ -34,11 +34,11 @@
         <ion-label>Location</ion-label>
         <ion-label>{{game.location}}</ion-label>
       </ion-item>
-
-      <ion-list>
-        <ion-item *ngFor="let item of items">
-          <ion-icon [name]="item.icon" slot="start"></ion-icon>
-          {{item.title}}
+      
+      <ion-title>Players on Team</ion-title>
+      <ion-list *ngFor="let player of teamPlayers">
+        <ion-item class="player">
+          <ion-label>First Name: "{{ player.firstname }}" Last Name: "{{ player.lastname }}" Sex: "{{ player.sex }}"</ion-label>
         </ion-item>
       </ion-list>
 

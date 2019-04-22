@@ -204,6 +204,81 @@ describe('MSTMA ', () => {
       expect(userTitle.getText()).toEqual('Home');
     });
 
+    it('allows navigation to Join Team Page', () => {
+      var joinTeam = element(by.css('.join-team'));
+      var joinTitle = element(by.css('.join-team-title'));
+      joinTeam.click();
+      expect(joinTitle.getText()).toEqual('Join Team');
+    });
+
+    it('allows navigation to Personal Info Page', () => {
+      var personalInfo = element(by.css('.personal-info'));
+      var personalTitle = element(by.css('.personal-info-title'));
+      personalInfo.click();
+      expect(personalTitle.getText()).toEqual('Edit Profile');
+    });
+
+    it('allows editing of Personal Info Page', () => {
+      var personalInfo = element(by.css('.personal-info'));
+      var personalTitle = element(by.css('.personal-info-title'));
+      var inputName = element.all(by.css('.native-input.sc-ion-input-md')).get(0);
+      var inputEmail = element.all(by.css('.native-input.sc-ion-input-md')).get(4);
+      var inputPassword = element.all(by.css('.native-input.sc-ion-input-md')).get(5);
+      var loginEmail = element.all(by.css('.native-input.sc-ion-input-md')).get(0);
+      var loginPassword = element.all(by.css('.native-input.sc-ion-input-md')).get(1);
+      var save = element(by.css('.submit-btn'));
+      var userName = element(by.css('.user-name'));
+      var loginButton = element(by.css('.submit-btn'));
+      var userTitle = element(by.css('.user-title'));
+      personalInfo.click();
+      expect(personalTitle.getText()).toEqual('Edit Profile');
+      inputName.click();
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys('Testing');
+      inputEmail.click();
+      inputEmail.sendKeys('hadevik@hotelnextmail.com');
+      inputPassword.click();
+      inputPassword.sendKeys('Password_1');
+      save.click();
+      browser.wait(EC.visibilityOf(loginEmail), 4000);
+      loginEmail.click();
+      loginEmail.sendKeys('hadevik@hotelnextmail.com');
+      loginPassword.click();
+      loginPassword.sendKeys('Password_1');
+      loginButton.click();
+      browser.wait(EC.presenceOf(userTitle), 4000);
+      expect(userTitle.getText()).toEqual('Home');
+      personalInfo.click();
+      expect(userName.getAttribute('value')).toEqual('Testing');
+      inputName.click();
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys(Key.BACK_SPACE);
+      inputName.sendKeys('Test');
+      inputEmail.click();
+      inputEmail.sendKeys('hadevik@hotelnextmail.com');
+      inputPassword.click();
+      inputPassword.sendKeys('Password_1');
+      save.click();
+    });
+
     it('allows navigation to Create Team Page', () => {
       var createTeam = element(by.css('.create-team'));
       var createTitle = element(by.css('.create-title'));
@@ -238,6 +313,15 @@ describe('MSTMA ', () => {
       browser.wait(EC.visibilityOf(teamTitle), 4000);
       expect(teamTitle.getText()).toEqual('Test');
       expect(EC.invisibilityOf(addGame));
+    });
+
+    it('allows navigation to all-games-list', () => {
+      var menu = element.all(by.css('.header')).get(0);
+      var games = element.all(by.css('ion-item.in-list')).get(2);
+      var gamesTitle = element.all(by.css('ion-title.title-md')).get(1);
+      menu.click();
+      games.click();
+      expect(gamesTitle.getText()).toEqual('Games');
     });
 
     it('allows navigation to game-details', () => {

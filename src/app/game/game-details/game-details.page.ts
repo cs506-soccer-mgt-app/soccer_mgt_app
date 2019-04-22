@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GameService} from '../../services/game.service';
 import { ActivatedRoute} from '@angular/router';
 import { CognitoService } from '../../services/cognito-service.service';
-import { UserService } from '../../services/user.service';
-import { setMaxListeners } from 'cluster';
-import { setMaxListeners } from 'cluster';
-import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-accessors/value-accessor';
 import {TeamService} from '../../services/team.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-game-details',
@@ -48,10 +45,14 @@ export class GameDetailsPage implements OnInit {
               });
           this.teamService.getPlayersForTeam(this.game.team_id)
               .subscribe(res => {
-                for (let i = 0; i < res.length; i++) {
-                  const firstname;
-                  const lastname;
-                  const sex;
+                const players = [];
+                for (const player of Object.values(res)) {
+                  players.push(player);
+                }
+                for (let i = 0; i < players.length; i++) {
+                  let firstname = '';
+                  let lastname = '';
+                  let sex = '';
                   for (let j = 0; j < res[i].length; j++) {
                     if (res[i][j].Name == 'custom:firstname') {
                       firstname = res[i][j].Value;

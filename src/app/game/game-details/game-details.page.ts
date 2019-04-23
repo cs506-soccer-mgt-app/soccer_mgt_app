@@ -57,6 +57,7 @@ export class GameDetailsPage implements OnInit {
                 for (const player of Object.values(res)) {
                   players.push(player);
                 }
+                this.teamPlayers = [];
                 for (let i = 0; i < players.length; i++) {
                   let firstname = '';
                   let lastname = '';

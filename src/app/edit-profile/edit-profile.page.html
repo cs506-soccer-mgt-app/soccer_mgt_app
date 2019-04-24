@@ -1,9 +1,12 @@
-
 <ion-header>
   <ion-toolbar color="primary">
+      <ion-buttons slot="start"></ion-buttons>
     <ion-title class="personal-info-title">
       Edit Profile
     </ion-title>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -44,9 +47,19 @@
               <ion-label position="fixed">
                 Sex
               </ion-label>
+              <ion-select placeholder="Select One" name="sex" [(ngModel)]="sex" required>
+                <ion-select-option value="Female">Female</ion-select-option>
+                <ion-select-option value="Male">Male</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <!-- <ion-item [hidden]="needVerification">
+              <ion-label position="fixed">
+                Sex
+              </ion-label>
               <ion-input type="text" placeholder="Enter Sex" name="sex" [(ngModel)]="sex" required>
               </ion-input>
-            </ion-item>
+            </ion-item> -->
 
             <ion-item [hidden]="needVerification">
               <ion-label position="fixed">

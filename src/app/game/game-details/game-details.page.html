@@ -34,7 +34,7 @@
         <ion-label>Location</ion-label>
         <ion-label>{{game.location}}</ion-label>
       </ion-item>
-      
+
       <ion-title>Players on Team</ion-title>
       <ion-list *ngFor="let player of teamPlayers">
         <ion-item class="player">
@@ -42,6 +42,14 @@
         </ion-item>
       </ion-list>
 
+      <div id=team-creation position="center">
+        <ion-button shape="round" color="primary" expand="full"
+                    [disabled]="!isenabled"
+                    *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']"
+                    (click)="notifyTeamOfUpcomingGame()">
+          Send Game Reminder Email to Players
+        </ion-button>
+      </div>
 
   <ion-row justify-content-center test-center>
 
@@ -56,12 +64,6 @@
     <ion-col col-md-4 col-xs-8>
       <ion-button color="danger" [routerLink]="['/team-details', game.team_id]">
         Back
-      </ion-button>
-    </ion-col>
-
-    <ion-col col-md-4 col-xs-8>
-      <ion-button class="edit-game" color="success" [disabled]="!isenabled" *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']" (click)="notifyTeamOfUpcomingGame()">
-        Send Email Game Reminder
       </ion-button>
     </ion-col>
 

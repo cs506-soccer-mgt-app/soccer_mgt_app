@@ -34,7 +34,7 @@
         <ion-label>Location</ion-label>
         <ion-label>{{game.location}}</ion-label>
       </ion-item>
-      
+
       <ion-title>Players on Team</ion-title>
       <ion-list *ngFor="let player of teamPlayers">
         <ion-item class="player">
@@ -43,7 +43,7 @@
       </ion-list>
 
       <div id=team-creation position="center">
-        <ion-button class="edit-game" shape="round" color="primary" expand="full"
+        <ion-button shape="round" color="primary" expand="full"
                     [disabled]="!isenabled"
                     *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']"
                     (click)="notifyTeamOfUpcomingGame()">

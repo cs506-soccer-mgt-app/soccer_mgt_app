@@ -49,7 +49,7 @@ export class GameDetailsPage implements OnInit {
           this.teamService.getTeamDetail(this.game.team_id)
               .subscribe(res => {
                 this.team = res;
-                this.isManager()
+                this.isManager();
               });
           this.teamService.getPlayersForTeam(this.game.team_id)
               .subscribe(res => {
@@ -62,21 +62,26 @@ export class GameDetailsPage implements OnInit {
                   let firstname = '';
                   let lastname = '';
                   let sex = '';
+                  let player_id;
                   for (let j = 0; j < res[i].length; j++) {
-                    if (res[i][j].Name == 'custom:firstname') {
+                    if (res[i][j].Name === 'custom:firstname') {
                       firstname = res[i][j].Value;
                     }
-                    if (res[i][j].Name == 'custom:lastname') {
+                    if (res[i][j].Name === 'custom:lastname') {
                       lastname = res[i][j].Value;
                     }
-                    if (res[i][j].Name == 'custom:sex') {
+                    if (res[i][j].Name === 'custom:sex') {
                       sex = res[i][j].Value;
+                    }
+                    if (res[i][j].Name === 'player') {
+                      player_id = res[i][j].Value.player_id;
                     }
                   }
                   this.teamPlayers.push({
                     firstname: firstname,
                     lastname: lastname,
-                    sex: sex
+                    sex: sex,
+                    player_id: player_id
                   });
                 }
               });

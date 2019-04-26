@@ -13,7 +13,7 @@
     <ion-card *ngFor="let game of userGameList" button
               routerDirection="forward"
               [routerLink]="['/game-details', game.game_id]">
-      <ion-card-title padding>{{game.date}} @ {{game.time}} : {{game.name}}</ion-card-title>
+      <ion-card-title padding>{{game.date}} @ {{game.time | slice:0:game.time.length-3}} : {{game.name}}</ion-card-title>
       <ion-card-content>
         <ion-grid>
           <ion-row>

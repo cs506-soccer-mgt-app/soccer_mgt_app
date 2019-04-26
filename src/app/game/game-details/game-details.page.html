@@ -37,7 +37,8 @@
 
       <ion-title>Players on Team</ion-title>
       <ion-list *ngFor="let player of teamPlayers">
-        <ion-item class="player">
+        <ion-item class="player" button
+                  [routerLink]="'/game-details/' + gameID + '/players/' + player.player_id">
           <ion-label>First Name: "{{ player.firstname }}" Last Name: "{{ player.lastname }}" Sex: "{{ player.sex }}"</ion-label>
         </ion-item>
       </ion-list>

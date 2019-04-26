@@ -29,9 +29,11 @@ const routes: Routes = [
   { path: 'edit-team/:id', loadChildren: './team/edit-team/edit-team.module#EditTeamPageModule' },
   { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'team-details/:id/invite-player', loadChildren: './player/invite-player/invite-player.module#InvitePlayerPageModule' },  { path: 'join-team', loadChildren: './team/join-team/join-team.module#JoinTeamPageModule' },
+  { path: 'team-details/:id/invite-player', loadChildren: './player/invite-player/invite-player.module#InvitePlayerPageModule' },
+  { path: 'join-team', loadChildren: './team/join-team/join-team.module#JoinTeamPageModule' },
   { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' },
-  { path: 'user-game-list', loadChildren: './game/user-game-list/user-game-list.module#UserGameListPageModule' }
+  { path: 'user-game-list', loadChildren: './game/user-game-list/user-game-list.module#UserGameListPageModule' },
+  { path: 'game-details/:game_id/players/:player_id', loadChildren: './availability/availability-mgr/availability-mgr.module#AvailabilityMgrPageModule' }
 
 
 

@@ -39,12 +39,15 @@
       <ion-list *ngFor="let player of teamPlayers">
         <ion-item class="player" button
                   [routerLink]="'/game-details/' + gameID + '/players/' + player.player_id">
+
+          <!--Determine icon and color based on player's availability-->
           <ion-icon *ngIf="player.availability_type == 'UNKNOWN' || player.availability_type == null"
-                    name="alert" slot="start"></ion-icon>
-          <ion-icon *ngIf="player.availability_type == 'MAYBE'" name="help" slot="start"></ion-icon>
-          <ion-icon *ngIf="player.availability_type == 'IN'" name="checkmark" slot="start"></ion-icon>
-          <ion-icon *ngIf="player.availability_type == 'OUT'" name="close" slot="start"></ion-icon>
+                    name="alert" slot="start" color="warning"></ion-icon>
+          <ion-icon *ngIf="player.availability_type == 'MAYBE'" name="help" slot="start" color="secondary"></ion-icon>
+          <ion-icon *ngIf="player.availability_type == 'IN'" name="checkmark" slot="start" color="success"></ion-icon>
+          <ion-icon *ngIf="player.availability_type == 'OUT'" name="close" slot="start" color="medium"></ion-icon>
           <ion-label>{{ player.firstname }} {{ player.lastname }} ({{ player.sex }})</ion-label>
+
         </ion-item>
       </ion-list>
 

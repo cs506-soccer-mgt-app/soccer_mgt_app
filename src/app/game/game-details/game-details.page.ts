@@ -5,6 +5,7 @@ import { CognitoService } from '../../services/cognito-service.service';
 import {TeamService} from '../../services/team.service';
 import { UserService } from '../../services/user.service';
 import { LoadingController, ToastController } from '@ionic/angular';
+import {AvailabilityService} from '../../services/availability.service';
 
 @Component({
   selector: 'app-game-details',
@@ -29,7 +30,8 @@ export class GameDetailsPage implements OnInit {
               public cognitoService: CognitoService,
               public toastCtrl: ToastController,
               public teamService: TeamService,
-              public loadingCtrl: LoadingController) { }
+              public loadingCtrl: LoadingController,
+              public availabilityService: AvailabilityService) { }
 
   ngOnInit() {
     this.gameID = this.route.snapshot.paramMap.get('id');
@@ -77,12 +79,20 @@ export class GameDetailsPage implements OnInit {
                       player_id = res[i][j].Value.player_id;
                     }
                   }
-                  this.teamPlayers.push({
-                    firstname: firstname,
-                    lastname: lastname,
-                    sex: sex,
-                    player_id: player_id
-                  });
+                  let availability = null;
+                  this.availabilityService.getAvailabilityByGameAndPlayer(this.gameID, player_id)
+                      .subscribe(res => {
+                        availability = res;
+                        this.teamPlayers.push({
+                          firstname: firstname,
+                          lastname: lastname,
+                          sex: sex,
+                          player_id: player_id,
+                          availability_type: availability.availability_type
+                        });
+                      }, err => {
+                        console.log(err);
+                      });
                 }
               });
         });

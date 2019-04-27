@@ -13,6 +13,21 @@
     <ion-card *ngFor="let game of userGameList" button
               routerDirection="forward"
               [routerLink]="['/game-details', game.game_id]">
+
+      <!--Determine icon and color based on player's availability-->
+      <ion-item *ngIf="game.availability_type == 'UNKNOWN' || game.availability_type == null" color="warning">
+        <ion-icon name="alert" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="game.availability_type == 'MAYBE'" color="secondary">
+        <ion-icon name="help" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="game.availability_type == 'IN'" color="success">
+        <ion-icon name="checkmark" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="game.availability_type == 'OUT'" color="medium">
+        <ion-icon name="close" slot="start"></ion-icon>
+      </ion-item>
+
       <ion-card-title padding>{{game.date}} @ {{game.time | slice:0:game.time.length-3}} : {{game.name}}</ion-card-title>
       <ion-card-content>
         <ion-grid>

@@ -55,7 +55,6 @@ export class GameDetailsPage implements OnInit {
               });
           this.teamService.getPlayersForTeam(this.game.team_id)
               .subscribe(res => {
-                console.log(res); // todo delete
                 const players = [];
                 for (const player of Object.values(res)) {
                   players.push(player);
@@ -95,7 +94,6 @@ export class GameDetailsPage implements OnInit {
                         console.log(err);
                       });
                 }
-                console.log(this.teamPlayers); // todo delete
               });
         });
   }

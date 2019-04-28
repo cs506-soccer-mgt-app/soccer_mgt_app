@@ -116,6 +116,8 @@ describe('MSTMA ', () => {
       game.click();
       browser.wait(EC.visibilityOf(gameTitle), 4000);
       expect(gameTitle.getText()).toEqual('Game Details');
+      browser.executeScript('arguments[0].scrollIntoView()', editGame.getWebElement());
+      browser.wait(EC.visibilityOf(editGame), 4000);
       editGame.click();
       browser.wait(EC.presenceOf(editTitle), 4000);
       expect(editTitle.getText()).toEqual('Edit Game');
@@ -138,7 +140,8 @@ describe('MSTMA ', () => {
       game.click();
       browser.wait(EC.visibilityOf(gameTitle), 4000);
       expect(gameTitle.getText()).toEqual('Game Details');
-      browser.wait(EC.presenceOf(editGame),4000);
+      browser.executeScript('arguments[0].scrollIntoView()', editGame.getWebElement());
+      browser.wait(EC.visibilityOf(editGame),4000);
       editGame.click();
       browser.wait(EC.presenceOf(editTitle), 4000);
       expect(editTitle.getText()).toEqual('Edit Game');
@@ -157,7 +160,8 @@ describe('MSTMA ', () => {
       browser.wait(EC.presenceOf(gameTitle),4000);
       expect(gameTitle.getText()).toEqual('Game Details');
       expect(opponent.getText()).toEqual('The Team');
-      browser.wait(EC.presenceOf(editGame),4000);
+      browser.executeScript('arguments[0].scrollIntoView()', editGame.getWebElement());
+      browser.wait(EC.visibilityOf(editGame),4000);
       editGame.click();
       browser.wait(EC.presenceOf(editTitle), 4000);
       expect(editTitle.getText()).toEqual('Edit Game');
@@ -198,18 +202,18 @@ describe('MSTMA ', () => {
     });
 
     //hadevik@hotelnextmail.com Password_1
-    it('Allows navigation to Home Page', () => {
-      var userTitle = element(by.css('.user-title'));
-      browser.wait(EC.presenceOf(userTitle), 4000);
-      expect(userTitle.getText()).toEqual('Home');
-    });
+     it('Allows navigation to Home Page', () => {
+       var userTitle = element(by.css('.user-title'));
+       browser.wait(EC.presenceOf(userTitle), 4000);
+       expect(userTitle.getText()).toEqual('Home');
+     });
 
-    it('allows navigation to Join Team Page', () => {
-      var joinTeam = element(by.css('.join-team'));
-      var joinTitle = element(by.css('.join-team-title'));
-      joinTeam.click();
-      expect(joinTitle.getText()).toEqual('Join Team');
-    });
+     it('allows navigation to Join Team Page', () => {
+       var joinTeam = element(by.css('.join-team'));
+       var joinTitle = element(by.css('.join-team-title'));
+       joinTeam.click();
+       expect(joinTitle.getText()).toEqual('Join Team');
+     });
 
     it('allows navigation to Personal Info Page', () => {
       var personalInfo = element(by.css('.personal-info'));

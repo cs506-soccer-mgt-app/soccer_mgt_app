@@ -50,6 +50,7 @@ export class UserGameListPage implements OnInit, OnDestroy {
                   availability = res;
                   game.availability_type = availability.availability_type;
                   this.userGameList.push(game);
+                  this.userGameList.sort(this.compareByDate);
                 }, err => {
                   console.log(err);
                 });
@@ -63,5 +64,18 @@ export class UserGameListPage implements OnInit, OnDestroy {
           });
           toast.present();
         });
+  }
+
+  compareByDate(a, b) {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+
+      let comparison = 0;
+      if (dateA > dateB) {
+          comparison = 1;
+      } else if (dateA < dateB) {
+          comparison = -1;
+      }
+      return comparison;
   }
 }

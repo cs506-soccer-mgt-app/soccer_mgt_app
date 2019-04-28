@@ -24,8 +24,7 @@ export class GameDetailsPage implements OnInit {
   
   public isenabled:boolean=true;
 
-  constructor(public userService: UserService,
-              public gameService: GameService,
+  constructor(public gameService: GameService,
               public route: ActivatedRoute,
               public cognitoService: CognitoService,
               public toastCtrl: ToastController,
@@ -90,12 +89,26 @@ export class GameDetailsPage implements OnInit {
                           player_id: player_id,
                           availability_type: availability.availability_type
                         });
+                      this.teamPlayers.sort(this.compareByName);
                       }, err => {
                         console.log(err);
                       });
                 }
               });
         });
+  }
+
+  compareByName(a, b) {
+      const nameA = a.firstname.toLowerCase() + ' ' + a.lastname.toLowerCase();
+      const nameB = b.firstname.toLowerCase() + ' ' + b.lastname.toLowerCase();
+
+      let comparison = 0;
+      if (nameA > nameB) {
+          comparison = 1;
+      } else if (nameA < nameB) {
+          comparison = -1;
+      }
+      return comparison;
   }
 
   isManager() {

@@ -16,8 +16,7 @@ export class TeamDetailsPage implements OnInit {
   public teamGames;
   public user;
 
-  constructor(public userService: UserService,
-              public teamService: TeamService,
+  constructor(public teamService: TeamService,
               public route: ActivatedRoute,
               public cognitoService: CognitoService) { }
 
@@ -46,9 +45,23 @@ export class TeamDetailsPage implements OnInit {
     this.teamService.getGamesForTeam(id)
         .subscribe(res => {
             this.teamGames = res;
+            this.teamGames.sort(this.compareByDate);
         }, err => {
             console.log(err);
         });
+  }
+
+  compareByDate(a, b) {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+
+      let comparison = 0;
+      if (dateA > dateB) {
+          comparison = 1;
+      } else if (dateA < dateB) {
+          comparison = -1;
+      }
+      return comparison;
   }
 
 }

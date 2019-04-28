@@ -10,7 +10,7 @@
 
   <ion-content padding>
 
-    <ion-title>Games</ion-title>
+    <b>Games</b>
     <ion-list *ngFor="let game of teamGames">
       <ion-item class="game" button [routerLink]="['/game-details', game.game_id]">
         <ion-icon name="football" slot="start" color="secondary"></ion-icon>
@@ -20,7 +20,7 @@
 
     <br>
 
-    <ion-title>Team Colors</ion-title>
+    <b>Team Colors</b>
     <ion-list lines="full" *ngIf="team">
       <ion-item>
         Primary Color: {{ team.primary_color }}

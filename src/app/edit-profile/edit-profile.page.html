@@ -20,31 +20,37 @@
         <ion-col>
 
             <ion-item [hidden]="needVerification">
-              <ion-label position="fixed">
+              <ion-label position="fixed" color="primary">
                 First Name
               </ion-label>
               <ion-input class="user-name" type="text" placeholder=" Enter First Name" name="firstname" [(ngModel)]="firstname" required>
               </ion-input>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-label position="fixed">
+              <ion-label position="fixed" color="primary">
                 Last Name
               </ion-label>
               <ion-input type="text" placeholder="Enter Last Name" name="lastname" [(ngModel)]="lastname" required>
               </ion-input>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-label position="fixed">
+              <ion-label color="primary">
                 Phone Number
               </ion-label>
               <ion-input type="text" placeholder="Enter Phone Number" name="phonenumber" [(ngModel)]="phonenumber" required>
               </ion-input>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-label position="fixed">
+              <ion-label position="fixed" color="primary">
                 Sex
               </ion-label>
               <ion-select placeholder="Select One" name="sex" [(ngModel)]="sex" required>
@@ -53,16 +59,20 @@
               </ion-select>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-label position="fixed">
+              <ion-label position="fixed" color="primary">
                 Email
               </ion-label>
               <ion-input type="text" placeholder="Enter Current Email To Make Modifications" name="email" [(ngModel)]="email" required>
               </ion-input>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-label position="fixed">
+              <ion-label position="fixed" color="primary">
                 Password
               </ion-label>
               <ion-input type="password" placeholder="Enter Current Password To Make Modifications" name="password" [(ngModel)]="password" required>
@@ -71,6 +81,8 @@
 
         </ion-col>
       </ion-row>
+
+      <br>
 
       <ion-row>
         <ion-col class="signup-col">

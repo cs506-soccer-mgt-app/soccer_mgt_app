@@ -11,6 +11,7 @@
 <ion-content>
   <ion-list *ngFor="let team of teamList">
     <ion-item class="team" button [routerLink]="['/team-details', team.team_id]">
+      <ion-icon name="football" slot="start" color="secondary"></ion-icon>
       <ion-label>{{ team.name }} - {{ team.primary_color }}</ion-label>
       <ion-badge *ngIf="team.manager_id == user.idToken.payload['cognito:username']">
         <ion-icon name="star"></ion-icon>
@@ -18,14 +19,20 @@
     </ion-item>
   </ion-list>
 
+  <br>
+
   <div id=team-creation position="center">
     <ion-button class="create-team" shape="round" color="primary" expand="full" routerLink="/create-team">
       Create Team
     </ion-button>
 
+    <br>
+
     <ion-button class="join-team" shape="round" color="primary" expand="full" routerLink="/join-team">
       Join Team
     </ion-button>
+
+    <br>
 
     <ion-button class="personal-info" shape="round" color="primary" expand="full" routerLink="/edit-profile">
       Personal Info

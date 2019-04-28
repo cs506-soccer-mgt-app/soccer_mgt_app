@@ -12,26 +12,34 @@
 
   <ion-list lines="full" *ngIf="team">
     <ion-item>
-      <ion-input required type="text" placeholder="Team Name"
+
+      <ion-label position="fixed" color="primary">Team Name</ion-label>
+
+      <ion-input required type="text" placeholder="Enter Team Name"
                  [(ngModel)]="team.name">
       </ion-input>
     </ion-item>
+
     <br>
-    <br>
+
     <ion-item>
-      <ion-input required type="text" placeholder="Primary Color"
+      <ion-label position="fixed" color="primary">Primary Color</ion-label>
+      <ion-input required type="text" placeholder="Enter Primary Color"
                   [(ngModel)]="team.primary_color">
       </ion-input>
     </ion-item>
+
     <br>
-    <br>
+
     <ion-item>
-      <ion-input required type="text" placeholder="Alternate Color"
+      <ion-label color="primary">Alternate Color</ion-label>
+      <ion-input required type="text" placeholder="Enter Alternate Color"
                   [(ngModel)]="team.alternate_color">
       </ion-input>
     </ion-item>
+
     <br>
-    <br>
+
   </ion-list>
   <ion-row justify-content-center test-center>
     <ion-col col-md-4 col-xs-8>

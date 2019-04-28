@@ -13,13 +13,15 @@
 
     <ion-list lines="full">
       <ion-item>
-        <ion-label>Email</ion-label>
-        <ion-input required name="email" type="email" minlength="3" placeholder="Enter Email"
+        <ion-label>Player Email</ion-label>
+        <ion-input required name="email" type="email" minlength="3" placeholder="Enter Player Email"
                    pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
                    [(ngModel)]="recipient">
         </ion-input>
       </ion-item>
     </ion-list>
+
+    <br>
 
     <ion-grid>
       <ion-row justify-content-center>

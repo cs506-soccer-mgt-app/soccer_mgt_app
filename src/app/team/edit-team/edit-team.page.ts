@@ -30,7 +30,7 @@ export class EditTeamPage implements OnInit {
 
   updateTeam() {
     if (this.team.name == "" || this.team.primary_color == "" || this.team.alternate_color == "" || this.team.session_id == null) {
-      alert("Please input information");
+      alert("Please input valid information or cancel");
     } else {
     this.teamService.updateTeam(this.teamID, this.team.name, this.team.primary_color,
       this.team.session_id, this.team.alternate_color, this.team.manager_id)

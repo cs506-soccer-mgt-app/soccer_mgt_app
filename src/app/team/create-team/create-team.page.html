@@ -13,7 +13,10 @@
   <br>
   <br>
     <ion-item>
-        <ion-input required type="text" placeholder="Team Name"
+        <ion-label color="primary">
+          Team Name:
+        </ion-label>
+        <ion-input required type="text" placeholder="Enter Team Name"
                  [(ngModel)]="team.name">
       </ion-input>
       </ion-item>
@@ -21,7 +24,7 @@
   <br>
   <br>
     <ion-item>
-      <ion-label>Session Type</ion-label>
+      <ion-label color="primary">Session Type:</ion-label>
       <ion-select placeholder="Select One" [(ngModel)]="team.session_id">
         <ion-select-option value="1">Summer</ion-select-option>
         <ion-select-option value="2">Fall</ion-select-option>
@@ -33,14 +36,20 @@
   <br>
   <br>
     <ion-item>
-      <ion-input required type="text" placeholder="Primary Color"
+      <ion-label color="primary">
+        Primary Color:
+      </ion-label>
+      <ion-input required type="text" placeholder="Enter Primary Color"
       [(ngModel)]="team.primary_color"></ion-input>
     </ion-item>
 
   <br>
   <br>
     <ion-item>
-      <ion-input required type="text" placeholder="Alternate Color"
+      <ion-label color="primary">
+        Alternate Color:
+      </ion-label>
+      <ion-input required type="text" placeholder="Enter Alternate Color"
         [(ngModel)]="team.alternate_color"></ion-input>
     </ion-item>
 

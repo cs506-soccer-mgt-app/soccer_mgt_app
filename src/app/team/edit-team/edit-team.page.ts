@@ -29,6 +29,9 @@ export class EditTeamPage implements OnInit {
   }
 
   updateTeam() {
+    if (this.team.name == "" || this.team.primary_color == "" || this.team.alternate_color == "" || this.team.session_id == null) {
+      alert("Please input information");
+    } else {
     this.teamService.updateTeam(this.teamID, this.team.name, this.team.primary_color,
       this.team.session_id, this.team.alternate_color, this.team.manager_id)
         .subscribe(data => {
@@ -36,6 +39,7 @@ export class EditTeamPage implements OnInit {
         }, err => {
           console.log(err);
         });
+      }
   }
 
   getTeamDetail(id: number) {

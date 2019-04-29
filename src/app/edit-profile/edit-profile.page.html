@@ -84,23 +84,23 @@
 
       <br>
 
-      <ion-row>
-        <ion-col class="signup-col">
+      <ion-grid>
+        <ion-row justify-content-center>
 
-          <ion-button ion-button color="success" class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">
-            Update Profile & Logout
-          </ion-button>
+          <ion-col col-md-4 col-xs-8 class="signup-col">
+            <ion-button ion-button color="success" class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">
+              Update & Logout
+            </ion-button>
+          </ion-col>
 
-        </ion-col>
-
-        <ion-col class="back-col">
-          <ion-button ion-button color="danger" [routerLink]="['/home']">
-            Back
-          </ion-button>
-        </ion-col>
-
-
-      </ion-row>
+          <ion-col col-md-4 col-xs-8 class="back-col">
+            <ion-button ion-button color="danger" [routerLink]="['/home']">
+              Back
+            </ion-button>
+          </ion-col>
+          
+        </ion-row>
+      </ion-grid>
 
     </form>
 

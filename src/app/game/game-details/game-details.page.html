@@ -60,7 +60,7 @@
                     [disabled]="!isenabled"
                     *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']"
                     (click)="notifyTeamOfUpcomingGame()">
-          Send Game Reminder Email to Players
+            Email Players Reminder
         </ion-button>
       </div>
 

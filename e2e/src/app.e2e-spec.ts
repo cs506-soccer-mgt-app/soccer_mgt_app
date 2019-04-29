@@ -20,9 +20,8 @@ describe('MSTMA ', () => {
     inputPassword.click();
     inputPassword.sendKeys('Password_1');
     loginButton.click();
-    browser.sleep(500);
-    browser.wait(EC.presenceOf(userTitle), 4000);
-    expect(userTitle.getText()).toEqual('Home');
+    browser.sleep(250);
+    browser.wait(EC.presenceOf(userTitle),4000);
   });
 
   describe('E2E tests Manager', () => {
@@ -38,27 +37,30 @@ describe('MSTMA ', () => {
       inputPassword.click();
       inputPassword.sendKeys('Password_1');
       loginButton.click();
-      browser.sleep(500);
-      browser.wait(EC.presenceOf(userTitle), 4000);
-      expect(userTitle.getText()).toEqual('Home');
+      browser.sleep(250);
+      browser.wait(EC.presenceOf(userTitle),4000);
     });
     //netal@maillink.top Password_1
 
     it('allows navigation to Create Team Page', () => {
       var createTeam = element(by.css('.create-team'));
       var createTitle = element(by.css('.create-title'));
+      browser.executeScript('arguments[0].scrollIntoView()', createTeam.getWebElement());
+      browser.wait(EC.visibilityOf(createTeam),4000);
       createTeam.click();
-      expect(createTitle.getText()).toEqual('Create Team');
+      browser.sleep(250);
+      browser.wait(EC.presenceOf(createTitle),4000);
     });
 
     it('allows navigation to Team Page', () => {
       var team = element.all(by.css('.team')).get(0);
       var teamTitle = element(by.css('.team-title'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(teamTitle), 4000);
+      browser.sleep(250);
+      browser.wait(EC.presenceOf(teamTitle), 4000);
       expect(teamTitle.getText()).toEqual('Test');
     });
 
@@ -67,35 +69,33 @@ describe('MSTMA ', () => {
       var teamTitle = element(by.css('.team-title'));
       var editTeam = element(by.css('.edit-team'));
       var editTitle = element(by.css('.edit-title'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(teamTitle), 4000);
-      expect(teamTitle.getText()).toEqual('Test');
+      browser.executeScript('arguments[0].scrollIntoView()', editTeam.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(editTeam), 4000);
       editTeam.click();
-      browser.sleep(500);
+      browser.sleep(250);
       browser.wait(EC.presenceOf(editTitle), 4000);
       expect(editTitle.getText()).toEqual('Edit Test');
     });
-    // //Problems with rendering the button if it's off the AppPage
-    // //set to a team with no games as a workaround currently
-    // //figure out how to scroll down
     it('allows navigation to Add Game', ()=> {
       var team = element.all(by.css('.team')).get(0);
       var teamTitle = element(by.css('.team-title'));
       var addGame = element(by.css('.add-game'));
       var addGameTitle = element(by.css('.add-game-title'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(teamTitle), 4000);
-      expect(teamTitle.getText()).toEqual('Test');
+      browser.executeScript('arguments[0].scrollIntoView()', addGame.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(addGame), 4000);
       addGame.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(addGameTitle), 4000);
-      expect(addGameTitle.getText()).toEqual('Add Game');
+      browser.sleep(250);
+      browser.wait(EC.presenceOf(addGameTitle), 4000);
     });
 
     it('allows navigation to game-details', () => {
@@ -103,16 +103,16 @@ describe('MSTMA ', () => {
       var teamTitle = element(by.css('.team-title'));
       var game = element.all(by.css('.game')).get(0);
       var gameTitle = element(by.css('.game-title'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(teamTitle), 4000);
-      expect(teamTitle.getText()).toEqual('Test');
+      browser.executeScript('arguments[0].scrollIntoView()', game.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(game), 4000);
       game.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(gameTitle), 4000);
-      expect(gameTitle.getText()).toEqual('Game Details');
+      browser.sleep(250);
+      browser.wait(EC.presenceOf(gameTitle), 4000);
     });
 
     it('allows navigation to edit-game', () => {
@@ -122,23 +122,20 @@ describe('MSTMA ', () => {
       var gameTitle = element(by.css('.game-title'));
       var editGame = element(by.css('.edit-game'));
       var editTitle = element(by.css('.edit-title'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(teamTitle), 4000);
-      expect(teamTitle.getText()).toEqual('Test');
+      browser.executeScript('arguments[0].scrollIntoView()', game.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(game), 4000);
       game.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(gameTitle), 4000);
-      expect(gameTitle.getText()).toEqual('Game Details');
       browser.executeScript('arguments[0].scrollIntoView()', editGame.getWebElement());
-      browser.sleep(500);
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(editGame), 4000);
       editGame.click();
-      browser.sleep(500);
+      browser.sleep(250);
       browser.wait(EC.presenceOf(editTitle), 4000);
-      expect(editTitle.getText()).toEqual('Edit Game');
     });
 
     it('allows editing of game', () => {
@@ -151,25 +148,20 @@ describe('MSTMA ', () => {
       var inputOpponent = element.all(by.css('.native-input.sc-ion-input-md')).get(0);
       var save = element(by.css('.save'));
       var opponent = element(by.css('.opponent'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(teamTitle), 4000);
-      expect(teamTitle.getText()).toEqual('Test');
+      browser.executeScript('arguments[0].scrollIntoView()', game.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(game), 4000);
       game.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(gameTitle), 4000);
-      expect(gameTitle.getText()).toEqual('Game Details');
+      browser.sleep(250);
       browser.executeScript('arguments[0].scrollIntoView()', editGame.getWebElement());
-      browser.sleep(500);
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(editGame),4000);
       editGame.click();
-      browser.sleep(500);
-      browser.wait(EC.presenceOf(editTitle), 4000);
-      expect(editTitle.getText()).toEqual('Edit Game');
-      browser.sleep(500);
-      browser.wait(EC.presenceOf(inputOpponent),4000);
+      browser.wait(EC.visibilityOf(inputOpponent),4000);
       inputOpponent.click();
       inputOpponent.sendKeys(Key.BACK_SPACE);
       inputOpponent.sendKeys(Key.BACK_SPACE);
@@ -181,19 +173,14 @@ describe('MSTMA ', () => {
       inputOpponent.sendKeys(Key.BACK_SPACE);
       inputOpponent.sendKeys('The Team');
       save.click();
-      browser.sleep(500);
+      browser.sleep(250);
       browser.wait(EC.presenceOf(gameTitle),4000);
-      expect(gameTitle.getText()).toEqual('Game Details');
       expect(opponent.getText()).toEqual('The Team');
       browser.executeScript('arguments[0].scrollIntoView()', editGame.getWebElement());
-      browser.sleep(500);
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(editGame),4000);
       editGame.click();
-      browser.sleep(500);
-      browser.wait(EC.presenceOf(editTitle), 4000);
-      expect(editTitle.getText()).toEqual('Edit Game');
-      browser.sleep(500);
-      browser.wait(EC.presenceOf(inputOpponent),4000);
+      browser.wait(EC.visibilityOf(inputOpponent),4000);
       inputOpponent.click();
       inputOpponent.sendKeys(Key.BACK_SPACE);
       inputOpponent.sendKeys(Key.BACK_SPACE);
@@ -205,9 +192,7 @@ describe('MSTMA ', () => {
       inputOpponent.sendKeys(Key.BACK_SPACE);
       inputOpponent.sendKeys('Team 9');
       save.click();
-      browser.sleep(500);
       browser.wait(EC.presenceOf(gameTitle),4000);
-      expect(gameTitle.getText()).toEqual('Game Details');
       expect(opponent.getText()).toEqual('Team 9');
     });
 
@@ -226,31 +211,32 @@ describe('MSTMA ', () => {
       inputPassword.click();
       inputPassword.sendKeys('Password_1');
       loginButton.click();
-      browser.sleep(500);
+      browser.sleep(250);
       browser.wait(EC.presenceOf(userTitle), 4000);
-      expect(userTitle.getText()).toEqual('Home');
     });
 
     //hadevik@hotelnextmail.com Password_1
      it('Allows navigation to Home Page', () => {
        var userTitle = element(by.css('.user-title'));
-       browser.sleep(500);
        browser.wait(EC.presenceOf(userTitle), 4000);
-       expect(userTitle.getText()).toEqual('Home');
      });
 
      it('allows navigation to Join Team Page', () => {
        var joinTeam = element(by.css('.join-team'));
        var joinTitle = element(by.css('.join-team-title'));
+       browser.executeScript('arguments[0].scrollIntoView()', joinTeam.getWebElement());
+       browser.sleep(250);
        joinTeam.click();
-       expect(joinTitle.getText()).toEqual('Join Team');
+       browser.wait(EC.presenceOf(joinTitle),4000);
      });
 
     it('allows navigation to Personal Info Page', () => {
       var personalInfo = element(by.css('.personal-info'));
       var personalTitle = element(by.css('.personal-info-title'));
+      browser.executeScript('arguments[0].scrollIntoView()', personalInfo.getWebElement());
+      browser.sleep(250);
       personalInfo.click();
-      expect(personalTitle.getText()).toEqual('Edit Profile');
+      browser.wait(EC.presenceOf(personalTitle),4000);
     });
 
     it('allows editing of Personal Info Page', () => {
@@ -265,8 +251,10 @@ describe('MSTMA ', () => {
       var userName = element(by.css('.user-name'));
       var loginButton = element(by.css('.submit-btn'));
       var userTitle = element(by.css('.user-title'));
+      browser.executeScript('arguments[0].scrollIntoView()', personalInfo.getWebElement());
+      browser.sleep(250);
       personalInfo.click();
-      expect(personalTitle.getText()).toEqual('Edit Profile');
+      browser.wait(EC.presenceOf(personalTitle),4000);
       inputName.click();
       inputName.sendKeys(Key.BACK_SPACE);
       inputName.sendKeys(Key.BACK_SPACE);
@@ -287,17 +275,18 @@ describe('MSTMA ', () => {
       inputEmail.sendKeys('hadevik@hotelnextmail.com');
       inputPassword.click();
       inputPassword.sendKeys('Password_1');
+      browser.executeScript('arguments[0].scrollIntoView()', save.getWebElement());
+      browser.sleep(250);
       save.click();
-      browser.sleep(500);
       browser.wait(EC.visibilityOf(loginEmail), 4000);
       loginEmail.click();
       loginEmail.sendKeys('hadevik@hotelnextmail.com');
       loginPassword.click();
       loginPassword.sendKeys('Password_1');
       loginButton.click();
-      browser.sleep(500);
       browser.wait(EC.presenceOf(userTitle), 4000);
-      expect(userTitle.getText()).toEqual('Home');
+      browser.executeScript('arguments[0].scrollIntoView()', personalInfo.getWebElement());
+      browser.sleep(250);
       personalInfo.click();
       expect(userName.getAttribute('value')).toEqual('Testing');
       inputName.click();
@@ -313,33 +302,29 @@ describe('MSTMA ', () => {
       inputEmail.sendKeys('hadevik@hotelnextmail.com');
       inputPassword.click();
       inputPassword.sendKeys('Password_1');
+      browser.executeScript('arguments[0].scrollIntoView()', save.getWebElement());
+      browser.sleep(250);
       save.click();
     });
 
     it('allows navigation to Create Team Page', () => {
       var createTeam = element(by.css('.create-team'));
       var createTitle = element(by.css('.create-title'));
+      browser.executeScript('arguments[0].scrollIntoView()', createTeam.getWebElement());
+      browser.sleep(250);
       createTeam.click();
-      expect(createTitle.getText()).toEqual('Create Team');
-    });
-
-    it('allows navigation to Create Team Page', () => {
-      var createTeam = element(by.css('.create-team'));
-      var createTitle = element(by.css('.create-title'));
-      createTeam.click();
-      expect(createTitle.getText()).toEqual('Create Team');
+      browser.wait(EC.presenceOf(createTitle),4000);
     });
 
     it('Edit team button is not visible', () => {
       var team = element.all(by.css('.team')).get(0);
       var teamTitle = element(by.css('.team-title'));
       var editTeam = element(by.css('.edit-team'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
       browser.wait(EC.visibilityOf(teamTitle), 4000);
-      expect(teamTitle.getText()).toEqual('Test');
       expect(EC.invisibilityOf(editTeam));
     });
 
@@ -347,12 +332,11 @@ describe('MSTMA ', () => {
       var team = element.all(by.css('.team')).get(0);
       var teamTitle = element(by.css('.team-title'));
       var addGame = element(by.css('.add-game'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
       browser.wait(EC.visibilityOf(teamTitle), 4000);
-      expect(teamTitle.getText()).toEqual('Test');
       expect(EC.invisibilityOf(addGame));
     });
 
@@ -362,7 +346,7 @@ describe('MSTMA ', () => {
       var gamesTitle = element.all(by.css('ion-title.title-md')).get(1);
       menu.click();
       games.click();
-      expect(gamesTitle.getText()).toEqual('Games');
+      browser.wait(EC.presenceOf(gamesTitle),4000);
     });
 
     it('allows navigation to game-details', () => {
@@ -370,16 +354,15 @@ describe('MSTMA ', () => {
       var teamTitle = element(by.css('.team-title'));
       var game = element.all(by.css('.game')).get(0);
       var gameTitle = element(by.css('.game-title'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(teamTitle), 4000);
-      expect(teamTitle.getText()).toEqual('Test');
+      browser.executeScript('arguments[0].scrollIntoView()', game.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(game), 4000);
       game.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(gameTitle), 4000);
-      expect(gameTitle.getText()).toEqual('Game Details');
+      browser.wait(EC.presenceOf(gameTitle), 4000);
     });
 
     it('Edit game button is not visible', () => {
@@ -388,16 +371,15 @@ describe('MSTMA ', () => {
       var game = element.all(by.css('.game')).get(0);
       var gameTitle = element(by.css('.game-title'));
       var editGame = element(by.css('.edit-game'));
-      browser.sleep(500);
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
       browser.wait(EC.visibilityOf(team), 4000);
       team.click();
-      browser.sleep(500);
-      browser.wait(EC.visibilityOf(teamTitle), 4000);
-      expect(teamTitle.getText()).toEqual('Test');
+      browser.executeScript('arguments[0].scrollIntoView()', game.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(game), 4000);
       game.click();
-      browser.sleep(500);
       browser.wait(EC.visibilityOf(gameTitle), 4000);
-      expect(gameTitle.getText()).toEqual('Game Details');
       expect(EC.invisibilityOf(editGame));
     });
   });

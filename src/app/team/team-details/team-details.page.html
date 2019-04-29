@@ -34,9 +34,9 @@
       <br>
     </ion-list>
 
-    <b>Team Players</b>
+    <b>Players</b>
     <ion-list lines="full" *ngFor="let player of teamPlayers">
-      <ion-item button *ngIf="isManager()">
+      <ion-item button *ngIf="isManager()" [routerLink]="['/edit-player', player.player_id]">
         <ion-label>(${{player.payment}}) {{player.firstname}} {{player.lastname}}</ion-label>
         <ion-icon name="cash" slot="end"></ion-icon>
       </ion-item>

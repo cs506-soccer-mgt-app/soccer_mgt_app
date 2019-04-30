@@ -33,4 +33,20 @@ describe('EditProfilePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a defined cognitoService: CognitoService variable', () => {
+    expect(component.cognitoService).toBeDefined();
+  });
+
+  it('should have a defined loadingCtrl: LoadingController variable', () => {
+    expect(component.loadingCtrl).toBeDefined();
+  });
+
+  it('should have a defined toastCtrl: ToastController variable', () => {
+    expect(component.toastCtrl).toBeDefined();
+  });
+
+  it('should have a defined navCtrl: NavController variable', () => {
+    expect(component.navCtrl).toBeDefined();
+  });
 });

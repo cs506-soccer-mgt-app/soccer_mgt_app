@@ -33,7 +33,9 @@ const routes: Routes = [
   { path: 'join-team', loadChildren: './team/join-team/join-team.module#JoinTeamPageModule' },
   { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' },
   { path: 'user-game-list', loadChildren: './game/user-game-list/user-game-list.module#UserGameListPageModule' },
-  { path: 'game-details/:game_id/players/:player_id', loadChildren: './availability/availability-mgr/availability-mgr.module#AvailabilityMgrPageModule' }
+  { path: 'game-details/:game_id/players/:player_id', loadChildren: './availability/availability-mgr/availability-mgr.module#AvailabilityMgrPageModule' },
+  { path: 'edit-player/:id', loadChildren: './player/edit-player/edit-player.module#EditPlayerPageModule' }
+
 
 
 

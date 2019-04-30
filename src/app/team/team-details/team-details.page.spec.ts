@@ -5,6 +5,7 @@ import { TeamDetailsPage } from './team-details.page';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {RouterModule} from '@angular/router';
 import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { ExpectedConditions } from 'protractor';
 
 describe('TeamDetailsPage', () => {
   let component: TeamDetailsPage;
@@ -62,11 +63,27 @@ describe('TeamDetailsPage', () => {
     expect(cmpntSpy).toHaveBeenCalledWith(teamID);
   });
 
+  it('should contain a getPlayersForTeam() with team ID as a parameter', () => {
+    const teamID = 1;
+    const cmpntSpy = spyOn(component, 'getPlayersForTeam').and.callThrough();
+    expect(component.getPlayersForTeam(teamID)).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalledWith(teamID);
+  });
+
+  // it('should return -1 if a < b, 1 if a > b, and 0 if a == b', () => {
+  //   const a = '5';
+  //   const b = '3';
+  //   const cmpntSpy = spyOn(component, 'compareByName').and.callThrough();
+  //   expect(component.compareByDate(a, b)).toEqual(-2);
+  //   expect(cmpntSpy).toHaveBeenCalledWith(a, b);
+  // });
+
   it('should contain an ionViewWillEnter method to run GET methods for team details and games if teamID exists', () => {
     const teamID = 1;
     const cmpntSpy = spyOn(component, 'ionViewWillEnter').and.callThrough();
     const tmDtlSpy = spyOn(component, 'getTeamDetail').and.callThrough();
     const gmSpy = spyOn(component, 'getGamesForTeam').and.callThrough();
+    const plyrSpy = spyOn(component, 'getPlayersForTeam').and.callThrough();
 
     component.route.snapshot.params.id = teamID;
     component.ngOnInit();
@@ -76,5 +93,6 @@ describe('TeamDetailsPage', () => {
     expect(cmpntSpy).toHaveBeenCalled();
     expect(tmDtlSpy).toHaveBeenCalledWith(teamID);
     expect(gmSpy).toHaveBeenCalledWith(teamID);
+    expect(plyrSpy).toHaveBeenCalledWith(teamID);
   });
 });

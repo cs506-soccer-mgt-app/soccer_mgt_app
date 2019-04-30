@@ -26,4 +26,20 @@ describe('UserGameListPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a defined userService: UserService variable', () => {
+    expect(component.userService).toBeDefined();
+  });
+
+  it('should have a defined cognitoService: CognitoService variable', () => {
+    expect(component.cognitoService).toBeDefined();
+  });
+
+  it('should have a defined toastCtrl: ToastController variable', () => {
+    expect(component.toastCtrl).toBeDefined();
+  });
+
+  it('should have a defined availabilityService: AvailabilityService variable', () => {
+    expect(component.availabilityService).toBeDefined();
+  });
 });

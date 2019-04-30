@@ -27,7 +27,11 @@ describe('HomePage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a defined teamService:TeamService variable', () => {
+  it('should have a defined userService: UserService variable', () => {
     expect(component.userService).toBeDefined();
+  });
+
+  it('should hav a defined cognitoService: CognitoService variable', () => {
+    expect(component.cognitoService).toBeDefined();
   });
 });

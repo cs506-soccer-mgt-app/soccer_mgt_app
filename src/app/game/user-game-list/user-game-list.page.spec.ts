@@ -43,9 +43,30 @@ describe('UserGameListPage', () => {
     expect(component.availabilityService).toBeDefined();
   });
 
-  // Need to somehow access idToken of user in order to correctly call data
-  // it('should have a defined loadData() method that returns games for player', () => {
-  //   const cmpntSpy = spyOn(component, 'loadData').and.callThrough();
-  //   expect(component.loadData()).toEqual(undefined);
-  // });
+  it('should have a defined compareByDate() method that returns 0 when date A is equal to date B', () => {
+    const cmpntSpy = spyOn(component, 'compareByDate').and.callThrough();
+    const dateA = {date: '5'};
+    const dateB = {date: '5'};
+
+    expect(component.compareByDate(dateA, dateB)).toEqual(0);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByDate() method that returns 1 when date A is greater than to date B', () => {
+    const cmpntSpy = spyOn(component, 'compareByDate').and.callThrough();
+    const dateA = {date: '5'};
+    const dateB = {date: '4'};
+
+    expect(component.compareByDate(dateA, dateB)).toEqual(1);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByDate() method that returns -1 when date A is less than to date B', () => {
+    const cmpntSpy = spyOn(component, 'compareByDate').and.callThrough();
+    const dateA = {date: '3'};
+    const dateB = {date: '4'};
+
+    expect(component.compareByDate(dateA, dateB)).toEqual(-1);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
 });

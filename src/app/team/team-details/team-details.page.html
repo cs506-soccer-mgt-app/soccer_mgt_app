@@ -1,49 +1,76 @@
 <ion-header>
     <ion-toolbar color="primary">
-      <ion-buttons slot="start"></ion-buttons>
-      <ion-title *ngIf="team" class="team-title">{{ team.name }}</ion-title>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
+      <ion-title *ngIf="team" class="team-title">{{ team.name }}</ion-title>
+      <ion-badge slot="end" *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']">
+        <ion-icon name="star"></ion-icon>
+      </ion-badge>
     </ion-toolbar>
   </ion-header>
 
   <ion-content padding>
 
-    <!-- TODO: look into *ngFor (see home.page.html for an example) -->
-    <ion-title>Upcoming Games</ion-title>
+    <b>Games</b>
     <ion-list *ngFor="let game of teamGames">
       <ion-item class="game" button [routerLink]="['/game-details', game.game_id]">
-        <ion-label>Playing against {{ game.opponent }} at {{ game.time }} on {{ game.date }}</ion-label>
+        <ion-icon name="football" slot="start" color="secondary"></ion-icon>
+        <ion-label>{{ game.date }} @ {{ game.time | slice:0:game.time.length-3}} VS: {{ game.opponent }}</ion-label>
       </ion-item>
     </ion-list>
 
     <br>
 
-    <ion-title>Team Information</ion-title>
-    <br>
+    <b>Team Colors</b>
     <ion-list lines="full" *ngIf="team">
       <ion-item>
         Primary Color: {{ team.primary_color }}
       </ion-item>
       <br>
-      <br>
       <ion-item>
         Alternate Color: {{ team.alternate_color }}
       </ion-item>
       <br>
-      <br>
+    </ion-list>
+
+    <b>Players</b>
+    <ion-list lines="full" *ngFor="let player of teamPlayers">
+      <ion-item button class="player" *ngIf="isManager()" [routerLink]="['/edit-player', player.player_id]">
+        <ion-label>(${{player.payment}}) {{player.firstname}} {{player.lastname}}</ion-label>
+        <ion-icon name="cash" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item class="player-not-clickable" *ngIf="!isManager()">
+        <ion-label>(${{player.payment}}) {{player.firstname}} {{player.lastname}}</ion-label>
+      </ion-item>
     </ion-list>
 
     <div id=team-creation position="center">
-      <ion-button  shape="round" color="primary" expand="full">Add Player</ion-button>
-      <ion-button class = "add-game" shape="round" color="primary" expand="full" [routerLink]="'/team-details/' + teamID + '/add-game'">Add Game</ion-button>
+      <ion-button  shape="round" color="primary" expand="full"
+                   [routerLink]="'/team-details/' + teamID + '/invite-player'"
+                   *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']">
+        Add Player
+      </ion-button>
+
+      <br>
+
+      <ion-button class = "add-game" shape="round" color="primary" expand="full"
+                  [routerLink]="'/team-details/' + teamID + '/add-game'"
+                  *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']">
+        Add Game
+      </ion-button>
+
+      <br>
+
     </div>
     <ion-grid>
-    <ion-row justify-content-center>
+      <ion-row justify-content-center>
         <ion-col col-md-4 col-xs-8>
-          <ion-button class="edit-team" ion-button color="success" [routerLink]="['/edit-team', teamID]">
-            Edit</ion-button>
+          <ion-button ion-button color="success" class="edit-team"
+                      [routerLink]="['/edit-team', teamID]"
+                      *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']">
+            Edit
+          </ion-button>
         </ion-col>
 
         <ion-col col-md-4 col-xs-8>

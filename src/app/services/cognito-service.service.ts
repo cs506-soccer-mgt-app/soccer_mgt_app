@@ -86,7 +86,6 @@ export class CognitoService {
         onSuccess: result => {
           resolved(result);
           this.setUser(result);
-          //console.log(result);
         },
         onFailure: err => {
           reject(err);
@@ -120,4 +119,79 @@ export class CognitoService {
       this.setUser(null);
     }
   }
+
+  isLoggedIn() {
+    return this.user != null;
+  }
+
+  editProfile(firstname, lastname, phonenumber, sex, email, password) {
+
+    return new Promise((resolved, reject) => {
+
+      const userPool = new AmazonCognitoIdentity.CognitoUserPool(this._POOL_DATA);
+
+      let attributeList = [];
+      attributeList.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email", Value: email })
+      );
+      attributeList.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:firstname", Value: firstname })
+      );
+      attributeList.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:lastname", Value: lastname })
+      );
+      attributeList.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number", Value: phonenumber })
+      );
+      attributeList.push(
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:sex", Value: sex })
+      );
+
+      const authDetails = new AmazonCognitoIdentity.AuthenticationDetails({
+        Username: email,
+        Password: password
+      });
+
+      const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: email,
+        Pool: userPool
+      });
+
+      cognitoUser.authenticateUser(authDetails, {
+        onSuccess: result => {
+          resolved(result);
+          this.setUser(result);
+          
+          // undefined is not a function (near '..._this.user.updateAttributes...')
+          cognitoUser.updateAttributes(attributeList, function(err, result) {
+            if (err) {
+              reject(err);
+            } else {
+              resolved(result);
+            }
+          });
+
+        },
+        onFailure: err => {
+          reject(err);
+        },
+        newPasswordRequired: userAttributes => {
+
+          userAttributes.email = email;
+          delete userAttributes.email_verified;
+
+          cognitoUser.completeNewPasswordChallenge(password, userAttributes, {
+            onSuccess: function(result) {},
+            onFailure: function(error) {
+              reject(error);
+            }
+          });
+        }
+      });
+
+
+    });
+
+  }
+
 }

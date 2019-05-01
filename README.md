@@ -6,7 +6,7 @@ Before proceeding, make sure the latest version of Node.js (https://nodejs.org/e
 Please see "https://ionicframework.com/docs/installation/cli" for more detailed information on environment setup.
 
 ## Cloning the Repository
-From your command line terminal, navigate to directory where you want to clone this project. Run the command "git clone https://github.com/nisler/soccer_mgt_app.git". Then, "cd" into the project directory. Run "npm install" to install the project dependencies.
+From your command line terminal, navigate to directory where you want to clone this project. Run the command "git clone https://github.com/cs506-soccer-mgt-app/soccer_mgt_app.git". Then, "cd" into the project directory. Run "npm install" to install the project dependencies.
 
 ## Building the Application
 In the project directory, run "ionic serve", which will launch a browser and load the application locally.

@@ -10,7 +10,6 @@ import { NavController } from '@ionic/angular';
 })
 export class EditGamePage implements OnInit {
 
-  public items: Array<{ title: string; icon: string }> = [];
   public gameID = null;
   public game;
 
@@ -22,13 +21,6 @@ export class EditGamePage implements OnInit {
     this.gameID = this.route.snapshot.paramMap.get('id');
     if (this.gameID) {
       this.loadGame();
-    }
-
-    for (let i = 1; i < 6; i++) {
-      this.items.push({
-        title: 'Player ' + i,
-        icon: 'football'
-      });
     }
   }
 

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Games</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list *ngIf="userGameList.length > 0">
+    <ion-card *ngFor="let game of userGameList" button
+              routerDirection="forward"
+              [routerLink]="['/game-details', game.game_id]">
+
+      <!--Determine icon and color based on player's availability-->
+      <ion-item *ngIf="game.availability_type == 'UNKNOWN' || game.availability_type == null" color="warning">
+        <ion-icon name="alert" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="game.availability_type == 'MAYBE'" color="secondary">
+        <ion-icon name="help" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="game.availability_type == 'IN'" color="success">
+        <ion-icon name="checkmark" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item *ngIf="game.availability_type == 'OUT'" color="medium">
+        <ion-icon name="close" slot="start"></ion-icon>
+      </ion-item>
+
+      <ion-card-title padding>{{game.date}} @ {{game.time | slice:0:game.time.length-3}} : {{game.name}}</ion-card-title>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>VS: {{game.opponent}}</ion-col>
+            <ion-col>LOCATION: {{game.location}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-list *ngIf="userGameList.length <= 0">
+    <ion-title>No Games</ion-title>
+  </ion-list>
+
+</ion-content>

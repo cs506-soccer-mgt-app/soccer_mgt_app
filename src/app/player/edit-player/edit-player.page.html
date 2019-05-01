@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="payment-title">Edit Player Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="player">
+
+  <ion-grid>
+
+    <ion-item>
+      <ion-label position="fixed" color="primary">Payment: $</ion-label>
+      <ion-input class="input" placeholder="Enter Payment" [(ngModel)]="player.payment"></ion-input>
+    </ion-item>
+
+    <br>
+
+    <ion-row justify-content-center test-center>
+      <ion-col col-md-4 col-xs-8>
+        <ion-button class="save" color="success" (click)="save()">Save</ion-button>
+      </ion-col>
+      <ion-col col-md-4 col-xs-8>
+        <ion-button color="danger" [routerLink]="['/team-details', player.team_id]">Cancel</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

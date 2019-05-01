@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
@@ -12,24 +12,40 @@
 <ion-content padding>
   <ion-grid>
     <ion-item>
-      <ion-label color="primary">Date</ion-label>
-      <ion-datetime displayFormat="MMM DD, YYYY" max="2030" [(ngModel)]="game.date"></ion-datetime>
+      <ion-label>
+        Date
+      </ion-label>
+      <ion-datetime placeholder="Press Here to Enter Date" displayFormat="MMM DD, YYYY" max="2030" [(ngModel)]="game.date"></ion-datetime>
     </ion-item>
 
-    <ion-item>
-      <ion-label color="primary">Time</ion-label>
-      <ion-datetime displayFormat="h:mm A" max="2030" [(ngModel)]="game.time"></ion-datetime>
-    </ion-item>
+    <br>
 
     <ion-item>
-      <ion-label position="fixed">Opponent</ion-label>
+      <ion-label>
+        Time
+      </ion-label>
+      <ion-datetime placeholder="Press Here to Enter Time" displayFormat="h:mm A" max="2030" [(ngModel)]="game.time"></ion-datetime>
+    </ion-item>
+
+    <br>
+
+    <ion-item>
+      <ion-label position="fixed">
+        Opponent
+      </ion-label>
       <ion-input placeholder="Enter Opponent" [(ngModel)]="game.opponent"></ion-input>
     </ion-item>
 
+    <br>
+
     <ion-item>
-      <ion-label position="fixed">Location</ion-label>
+      <ion-label position="fixed">
+        Location
+      </ion-label>
       <ion-input placeholder="Enter Location" [(ngModel)]="game.location"></ion-input>
     </ion-item>
+
+    <br>
 
     <ion-row justify-content-center>
 

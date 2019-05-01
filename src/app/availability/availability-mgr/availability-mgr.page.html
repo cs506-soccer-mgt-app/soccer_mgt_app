@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="availability-title">Player Availability</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label>Availability</ion-label>
+    <ion-select
+            [(ngModel)]="availability.availability_type"
+            multiple="false" [disabled]="!canSetAvailability()">
+      <ion-select-option value="IN">IN</ion-select-option>
+      <ion-select-option value="OUT">OUT</ion-select-option>
+      <ion-select-option value="MAYBE">MAYBE</ion-select-option>
+      <ion-select-option value="UNKNOWN">UNKNOWN</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <br>
+
+  <ion-row justify-content-center test-center>
+    <ion-col col-md-4 col-xs-8>
+      <ion-button
+              color="success"
+              (click)="save()">
+        Save
+      </ion-button>
+    </ion-col>
+
+    <ion-col col-md-4 col-xs-8>
+      <ion-button
+              color="danger"
+              [routerLink]="'/game-details/' + gameID">
+        Back
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

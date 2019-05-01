@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -17,37 +17,40 @@
       </ion-datetime>
     </ion-item>
 
+    <br>
+
     <ion-item>
       <ion-label color="primary">Time</ion-label>
-      <ion-datetime value="{{ game.time }}" displayFormat="hh:mm:ss" [(ngModel)]="game.time">
+      <ion-datetime value="{{ game.time }}" displayFormat="hh:mm" [(ngModel)]="game.time">
         {{ game.time }}
       </ion-datetime>
     </ion-item>
 
-      <ion-item>
-        <ion-label position="fixed" color="primary">Opponent</ion-label>
-        <ion-input class="input" placeholder = {{game.opponent}} [(ngModel)]="game.opponent"></ion-input>
-      </ion-item>
+    <br>
 
-      <ion-item>
-        <ion-label position="fixed" color="primary">Score</ion-label>
-        <ion-input placeholder = {{game.score}} [(ngModel)]="game.score"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="fixed" color="primary">Opponent</ion-label>
+      <ion-input class="input" placeholder="Enter Opponent" [(ngModel)]="game.opponent"></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="fixed" color="primary">Location</ion-label>
-        <ion-input placeholder = {{game.location}} [(ngModel)]="game.location"></ion-input>
-      </ion-item>
+    <br>
 
-      <ion-list>
-        <ion-item *ngFor="let item of items">
-          <ion-icon [name]="item.icon" slot="start"></ion-icon>
-          {{item.title}}
-        </ion-item>
-      </ion-list>
+    <ion-item>
+      <ion-label position="fixed" color="primary">Score</ion-label>
+      <ion-input placeholder="Enter Score" [(ngModel)]="game.score"></ion-input>
+    </ion-item>
 
+    <br>
+
+    <ion-item>
+      <ion-label position="fixed" color="primary">Location</ion-label>
+      <ion-input placeholder="Enter Location" [(ngModel)]="game.location"></ion-input>
+    </ion-item>
+
+    <br>
 
   <ion-row justify-content-center test-center>
+    
     <ion-col col-md-4 col-xs-8>
       <ion-button class="save" color="success" (click)="handleSaveButtonClick()">Save</ion-button>
     </ion-col>

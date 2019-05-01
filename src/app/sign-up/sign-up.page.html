@@ -1,8 +1,8 @@
 
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Soccer Management Sign Up
+      Soccer Management - Sign Up
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,61 +15,91 @@
 
       <ion-row>
         <ion-col>
-          <ion-list inset>
 
             <ion-item [hidden]="needVerification">
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email" required>
+              <ion-label position="fixed">
+                Email
+              </ion-label>
+              <ion-input type="text" placeholder="Enter Email" name="email" [(ngModel)]="email" required>
               </ion-input>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" required>
+              <ion-label position="fixed">
+                Password
+              </ion-label>
+              <ion-input type="password" placeholder="Enter Password" name="password" [(ngModel)]="password" required>
               </ion-input>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-input type="text" placeholder="First Name" name="firstname" [(ngModel)]="firstname" required>
+              <ion-label position="fixed">
+                First Name
+              </ion-label>
+              <ion-input type="text" placeholder=" Enter First Name" name="firstname" [(ngModel)]="firstname" required>
               </ion-input>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-input type="text" placeholder="Last Name" name="lastname" [(ngModel)]="lastname" required>
+              <ion-label position="fixed">
+                Last Name
+              </ion-label>
+              <ion-input type="text" placeholder="Enter Last Name" name="lastname" [(ngModel)]="lastname" required>
               </ion-input>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-input type="text" placeholder="Phone Number" name="phonenumber" [(ngModel)]="phonenumber" required>
+              <ion-label>
+                Phone Number
+              </ion-label>
+              <ion-input type="text" placeholder="e.g. +12223334444" name="phonenumber" [(ngModel)]="phonenumber" required>
               </ion-input>
             </ion-item>
 
+            <br>
+
             <ion-item [hidden]="needVerification">
-              <ion-input type="text" placeholder="Sex" name="sex" [(ngModel)]="sex" required>
-              </ion-input>
-            </ion-item>
+                <ion-label position="fixed">
+                  Sex
+                </ion-label>
+                <ion-select placeholder="Select One" name="sex" [(ngModel)]="sex" required>
+                  <ion-select-option value="Female">Female</ion-select-option>
+                  <ion-select-option value="Male">Male</ion-select-option>
+                </ion-select>
+              </ion-item>
 
             <ion-item [hidden]="!needVerification">
-              <ion-input type="text" placeholder="Verification code" name="verificationcode"
+              <ion-input type="text" placeholder="Verification Code" name="verificationcode"
                 [(ngModel)]="verificationcode">
               </ion-input>
             </ion-item>
 
-          </ion-list>
         </ion-col>
       </ion-row>
+
+      <br>
 
       <ion-row>
         <ion-col class="signup-col">
 
-          <button ion-button class="submit-btn" full type="submit"
-            [disabled]="!registerForm.form.valid">Register
-          </button>
+          <ion-button ion-button color="success" class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">
+            Register
+          </ion-button>
 
         </ion-col>
 
         <ion-col class="back-col">
-          <button ion-button color="danger" [routerLink]="['/login']">
+          <ion-button ion-button color="danger" [routerLink]="['/login']">
             Back
-          </button>
+          </ion-button>
         </ion-col>
       </ion-row>
 

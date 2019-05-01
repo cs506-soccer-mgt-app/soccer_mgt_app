@@ -52,9 +52,9 @@ describe('AppComponent', () => {
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
     expect(menuItems.length).toEqual(4);
-    expect(menuItems[0].textContent).toContain('Home');
-    expect(menuItems[1].textContent).toContain('List');
-    expect(menuItems[2].textContent).toContain('Create Team');
+    expect(menuItems[0].textContent).toContain('Login');
+    expect(menuItems[1].textContent).toContain('Home');
+    expect(menuItems[2].textContent).toContain('Games');
     expect(menuItems[3].textContent).toContain('Logout');
   });
 
@@ -64,9 +64,9 @@ describe('AppComponent', () => {
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
     expect(menuItems.length).toEqual(4);
-    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/home');
-    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/list');
-    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/create-team');
+    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/login');
+    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/home');
+    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/user-game-list');
     expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual(null);
   });
 });

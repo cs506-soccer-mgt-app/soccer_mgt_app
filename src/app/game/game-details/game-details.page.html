@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -17,7 +17,7 @@
 
     <ion-item>
       <ion-label>Time</ion-label>
-      <ion-label>{{game.time}}</ion-label>
+      <ion-label>{{game.time | slice:0:game.time.length-3}}</ion-label>
     </ion-item>
 
       <ion-item>
@@ -35,21 +35,51 @@
         <ion-label>{{game.location}}</ion-label>
       </ion-item>
 
-      <ion-list>
-        <ion-item *ngFor="let item of items">
-          <ion-icon [name]="item.icon" slot="start"></ion-icon>
-          {{item.title}}
+      <br>
+
+      <b>Game Availability</b>
+      <ion-list *ngFor="let player of teamPlayers">
+        <ion-item class="player" button
+                  [routerLink]="'/game-details/' + gameID + '/players/' + player.player_id">
+
+          <!--Determine icon and color based on player's availability-->
+          <ion-icon *ngIf="player.availability_type == 'UNKNOWN' || player.availability_type == null"
+                    name="alert" slot="start" color="warning"></ion-icon>
+          <ion-icon *ngIf="player.availability_type == 'MAYBE'" name="help" slot="start" color="secondary"></ion-icon>
+          <ion-icon *ngIf="player.availability_type == 'IN'" name="checkmark" slot="start" color="success"></ion-icon>
+          <ion-icon *ngIf="player.availability_type == 'OUT'" name="close" slot="start" color="medium"></ion-icon>
+          <ion-label>{{ player.firstname }} {{ player.lastname }} ({{ player.sex }})</ion-label>
+
         </ion-item>
       </ion-list>
 
+      <br>
+
+      <div id=team-creation position="center">
+        <ion-button shape="round" color="primary" expand="full"
+                    [disabled]="!isenabled"
+                    *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']"
+                    (click)="notifyTeamOfUpcomingGame()">
+            Email Players Reminder
+        </ion-button>
+      </div>
+
+      <br>
 
   <ion-row justify-content-center test-center>
+
     <ion-col col-md-4 col-xs-8>
-      <ion-button class="edit-game" color="success" [routerLink]="['/edit-game', gameID]">Edit</ion-button>
+      <ion-button class="edit-game" color="success"
+                  [routerLink]="['/edit-game', gameID]"
+                  *ngIf="team?.manager_id == user?.idToken.payload['cognito:username']">
+        Edit
+      </ion-button>
     </ion-col>
 
     <ion-col col-md-4 col-xs-8>
-      <ion-button color="danger" [routerLink]="['/team-details', game.team_id]">Back</ion-button>
+      <ion-button color="danger" [routerLink]="['/team-details', game.team_id]">
+        Back
+      </ion-button>
     </ion-col>
 
   </ion-row>

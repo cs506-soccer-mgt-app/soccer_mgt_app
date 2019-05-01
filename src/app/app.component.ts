@@ -10,23 +10,6 @@ import { CognitoService } from './services/cognito-service.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    },
-    {
-      title: 'Create Team',
-      url: '/create-team',
-      icon: 'construct'
-    }
-  ];
 
   constructor(
     private platform: Platform,
@@ -43,6 +26,10 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  hideButton() {
+    return !this.cognitoService.isLoggedIn();
   }
 
   logout() {

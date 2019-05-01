@@ -5,6 +5,7 @@ import { GameDetailsPage } from './game-details.page';
 import { RouterModule } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LocationStrategy, PathLocationStrategy, APP_BASE_HREF } from '@angular/common';
+import { ExpectedConditions } from 'protractor';
 
 describe('GameDetailsPage', () => {
   let component: GameDetailsPage;
@@ -47,5 +48,21 @@ describe('GameDetailsPage', () => {
     component.route.snapshot.params.id = 5;
     component.ngOnInit();
     expect(component.gameID).toEqual(5);
+  });
+
+  it('should have a loadData() method that populates game information', () => {
+    const cmpntSpy = spyOn(component, 'loadData').and.callThrough();
+    expect(component.loadData()).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByName() method', () => {
+    const cmpntSpy = spyOn(component, 'compareByName').and.callThrough();
+    const nameA = {firstname: 'b', lastname: 'name'};
+    const nameB = {firstname: 'a', lastname: 'name'};
+
+    expect(component.compareByName(nameA, nameB)).toEqual(1);
+    
+    expect(cmpntSpy).toHaveBeenCalled();
   });
 });

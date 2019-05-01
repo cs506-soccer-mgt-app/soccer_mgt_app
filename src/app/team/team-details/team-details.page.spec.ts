@@ -70,13 +70,29 @@ describe('TeamDetailsPage', () => {
     expect(cmpntSpy).toHaveBeenCalledWith(teamID);
   });
 
-  // it('should return -1 if a < b, 1 if a > b, and 0 if a == b', () => {
-  //   const a = '5';
-  //   const b = '3';
-  //   const cmpntSpy = spyOn(component, 'compareByName').and.callThrough();
-  //   expect(component.compareByDate(a, b)).toEqual(-2);
-  //   expect(cmpntSpy).toHaveBeenCalledWith(a, b);
-  // });
+  it('should return 1 if date A is greater than date B', () => {
+    const a = {date: '5'};
+    const b = {date: '3'};
+    const cmpntSpy = spyOn(component, 'compareByDate').and.callThrough();
+    expect(component.compareByDate(a, b)).toEqual(1);
+    expect(cmpntSpy).toHaveBeenCalledWith(a, b);
+  });
+
+  it('should return 0 if date A is equal to date B', () => {
+    const a = {date: '5'};
+    const b = {date: '5'};
+    const cmpntSpy = spyOn(component, 'compareByDate').and.callThrough();
+    expect(component.compareByDate(a, b)).toEqual(0);
+    expect(cmpntSpy).toHaveBeenCalledWith(a, b);
+  });
+
+  it('should return -1 if date A is less than date B', () => {
+    const a = {date: '2'};
+    const b = {date: '3'};
+    const cmpntSpy = spyOn(component, 'compareByDate').and.callThrough();
+    expect(component.compareByDate(a, b)).toEqual(-1);
+    expect(cmpntSpy).toHaveBeenCalledWith(a, b);
+  });
 
   it('should contain an ionViewWillEnter method to run GET methods for team details and games if teamID exists', () => {
     const teamID = 1;

@@ -56,13 +56,30 @@ describe('GameDetailsPage', () => {
     expect(cmpntSpy).toHaveBeenCalled();
   });
 
-  it('should have a defined compareByName() method', () => {
+  it('should have a defined compareByName() method that returns 1 when name A is greater than name B', () => {
     const cmpntSpy = spyOn(component, 'compareByName').and.callThrough();
     const nameA = {firstname: 'b', lastname: 'name'};
     const nameB = {firstname: 'a', lastname: 'name'};
 
     expect(component.compareByName(nameA, nameB)).toEqual(1);
-    
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByName() method that returns -1 when name A is less than name B', () => {
+    const cmpntSpy = spyOn(component, 'compareByName').and.callThrough();
+    const nameA = {firstname: 'a', lastname: 'name'};
+    const nameB = {firstname: 'b', lastname: 'name'};
+
+    expect(component.compareByName(nameA, nameB)).toEqual(-1);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByName() method that returns 0 when name A is equal to name B', () => {
+    const cmpntSpy = spyOn(component, 'compareByName').and.callThrough();
+    const nameA = {firstname: 'a', lastname: 'name'};
+    const nameB = {firstname: 'a', lastname: 'name'};
+
+    expect(component.compareByName(nameA, nameB)).toEqual(0);
     expect(cmpntSpy).toHaveBeenCalled();
   });
 });

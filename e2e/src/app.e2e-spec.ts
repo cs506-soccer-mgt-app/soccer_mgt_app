@@ -64,9 +64,23 @@ describe('MSTMA ', () => {
       expect(teamTitle.getText()).toEqual('Test');
     });
 
+    it('allows navigation to payment page', () => {
+      var team = element.all(by.css('.team')).get(0);
+      var player = element.all(by.css('.player')).get(0);
+      var paymentTitle = element(by.css('.payment-title'));
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(team), 4000);
+      team.click();
+      browser.executeScript('arguments[0].scrollIntoView()', player.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(player), 4000);
+      player.click();
+      browser.wait(EC.presenceOf(paymentTitle), 4000);
+    });
+
     it('allows navigation to edit-team', () => {
       var team = element.all(by.css('.team')).get(0);
-      var teamTitle = element(by.css('.team-title'));
       var editTeam = element(by.css('.edit-team'));
       var editTitle = element(by.css('.edit-title'));
       browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
@@ -81,9 +95,9 @@ describe('MSTMA ', () => {
       browser.wait(EC.presenceOf(editTitle), 4000);
       expect(editTitle.getText()).toEqual('Edit Test');
     });
+
     it('allows navigation to Add Game', ()=> {
       var team = element.all(by.css('.team')).get(0);
-      var teamTitle = element(by.css('.team-title'));
       var addGame = element(by.css('.add-game'));
       var addGameTitle = element(by.css('.add-game-title'));
       browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
@@ -100,7 +114,6 @@ describe('MSTMA ', () => {
 
     it('allows navigation to game-details', () => {
       var team = element.all(by.css('.team')).get(0);
-      var teamTitle = element(by.css('.team-title'));
       var game = element.all(by.css('.game')).get(0);
       var gameTitle = element(by.css('.game-title'));
       browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
@@ -113,6 +126,26 @@ describe('MSTMA ', () => {
       game.click();
       browser.sleep(250);
       browser.wait(EC.presenceOf(gameTitle), 4000);
+    });
+
+    it('allows navigation to availability', () => {
+      var team = element.all(by.css('.team')).get(0);
+      var game = element.all(by.css('.game')).get(0);
+      var player = element.all(by.css('.player')).get(5);
+      var playerTitle = element(by.css('.availability-title'));
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(team), 4000);
+      team.click();
+      browser.executeScript('arguments[0].scrollIntoView()', game.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(game), 4000);
+      game.click();
+      browser.executeScript('arguments[0].scrollIntoView()', player.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(player), 4000);
+      player.click();
+      browser.wait(EC.presenceOf(playerTitle), 4000);
     });
 
     it('allows navigation to edit-game', () => {
@@ -381,6 +414,19 @@ describe('MSTMA ', () => {
       game.click();
       browser.wait(EC.visibilityOf(gameTitle), 4000);
       expect(EC.invisibilityOf(editGame));
+    });
+
+    it('payement is not accessable', () => {
+      var team = element.all(by.css('.team')).get(0);
+      var player = element.all(by.css('.player-not-clickable')).get(0);
+      var paymentTitle = element(by.css('.payment-title'));
+      browser.executeScript('arguments[0].scrollIntoView()', team.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(team), 4000);
+      team.click();
+      browser.executeScript('arguments[0].scrollIntoView()', player.getWebElement());
+      browser.sleep(250);
+      browser.wait(EC.visibilityOf(player), 4000);
     });
   });
 });

@@ -65,6 +65,21 @@ describe('GameService', () => {
         });
     });
 
+    it('should POST a notification of an upcoming game', () => {
+        const { gameService, httpTestingCtrl } = setup();
+        const mockData = { game_id: 999, date: '2019-03-20', time: '10:00:00', opponent: 'Team 9', score: '', location: 'Reddan', team_id: 1 };
+        gameService.notifyTeamOfUpcomingGame(mockData.team_id, mockData.date, mockData.time, mockData.opponent, mockData.location)
+            .subscribe(data => {
+                expect(data.data).toBe(mockData);
+            });
+
+        const req = httpTestingCtrl.expectOne(`https://1d59ipr7q8.execute-api.us-east-2.amazonaws.com/production/notifiyteam/${mockData.team_id}`);
+        expect(req.request.method).toBe('POST');
+        req.flush({
+            data: mockData
+        });
+    });
+
     afterEach(() => {
        const { httpTestingCtrl } = setup();
        httpTestingCtrl.verify();

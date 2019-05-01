@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, ComponentFixtureAutoDetect } from '@angular/core/testing';
 
 import { LoginPage } from './login.page';
 import {FormsModule} from '@angular/forms';
@@ -50,23 +50,4 @@ describe('LoginPage', () => {
     expect(component.toastCtrl).toBeDefined();
   });
 
-  it('should contain an login method to run GET methods for email and password', () => {
-    const email = 'test@game.com';
-    const password = 'QWERq1234!';
-    const loginSpy = spyOn(component, 'login').and.callThrough();
-    // const authSpy = spyOn(component, 'cognito').and.callThrough();
-    // Still working on this
-     
-    component.email = email;
-    component.password = password;
-    component.ngOnInit();
-    expect(component.email).toEqual(email);
-    expect(component.password).toEqual(password);
-
-    component.login();
-
-    expect(loginSpy).toHaveBeenCalled();
-    // expect(authSpy).toHaveBeenCalledWith(email, password);
-
-  });
 });

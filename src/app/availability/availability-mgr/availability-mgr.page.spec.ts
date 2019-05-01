@@ -82,5 +82,19 @@ describe('AvailabilityMgrPage', () => {
     expect(component.playerID).toEqual(playerID);
   });
 
-  
+  it('should contain a loadTeam() with game ID as a parameter', () => {
+    const game_id = 1;
+    fixture.detectChanges();
+    const cmpntSpy = spyOn(component, 'loadTeam').and.callThrough();
+    expect(component.loadTeam(game_id)).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalledWith(game_id);
+  });
+
+  it('should contain a loadPlayer() with player ID as a parameter', () => {
+    const player_id = 1;
+    fixture.detectChanges();
+    const cmpntSpy = spyOn(component, 'loadTeam').and.callThrough();
+    expect(component.loadTeam(player_id)).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalledWith(player_id);
+  });
 });

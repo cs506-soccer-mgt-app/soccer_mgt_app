@@ -54,12 +54,5 @@ describe('SignUpPage', () => {
     expect(component.toastCtrl).toBeDefined();
   });
 
-  it('should contain a verifyUser() method with a verification code as a parameter', () => {
-    const verCode = 12345;
-    const cmpntSpy = spyOn(component, 'verifyUser').and.callThrough();
-    expect(component.verifyUser(verCode)).toEqual(undefined);
-    expect(cmpntSpy).toHaveBeenCalledWith(verCode);
-  });
-
-  // Add test for register();
+  // How to successfully test async methods? I cannot figure it out
 });

@@ -42,4 +42,10 @@ describe('UserGameListPage', () => {
   it('should have a defined availabilityService: AvailabilityService variable', () => {
     expect(component.availabilityService).toBeDefined();
   });
+
+  // Need to somehow access idToken of user in order to correctly call data
+  // it('should have a defined loadData() method that returns games for player', () => {
+  //   const cmpntSpy = spyOn(component, 'loadData').and.callThrough();
+  //   expect(component.loadData()).toEqual(undefined);
+  // });
 });

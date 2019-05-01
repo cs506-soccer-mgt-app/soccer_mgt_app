@@ -32,4 +32,44 @@ describe('EditPlayerPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a defined playerService: PlayerService', () => {
+    expect(component.playerService).toBeDefined();
+  });
+
+  it('should have a defined route: ActivatedRoute', () => {
+    expect(component.route).toBeDefined();
+  });
+
+  it('should have a defined navCtrl: NavController', () => {
+    expect(component.navCtrl).toBeDefined();
+  });
+
+  it('should have a defined loadingCtrl: LoadingController', () => {
+    expect(component.loadingCtrl).toBeDefined();
+  });
+
+  it('should have a defined toastCtrl: ToastController', () => {
+    expect(component.toastCtrl).toBeDefined();
+  });
+
+  it('should have a defined ngOnInit() method that initalizes player', () => {
+    const player_id = 1;
+    component.route.snapshot.params.id = player_id;
+    component.ngOnInit();
+    expect(component.playerID).toEqual(player_id);
+  });
+
+  it('should have a defined ionViewWillEnter() method that populates player', () => {
+    const player_id = 1;
+
+    const cmpntSpy = spyOn(component, 'ionViewWillEnter').and.callThrough();
+    component.route.snapshot.params.id = player_id;
+    component.ngOnInit();
+    expect(component.playerID).toEqual(player_id);
+
+    expect(component.ionViewWillEnter()).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+  
 });

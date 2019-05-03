@@ -18,11 +18,23 @@ export class GameDetailsPage implements OnInit {
   public game;
   public user;
   public team;
-  public teamPlayers = [];
 
   loading;
   
   public isenabled:boolean=true;
+
+  public displayPlayers = [];
+
+  public inPlayersChecked = true;
+  public outPlayersChecked = true;
+  public maybePlayersChecked = true;
+  public unknownPlayersChecked = true;
+
+  public inPlayers = [];
+  public outPlayers = [];
+  public maybePlayers = [];
+  public unknownPlayers = [];
+  public allPlayers = [];
 
   constructor(public gameService: GameService,
               public route: ActivatedRoute,
@@ -43,6 +55,68 @@ export class GameDetailsPage implements OnInit {
     }
   }
 
+  updateIN() {
+    if (this.inPlayersChecked) {
+      this.inPlayersChecked = false;
+    } else {
+      this.inPlayersChecked = true;
+    }
+    console.log(this.inPlayersChecked);
+    this.updateDisplayPlayers();
+  }
+
+  updateOUT() {
+    if (this.outPlayersChecked) {
+      this.outPlayersChecked = false;
+    } else {
+      this.outPlayersChecked = true;
+    }
+    this.updateDisplayPlayers();
+  }
+
+  updateUNKNOWN() {
+    if (this.unknownPlayersChecked) {
+      this.unknownPlayersChecked = false;
+    } else {
+      this.unknownPlayersChecked = true;
+    }
+    this.updateDisplayPlayers();
+  }
+
+  updateMAYBE() {
+    if (this.maybePlayersChecked) {
+      this.maybePlayersChecked = false;
+    } else {
+      this.maybePlayersChecked = true;
+    }
+    this.updateDisplayPlayers();
+  }
+
+  updateDisplayPlayers() {
+    this.displayPlayers = [];
+    if (this.inPlayersChecked) {
+      for (let i = 0; i < this.inPlayers.length; i++) {
+        this.displayPlayers.push(this.inPlayers[i]);
+      }
+    }
+    if (this.outPlayersChecked) {
+      for (let i = 0; i < this.outPlayers.length; i++) {
+        this.displayPlayers.push(this.outPlayers[i]);
+      }
+    }
+    if (this.maybePlayersChecked) {
+      for (let i = 0; i < this.maybePlayers.length; i++) {
+        this.displayPlayers.push(this.maybePlayers[i]);
+      }
+    }
+    if (this.unknownPlayersChecked) {
+      for (let i = 0; i < this.unknownPlayers.length; i++) {
+        this.displayPlayers.push(this.unknownPlayers[i]);
+      }
+    }
+    this.displayPlayers.sort(this.compareByName);
+  }
+
   loadData() {
     this.gameService.getGameDetail(this.gameID)
         .subscribe(data => {
@@ -58,7 +132,14 @@ export class GameDetailsPage implements OnInit {
                 for (const player of Object.values(res)) {
                   players.push(player);
                 }
-                this.teamPlayers = [];
+
+                this.displayPlayers = [];
+                this.inPlayers = [];
+                this.outPlayers = [];
+                this.maybePlayers = [];
+                this.unknownPlayers = [];
+                this.allPlayers = [];
+
                 for (let i = 0; i < players.length; i++) {
                   let firstname = '';
                   let lastname = '';
@@ -82,14 +163,57 @@ export class GameDetailsPage implements OnInit {
                   this.availabilityService.getAvailabilityByGameAndPlayer(this.gameID, player_id)
                       .subscribe(res => {
                         availability = res;
-                        this.teamPlayers.push({
+                        if (availability.availability_type == "IN") {
+                          this.inPlayers.push({
+                            firstname: firstname,
+                            lastname: lastname,
+                            sex: sex,
+                            player_id: player_id,
+                            availability_type: availability.availability_type
+                          });
+                        } else if (availability.availability_type == "OUT") {
+                          this.outPlayers.push({
+                            firstname: firstname,
+                            lastname: lastname,
+                            sex: sex,
+                            player_id: player_id,
+                            availability_type: availability.availability_type
+                          });
+                        } else if (availability.availability_type == "MAYBE") {
+                          this.maybePlayers.push({
+                            firstname: firstname,
+                            lastname: lastname,
+                            sex: sex,
+                            player_id: player_id,
+                            availability_type: availability.availability_type
+                          });
+                        } else {
+                          this.unknownPlayers.push({
+                            firstname: firstname,
+                            lastname: lastname,
+                            sex: sex,
+                            player_id: player_id,
+                            availability_type: availability.availability_type
+                          });
+                        }
+
+                        this.allPlayers.push({
                           firstname: firstname,
                           lastname: lastname,
                           sex: sex,
                           player_id: player_id,
                           availability_type: availability.availability_type
                         });
-                      this.teamPlayers.sort(this.compareByName);
+
+                        this.displayPlayers.push({
+                          firstname: firstname,
+                          lastname: lastname,
+                          sex: sex,
+                          player_id: player_id,
+                          availability_type: availability.availability_type
+                        });
+
+                      this.displayPlayers.sort(this.compareByName);
                       }, err => {
                         console.log(err);
                       });

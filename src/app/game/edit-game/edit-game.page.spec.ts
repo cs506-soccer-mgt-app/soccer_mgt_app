@@ -60,6 +60,24 @@ describe('EditGamePage', () => {
     expect(component.gameID).toEqual(1);
   });
 
-  // loadGame() tests in E2E
+  it('should have a handleSaveButtonClick() method', () => {
+    return new Promise(function(resolve, reject) {
+      const cmpntySpy = spyOn(component, 'handleSaveButtonClick').and.returnValue(Promise.resolve(true));
+      const save = component.handleSaveButtonClick();
+      expect(cmpntySpy).toHaveBeenCalled();
+      expect(save).toBeDefined();;
+      resolve();
+    });
+  });
+
+  it('should have a loadGame() method', () => {
+    return new Promise(function(resolve, reject) {
+      component.gameID = 1;
+      const cmpntySpy = spyOn(component, 'loadGame').and.callThrough();
+      component.loadGame();
+      expect(cmpntySpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
 
 });

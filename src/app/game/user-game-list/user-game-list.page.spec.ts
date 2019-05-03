@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserGameListPage } from './user-game-list.page';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { resolve } from 'url';
 
 describe('UserGameListPage', () => {
   let component: UserGameListPage;
@@ -43,9 +44,54 @@ describe('UserGameListPage', () => {
     expect(component.availabilityService).toBeDefined();
   });
 
-  // Need to somehow access idToken of user in order to correctly call data
-  // it('should have a defined loadData() method that returns games for player', () => {
-  //   const cmpntSpy = spyOn(component, 'loadData').and.callThrough();
-  //   expect(component.loadData()).toEqual(undefined);
-  // });
+  it('should have a defined compareByDate() method that returns 0 when date A is equal to date B', () => {
+    const cmpntSpy = spyOn(component, 'compareByDate').and.callThrough();
+    const dateA = {date: '5'};
+    const dateB = {date: '5'};
+
+    expect(component.compareByDate(dateA, dateB)).toEqual(0);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByDate() method that returns 1 when date A is greater than to date B', () => {
+    const cmpntSpy = spyOn(component, 'compareByDate').and.callThrough();
+    const dateA = {date: '5'};
+    const dateB = {date: '4'};
+
+    expect(component.compareByDate(dateA, dateB)).toEqual(1);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByDate() method that returns -1 when date A is less than to date B', () => {
+    const cmpntSpy = spyOn(component, 'compareByDate').and.callThrough();
+    const dateA = {date: '3'};
+    const dateB = {date: '4'};
+
+    expect(component.compareByDate(dateA, dateB)).toEqual(-1);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should include a loadData() method that populates user game list', () => {
+    return new Promise(function(resolve, reject) {
+
+      const cmpntySpy = spyOn(component, 'loadData').and.returnValue(Promise.resolve(true));
+      component.loadData();
+      expect(cmpntySpy).toHaveBeenCalled();
+      expect((component.userGameList).length).toEqual(0);
+      resolve();
+    });
+  });
+
+  it('should contain an ionViewWillEnter() method that has a call to loadData()', () => {
+    return new Promise(function(resolve, reject) {
+      const cmpntSpy = spyOn(component, 'ionViewWillEnter').and.returnValue(Promise.resolve(true));
+      const loadSpy = spyOn(component, 'loadData').and.returnValue(Promise.resolve(true));
+      
+      component.ionViewWillEnter();
+
+      expect(cmpntSpy).toHaveBeenCalled();
+      
+      resolve();
+    });
+  });
 });

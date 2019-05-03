@@ -5,6 +5,7 @@ import { AddGamePage } from './add-game.page';
 import {RouterModule} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { GameService } from 'src/app/services/game.service';
 
 describe('AddGamePage', () => {
   let component: AddGamePage;
@@ -64,4 +65,14 @@ describe('AddGamePage', () => {
     component.ngOnInit();
     expect(component.teamID).toEqual(5);
   }); 
+
+  it('should contain a handleOkButtonClick() method', () => {
+    component.game.date = '4';
+    component.game.time = '5';
+    const cmpntSpy = spyOn(component, 'handleOkButtonClick').and.callThrough();
+    const newGame = component.handleOkButtonClick();
+    expect(cmpntSpy).toHaveBeenCalled();
+    expect(newGame).toEqual(undefined);
+
+  });
 });

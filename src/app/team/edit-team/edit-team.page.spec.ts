@@ -45,21 +45,32 @@ describe('EditTeamPage', () => {
     expect(component.route).toBeDefined();
   });
 
-  it('should have a null teamID variable set after initialization and then equal to 5 after assignment', () => {
+  it('should have a null teamID variable set before initialization and then equal to teamID after assignment', () => {
     expect(component.teamID).toEqual(null);
     component.route.snapshot.params.id = 5;
     component.ngOnInit();
     expect(component.teamID).toEqual(5);
   });
 
-  // Need to update this test to check for correct details
-  it('should get team details', () => {
-    expect(component.teamID).toEqual(null);
-    component.route.snapshot.params.id = 1;
-    component.ngOnInit();
-    component.getTeamDetail(5);
+  
+  it('should have a updateTeam() method', () => {
+    return new Promise(function(resolve, reject) {
+
+      const cmpntSpy = spyOn(component, 'updateTeam').and.returnValue(Promise.resolve(true));
+      component.updateTeam();
+      expect(cmpntSpy).toHaveBeenCalled();
+      expect(component.team).toEqual(undefined);
+
+      resolve();
+    });
   });
 
-  // Update team is tested in E2E
+  it('should have a defined getTeamDetail() method that takes id as parameter', () => {
+    const this_id = 1;
+    const cmpntSpy = spyOn(component, 'getTeamDetail').and.callThrough();
+    component.getTeamDetail(this_id);
+    expect(cmpntSpy).toHaveBeenCalledWith(1);
+    expect(component.team).toEqual(undefined);
+  });
 
 });

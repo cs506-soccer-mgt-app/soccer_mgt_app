@@ -66,5 +66,13 @@ describe('InvitePlayerPage', () => {
     expect(component.teamID).toEqual(5);
   });
 
-  // How to test sendInvitation?
+  it('should have a defined sendInvitation() method', () => {
+    return new Promise(function(resolve, reject) {
+    
+      const cmpntySpy = spyOn(component, 'sendInvitation').and.returnValue(Promise.resolve(true));
+      expect(component.sendInvitation()).toBeDefined();
+      expect(cmpntySpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
 });

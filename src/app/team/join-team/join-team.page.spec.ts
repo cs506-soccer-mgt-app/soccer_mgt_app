@@ -38,4 +38,16 @@ describe('JoinTeamPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain a defined joinTeam() method', () => {
+    return new Promise(function(resolve, reject) {
+      component.teamID = null
+      const cmpntSpy = spyOn(component, 'joinTeam').and.returnValue(Promise.resolve(true));
+      component.joinTeam();
+      expect(cmpntSpy).toHaveBeenCalled();
+      expect(component.teamID).toBeDefined();
+
+      resolve();
+    });
+  });
 });

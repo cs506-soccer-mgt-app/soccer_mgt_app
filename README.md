@@ -17,3 +17,5 @@ In the project directory, run "npm test", which will launch a browser and automa
 
 #### E2E Tests
 In the project directory, run "npm run e2e", which will launch a browser and automatically run end-to-end tests.
+#### NOTE!!!!
+We have encountered an issue with certain computers failing the tests for no reason while they pass on others. Our best guess after looking into the failures for a while is that the cpu on certain machines isn't giving enough time to the tests causing them to fail after a timeout. This only seems to happen with window machines. Our advice would be to only have the tests running without any other processes on your machine. To see the tests passing on one of our macs, you can check out README_E2ETest_SCREENSHOT.png in the project directory

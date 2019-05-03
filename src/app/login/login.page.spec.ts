@@ -50,4 +50,13 @@ describe('LoginPage', () => {
     expect(component.toastCtrl).toBeDefined();
   });
 
+  it('should have a vaild login() method', () => {
+    return new Promise(function(resolve, reject) {
+
+      const cmpntySpy = spyOn(component, 'login').and.returnValue(Promise.resolve(true));
+      component.login();
+      expect(cmpntySpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
 });

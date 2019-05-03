@@ -54,5 +54,33 @@ describe('SignUpPage', () => {
     expect(component.toastCtrl).toBeDefined();
   });
 
-  // How to successfully test async methods? I cannot figure it out
+  it('should have a defined resgister() method', () => {
+    return new Promise(function(resolve, reject) {
+      
+      const cmpntySpy = spyOn(component, 'register').and.returnValue(Promise.resolve(true));
+      expect(component.register()).toBeDefined();
+      expect(cmpntySpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
+
+  it('should have a defined promptVerificationCode() method', () => {
+    return new Promise(function(resolve, reject) {
+      
+      const cmpntySpy = spyOn(component, 'promptVerificationCode').and.returnValue(Promise.resolve(true));
+      expect(component.promptVerificationCode()).toBeDefined();
+      expect(cmpntySpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
+
+  it('should have a defined verifyUser() method', () => {
+    return new Promise(function(resolve, reject) {
+      const verifyCode = 34
+      const cmpntySpy = spyOn(component, 'verifyUser').and.returnValue(Promise.resolve(true));
+      expect(component.verifyUser(verifyCode)).toBeDefined();
+      expect(cmpntySpy).toHaveBeenCalledWith(verifyCode);
+      resolve();
+    });
+  });
 });

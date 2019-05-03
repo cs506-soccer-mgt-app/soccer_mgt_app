@@ -5,6 +5,7 @@ import { GameDetailsPage } from './game-details.page';
 import { RouterModule } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LocationStrategy, PathLocationStrategy, APP_BASE_HREF } from '@angular/common';
+import { ExpectedConditions } from 'protractor';
 
 describe('GameDetailsPage', () => {
   let component: GameDetailsPage;
@@ -47,5 +48,75 @@ describe('GameDetailsPage', () => {
     component.route.snapshot.params.id = 5;
     component.ngOnInit();
     expect(component.gameID).toEqual(5);
+  });
+
+  it('should have a loadData() method that populates game information', () => {
+    const cmpntSpy = spyOn(component, 'loadData').and.callThrough();
+    expect(component.loadData()).toEqual(undefined);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByName() method that returns 1 when name A is greater than name B', () => {
+    const cmpntSpy = spyOn(component, 'compareByName').and.callThrough();
+    const nameA = {firstname: 'b', lastname: 'name'};
+    const nameB = {firstname: 'a', lastname: 'name'};
+
+    expect(component.compareByName(nameA, nameB)).toEqual(1);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByName() method that returns -1 when name A is less than name B', () => {
+    const cmpntSpy = spyOn(component, 'compareByName').and.callThrough();
+    const nameA = {firstname: 'a', lastname: 'name'};
+    const nameB = {firstname: 'b', lastname: 'name'};
+
+    expect(component.compareByName(nameA, nameB)).toEqual(-1);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should have a defined compareByName() method that returns 0 when name A is equal to name B', () => {
+    const cmpntSpy = spyOn(component, 'compareByName').and.callThrough();
+    const nameA = {firstname: 'a', lastname: 'name'};
+    const nameB = {firstname: 'a', lastname: 'name'};
+
+    expect(component.compareByName(nameA, nameB)).toEqual(0);
+    expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should contain a loadData() method that subscribes team and game information', () => {
+    return new Promise(function(resolve, reject) {
+      
+      const cmpntSpy = spyOn(component, 'loadData').and.returnValue(Promise.resolve(true));
+      component.loadData();
+      expect(cmpntSpy).toHaveBeenCalled();
+      expect(component.game).toEqual(undefined);
+      expect(component.team).toEqual(undefined);
+      expect((component.displayPlayers).length).toEqual(0);
+
+      resolve();
+    
+    });
+  });
+
+  it('should contain a isManager() method', () => {
+    return new Promise(function(resolve, reject) {
+      const cmpntSpy = spyOn(component, 'isManager').and.returnValue(Promise.resolve(true));
+      const boolType = component.isManager();
+      expect(cmpntSpy).toHaveBeenCalled();
+      expect(boolType).toBeDefined();
+
+      resolve();
+    });
+  });
+
+  it('should contain a notifyTeamOfUpcomingGame() method', () => {
+    return new Promise(function(resolve, reject) {
+      
+      const cmpntSpy = spyOn(component, 'notifyTeamOfUpcomingGame').and.returnValue(Promise.resolve(true));
+      component.notifyTeamOfUpcomingGame();
+      expect(cmpntSpy).toHaveBeenCalled();
+
+      resolve();
+    });
   });
 });

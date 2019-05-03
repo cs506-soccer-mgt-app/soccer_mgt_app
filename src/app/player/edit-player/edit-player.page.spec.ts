@@ -71,5 +71,15 @@ describe('EditPlayerPage', () => {
     expect(component.ionViewWillEnter()).toEqual(undefined);
     expect(cmpntSpy).toHaveBeenCalled();
   });
+
+  it('should have a defined save() method', () => {
+    return new Promise(function(resolve, reject) {
+      
+      const cmpntySpy = spyOn(component, 'save').and.returnValue(Promise.resolve(true));
+      expect(component.save()).toBeDefined();
+      expect(cmpntySpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
   
 });

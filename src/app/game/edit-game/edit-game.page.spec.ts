@@ -60,6 +60,31 @@ describe('EditGamePage', () => {
     expect(component.gameID).toEqual(1);
   });
 
-  // loadGame() tests in E2E
+  // it('should have a handleSaveButtonClick() method', () => {
+  //   return new Promise(function(resolve, reject) {
+  //     component.gameID = 1;
+  //     component.game.date = 1;
+  //     component.game.time = 1;
+  //     component.game.opponent = 1;
+  //     component.game.score = 1;
+  //     component.game.location = 1;
+  //     component.game.team_id = 1;
+  //     const cmpntySpy = spyOn(component, 'handleSaveButtonClick').and.callThrough();
+  //     const save = component.handleSaveButtonClick();
+  //     expect(cmpntySpy).toHaveBeenCalled();
+  //     expect(save).toEqual(undefined);
+  //   });
+  // });
+
+  it('should have a loadGame() method', () => {
+    return new Promise(function(resolve, reject) {
+      component.gameID = 1;
+      //and.returnValue(Promise.resolve(true));
+      const cmpntySpy = spyOn(component, 'loadGame').and.callThrough();
+      component.loadGame();
+      expect(cmpntySpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
 
 });

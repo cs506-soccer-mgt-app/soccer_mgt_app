@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 import {RouterModule} from '@angular/router';
 import {APP_BASE_HREF, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { constants } from 'zlib';
 
 describe('EditProfilePage', () => {
   let component: EditProfilePage;
@@ -48,5 +49,23 @@ describe('EditProfilePage', () => {
 
   it('should have a defined navCtrl: NavController variable', () => {
     expect(component.navCtrl).toBeDefined();
+  });
+
+  it('should contain an editProfile() method', () => {
+    return new Promise(function(resolve, reject) {
+
+      component.firstname = 'test';
+      component.lastname = 'test';
+      component.phonenumber = '+1920123456';
+      component.sex = 'Male';
+      component.email = 'test@gmail.com';
+      component.password = 'QWERqwer1234!';
+      
+      const cmpntSpy = spyOn(component, 'editProfile').and.returnValue(Promise.resolve(true));
+      component.editProfile();
+      expect(cmpntSpy).toHaveBeenCalled();
+
+      resolve();
+    });
   });
 });

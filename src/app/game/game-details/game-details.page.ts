@@ -25,10 +25,10 @@ export class GameDetailsPage implements OnInit {
 
   public displayPlayers = [];
 
-  public inPlayersChecked = true
-  public outPlayersChecked = true
-  public maybePlayersChecked = true
-  public unknownPlayersChecked = true
+  public inPlayersChecked = true;
+  public outPlayersChecked = true;
+  public maybePlayersChecked = true;
+  public unknownPlayersChecked = true;
 
   public inPlayers = [];
   public outPlayers = [];
@@ -57,61 +57,61 @@ export class GameDetailsPage implements OnInit {
 
   updateIN() {
     if (this.inPlayersChecked) {
-      this.inPlayersChecked = false
+      this.inPlayersChecked = false;
     } else {
-      this.inPlayersChecked = true
+      this.inPlayersChecked = true;
     }
-    console.log(this.inPlayersChecked)
+    console.log(this.inPlayersChecked);
     this.updateDisplayPlayers();
   }
 
   updateOUT() {
     if (this.outPlayersChecked) {
-      this.outPlayersChecked = false
+      this.outPlayersChecked = false;
     } else {
-      this.outPlayersChecked = true
+      this.outPlayersChecked = true;
     }
     this.updateDisplayPlayers();
   }
 
   updateUNKNOWN() {
     if (this.unknownPlayersChecked) {
-      this.unknownPlayersChecked = false
+      this.unknownPlayersChecked = false;
     } else {
-      this.unknownPlayersChecked = true
+      this.unknownPlayersChecked = true;
     }
     this.updateDisplayPlayers();
   }
 
   updateMAYBE() {
     if (this.maybePlayersChecked) {
-      this.maybePlayersChecked = false
+      this.maybePlayersChecked = false;
     } else {
-      this.maybePlayersChecked = true
+      this.maybePlayersChecked = true;
     }
     this.updateDisplayPlayers();
   }
 
   updateDisplayPlayers() {
-    this.displayPlayers = []
+    this.displayPlayers = [];
     if (this.inPlayersChecked) {
       for (let i = 0; i < this.inPlayers.length; i++) {
-        this.displayPlayers.push(this.inPlayers[i])
+        this.displayPlayers.push(this.inPlayers[i]);
       }
     }
     if (this.outPlayersChecked) {
       for (let i = 0; i < this.outPlayers.length; i++) {
-        this.displayPlayers.push(this.outPlayers[i])
+        this.displayPlayers.push(this.outPlayers[i]);
       }
     }
     if (this.maybePlayersChecked) {
       for (let i = 0; i < this.maybePlayers.length; i++) {
-        this.displayPlayers.push(this.maybePlayers[i])
+        this.displayPlayers.push(this.maybePlayers[i]);
       }
     }
     if (this.unknownPlayersChecked) {
       for (let i = 0; i < this.unknownPlayers.length; i++) {
-        this.displayPlayers.push(this.unknownPlayers[i])
+        this.displayPlayers.push(this.unknownPlayers[i]);
       }
     }
     this.displayPlayers.sort(this.compareByName);

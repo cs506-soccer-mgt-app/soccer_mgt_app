@@ -91,7 +91,7 @@ describe('GameDetailsPage', () => {
       expect(cmpntSpy).toHaveBeenCalled();
       expect(component.game).toEqual(undefined);
       expect(component.team).toEqual(undefined);
-      expect((component.teamPlayers).length).toEqual(0);
+      expect((component.displayPlayers).length).toEqual(0);
 
       resolve();
     

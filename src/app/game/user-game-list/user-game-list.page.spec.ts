@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserGameListPage } from './user-game-list.page';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { resolve } from 'url';
 
 describe('UserGameListPage', () => {
   let component: UserGameListPage;
@@ -68,5 +69,29 @@ describe('UserGameListPage', () => {
 
     expect(component.compareByDate(dateA, dateB)).toEqual(-1);
     expect(cmpntSpy).toHaveBeenCalled();
+  });
+
+  it('should include a loadData() method that populates user game list', () => {
+    return new Promise(function(resolve, reject) {
+
+      const cmpntySpy = spyOn(component, 'loadData').and.returnValue(Promise.resolve(true));
+      component.loadData();
+      expect(cmpntySpy).toHaveBeenCalled();
+      expect((component.userGameList).length).toEqual(0);
+      resolve();
+    });
+  });
+
+  it('should contain an ionViewWillEnter() method that has a call to loadData()', () => {
+    return new Promise(function(resolve, reject) {
+      const cmpntSpy = spyOn(component, 'ionViewWillEnter').and.returnValue(Promise.resolve(true));
+      const loadSpy = spyOn(component, 'loadData').and.returnValue(Promise.resolve(true));
+      
+      component.ionViewWillEnter();
+
+      expect(cmpntSpy).toHaveBeenCalled();
+      
+      resolve();
+    });
   });
 });

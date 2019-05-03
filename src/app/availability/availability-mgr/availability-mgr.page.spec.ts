@@ -84,6 +84,19 @@ describe('AvailabilityMgrPage', () => {
     expect(component.playerID).toEqual(playerID);
   });
 
+  it('should contain a ionViewWillEnter() method', () => {
+    return new Promise(function(resolve, reject) {
+      component.gameID = 1;
+      component.playerID = 1;
+      const cmpntSpy = spyOn(component, 'ionViewWillEnter').and.callThrough();
+      const loadSpy = spyOn(component, 'load').and.returnValue(Promise.resolve(true));
+      component.ionViewWillEnter();
+      expect(cmpntSpy).toHaveBeenCalled();
+      expect(loadSpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
+
   it('should contain a loadTeam() with game ID as a parameter', () => {
     const game_id = 1;
     fixture.detectChanges();
@@ -142,13 +155,53 @@ describe('AvailabilityMgrPage', () => {
     
       const cmpntSpy = spyOn(component, 'load').and.returnValue(Promise.resolve(true));
       const availSpy = spyOn(component, 'loadAvailability').and.returnValue(Promise.resolve(true));
-      //const playSpy = spyOn(component, 'loadPlayer').and.returnValue(Promise.resolve(true));
-      //const teamSpy = spyOn(component, 'loadTeam').and.returnValue(Promise.resolve(true));
 
       component.load();
       expect(cmpntSpy).toHaveBeenCalled();
-      //expect(availSpy).toHaveBeenCalled();
-      //expect(teamSpy).toHaveBeenCalledWith(game_id);
+      resolve();
+    });
+  });
+
+  it('should contain a defined save() method that calls createAvailability()', () => {
+    return new Promise(function(resolve, reject) {
+      component.availability.availability_id = null;
+      const cmpntSpy = spyOn(component, 'save').and.callThrough();
+      const createSpy = spyOn(component, 'createAvailability').and.returnValue(Promise.resolve(true));
+      component.save();
+      expect(cmpntSpy).toHaveBeenCalled();
+      expect(createSpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
+
+  it('should contain a defined save() method that calls updateAvailability()', () => {
+    return new Promise(function(resolve, reject) {
+      component.availability.availability_id = 1;
+      const cmpntSpy = spyOn(component, 'save').and.callThrough();
+      const updateSpy = spyOn(component, 'updateAvailability').and.returnValue(Promise.resolve(true));
+      component.save();
+      expect(cmpntSpy).toHaveBeenCalled();
+      expect(updateSpy).toHaveBeenCalled();
+      resolve();
+    });
+  });
+
+  it('should have a defined createAvailability() method', () => {
+    return new Promise(function(resolve, reject) {
+      const cmpntSpy = spyOn(component, 'createAvailability').and.returnValue(Promise.resolve(true));
+      component.createAvailability();
+      expect(cmpntSpy).toHaveBeenCalled();
+      expect(component.availability).toBeDefined();
+      resolve();
+    });
+  });
+
+  it('should have a defined updateAvailability() method', () => {
+    return new Promise(function(resolve, reject) {
+      const cmpntSpy = spyOn(component, 'updateAvailability').and.returnValue(Promise.resolve(true));
+      component.updateAvailability();
+      expect(cmpntSpy).toHaveBeenCalled();
+      expect(component.availability).toBeDefined();
       resolve();
     });
   });

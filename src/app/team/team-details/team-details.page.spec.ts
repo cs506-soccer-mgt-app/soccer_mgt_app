@@ -56,7 +56,7 @@ describe('TeamDetailsPage', () => {
     expect(cmpntSpy).toHaveBeenCalledWith(teamID);
   });
 
-  it('should contain a getTeamDetail with a team ID as a parameter', () => {
+  it('should contain a getTeamDetail() with a team ID as a parameter', () => {
     const teamID = 1;
     const cmpntSpy = spyOn(component, 'getTeamDetail').and.callThrough();
     expect(component.getTeamDetail(teamID)).toEqual(undefined);
@@ -110,5 +110,12 @@ describe('TeamDetailsPage', () => {
     expect(tmDtlSpy).toHaveBeenCalledWith(teamID);
     expect(gmSpy).toHaveBeenCalledWith(teamID);
     expect(plyrSpy).toHaveBeenCalledWith(teamID);
+  });
+
+  it('should contain a ngOnInit() method that initalizes teams ID', () => {
+    const team_id = 1;
+    component.route.snapshot.params.id = team_id;
+    component.ngOnInit();
+    expect(component.teamID).toEqual(team_id);
   });
 });

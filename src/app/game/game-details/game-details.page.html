@@ -38,7 +38,30 @@
       <br>
 
       <b>Game Availability</b>
-      <ion-list *ngFor="let player of teamPlayers">
+      <ion-list>
+
+        <ion-item>
+          <ion-label>IN</ion-label>
+          <ion-checkbox [checked]="true" (ionChange)="updateIN(inPlayersChecked)"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>OUT</ion-label>
+          <ion-checkbox [checked]="true" (ionChange)="updateOUT(outPlayersChecked)"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>UNKNOWN</ion-label>
+          <ion-checkbox [checked]="true" (ionChange)="updateUNKNOWN(unknownPlayersChecked)"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>MAYBE</ion-label>
+          <ion-checkbox [checked]="true" (ionChange)="updateMAYBE(maybePlayersChecked)"></ion-checkbox>
+        </ion-item>
+      
+      </ion-list>
+      <ion-list *ngFor="let player of displayPlayers">
         <ion-item class="player" button
                   [routerLink]="'/game-details/' + gameID + '/players/' + player.player_id">
 

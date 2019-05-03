@@ -114,12 +114,6 @@ export class GameDetailsPage implements OnInit {
         this.displayPlayers.push(this.unknownPlayers[i])
       }
     }
-    if (!this.inPlayersChecked && !this.outPlayersChecked && !this.maybePlayersChecked && !this.unknownPlayersChecked) {
-      this.displayPlayers = []
-      for (let i = 0; i < this.allPlayers.length; i++) {
-        this.displayPlayers.push(this.allPlayers[i])
-      }
-    }
     this.displayPlayers.sort(this.compareByName);
   }
 
